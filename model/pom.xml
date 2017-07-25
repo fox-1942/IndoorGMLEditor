@@ -5,14 +5,38 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>iit.me.106</groupId>
+        <groupId>uni.miskolc.ips</groupId>
         <artifactId>IndoorGMLEditor</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>iit.me.106</groupId>
     <artifactId>model</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    
+    <modules>
+        <module>../service</module>
+    </modules>
+
+
+
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <dependencies>
+    <dependency>
+        <groupId>uni.miskolc.ips</groupId>
+        <artifactId>gml-v_3_2_3-2.6.2</artifactId>
+        <version>v_3_2_3-2.6.2</version>
+        <type>jar</type>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/libs/gml-v_3_3-2.6.2-SNAPSHOT.jar</systemPath>
+    </dependency>
+
+    <dependency>
+        <groupId>uni.miskolc.ips</groupId>
+        <artifactId>indoorgml-v_1_0-2.6.2</artifactId>
+        <version>v_1_0-2.6.2</version>
+        <type>jar</type>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/libs/indoorgml-v_1_0-2.6.2-SNAPSHOT.jar</systemPath>
+    </dependency>
+    </dependencies>
 </project>
