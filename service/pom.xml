@@ -19,10 +19,61 @@
         <dependency>
             <groupId>uni.miskolc.ips</groupId>
             <artifactId>model</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics</artifactId>
+            <version>0.11.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jvnet.jaxb2_commons/jaxb2-commons-lang -->
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-commons-lang</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hisrc.w3c/xlink-v_1_0 -->
+        <dependency>
+            <groupId>org.hisrc.w3c</groupId>
+            <artifactId>xlink-v_1_0</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+
+        <!-- JAXB
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-api</artifactId>
+            <version>14.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-main</artifactId>
+            <version>14.1</version>
+        </dependency>
+-->
     </dependencies>
-
-
-
 
 </project>

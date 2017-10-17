@@ -7,9 +7,7 @@
     <groupId>uni.miskolc.ips</groupId>
     <artifactId>IndoorGMLEditor</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <packaging>pom</packaging>
-
 
     <modules>
         <module>model</module>
@@ -17,4 +15,7 @@
         <module>controller</module>
         <module>gui</module>
     </modules>
+
+    <dependencies>
+    </dependencies>
 </project>
