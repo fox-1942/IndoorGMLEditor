@@ -1,4 +1,4 @@
-package hu.iit.uni.miskolc.gml.editor.model.service;
+package hu.iit.uni.miskolc.gml.editor.model;
 
 import net.opengis.gml.v_3_2_1.CompositeSolidType;
 import net.opengis.gml.v_3_2_1.SolidPropertyType;

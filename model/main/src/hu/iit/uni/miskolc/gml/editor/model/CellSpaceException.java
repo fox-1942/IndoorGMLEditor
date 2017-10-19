@@ -1,4 +1,4 @@
-package hu.iit.uni.miskolc.gml.editor.model.service;
+package hu.iit.uni.miskolc.gml.editor.model;
 
 import java.security.PrivilegedActionException;
 

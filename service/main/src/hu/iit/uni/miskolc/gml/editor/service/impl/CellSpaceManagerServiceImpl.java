@@ -1,7 +1,7 @@
-package hu.iit.uni.miskolc.gml.editor.model.service.impl;
+package hu.iit.uni.miskolc.gml.editor.service.impl;
 
-import hu.iit.uni.miskolc.gml.editor.model.service.CellSpaceException;
-import hu.iit.uni.miskolc.gml.editor.model.service.CellSpaceManagerService;
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceException;
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceManagerService;
 import net.opengis.gml.v_3_2_1.*;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceGeometryType;
 import net.opengis.indoorgml.core.v_1_0.CellSpacePropertyType;

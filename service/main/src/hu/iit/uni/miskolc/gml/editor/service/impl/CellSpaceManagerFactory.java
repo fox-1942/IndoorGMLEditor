@@ -1,14 +1,6 @@
-package hu.iit.uni.miskolc.gml.editor.model.service.impl;
+package hu.iit.uni.miskolc.gml.editor.service.impl;
 
-import net.opengis.gml.v_3_2_1.SurfacePropertyType;
-import net.opengis.gml.v_3_2_1.SurfaceType;
-import net.opengis.indoorgml.core.v_1_0.CellSpaceGeometryType;
-
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.namespace.QName;
-import java.util.ArrayList;
-import java.util.List;
 
 //Static Factory method
 

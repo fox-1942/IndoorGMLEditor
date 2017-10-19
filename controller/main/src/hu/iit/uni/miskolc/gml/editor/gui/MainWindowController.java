@@ -1,10 +1,11 @@
-package hu.iit.uni.miskolc.gml;
+package hu.iit.uni.miskolc.gml.editor.gui;
 
-import hu.iit.uni.miskolc.gml.editor.model.service.CellSpaceException;
-import hu.iit.uni.miskolc.gml.editor.model.service.CellSpaceManagerService;
-import hu.iit.uni.miskolc.gml.editor.model.service.ServiceFacade;
-import hu.iit.uni.miskolc.gml.editor.model.service.impl.CellSpaceManagerFactory;
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceException;
+import hu.iit.uni.miskolc.gml.editor.model.ServiceFacade;
+import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceManagerFactory;
+
 import javafx.event.ActionEvent;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 import javax.xml.bind.JAXBException;
@@ -15,6 +16,9 @@ import java.io.IOException;
  * Created by fox on 2017.08.18..
  */
 public class MainWindowController {
+
+
+    private Text actionStatus;
 
     private static final String FILE_SEPARATOR = System.getProperty("file.separator");
     private ServiceFacade facade;
@@ -53,11 +57,24 @@ public class MainWindowController {
         return outputFile;
     }
 
+    private void showSingleFileChooser() {
+
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            actionStatus.setText("File selected");
+            Path=selectedFile.getPath();
+        }
+        else {
+            actionStatus.setText("File selection cancelled.");
+        }
+    }
+
+
     public void marshal(ActionEvent event) {
-
-
-
         try {
+            showSingleFileChooser();
             facade.marshal(createOutputFile());
         } catch (CellSpaceException e) {
             e.printStackTrace();
@@ -67,9 +84,12 @@ public class MainWindowController {
 
     public void unmarshal(ActionEvent event) {
         try {
+            showSingleFileChooser();
             facade.unmarshal(inputFile);
         } catch (CellSpaceException e) {
             e.printStackTrace();
         }
     }
+
+
 }
