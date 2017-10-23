@@ -197,14 +197,8 @@ public class CellSpaceManagerServiceImpl implements CellSpaceManagerService {
     }
 
     public CellSpaceType unmarshal(File inputFile) throws CellSpaceException {
-        Unmarshaller unmarshaller=null;
         try {
-            unmarshaller = context.createUnmarshaller();
-        } catch (JAXBException e) {
-            throw new CellSpaceException(e.getMessage());
-        }
-
-        try {
+            Unmarshaller unmarshaller=context.createUnmarshaller();
             JAXBElement<CellSpaceType> cellSpace2 = (JAXBElement) unmarshaller.unmarshal(inputFile);
             return cellSpace2.getValue();
         } catch (JAXBException e) {
