@@ -1,6 +1,7 @@
 package hu.iit.uni.miskolc.gml.editor.model;
 
 import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
+import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 
 import java.io.File;
 
@@ -24,8 +25,14 @@ public class ServiceFacade {
         cellSpaceManagerService.marshal(outputfile);
     }
 
-    public CellSpaceType unmarshal(File inputFile) throws CellSpaceException {
-        return cellSpaceManagerService.unmarshal(inputFile);
+    public CellSpaceType unmarshal2(File inputFile) throws CellSpaceException {
+        return cellSpaceManagerService.unmarshal2(inputFile);
+    }
+
+
+
+    public static IndoorFeaturesType unmarshal(File inputFile) throws CellSpaceException {
+        return CellSpaceManagerService.unmarshal(inputFile);
     }
 
 }

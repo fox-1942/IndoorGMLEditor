@@ -1,7 +1,10 @@
 package hu.iit.uni.miskolc.gml.editor.model.service.impl;
 
-import hu.iit.uni.miskolc.gml.editor.model.service.CellSpaceException;
-import hu.iit.uni.miskolc.gml.editor.model.service.CellSpaceManagerService;
+
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceException;
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceManagerService;
+import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceManagerFactory;
+import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceManagerServiceImpl;
 import net.opengis.gml.v_3_2_1.*;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceGeometryType;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
@@ -113,7 +116,7 @@ public class CellSpaceManagerServiceImplTest {
     // FACTORY METHOD TEST ************************************************************************
     @Test
     public void testCreatorCellSpaceManagerServiceImpl() throws JAXBException {
-        cellSpaceManagerServiceimpl.creatorCellSpaceManagerServiceImpl("surfaceTitle***","surface2ID***","firstAxis***","secondAxis***","SrsName***");
+        CellSpaceManagerFactory.creatorCellSpaceManagerServiceImpl("surfaceTitle***","surface2ID***","firstAxis***","secondAxis***","SrsName***");
         System.out.println(cellSpaceManagerServiceimpl.getCellspace().toString());
     }
 }

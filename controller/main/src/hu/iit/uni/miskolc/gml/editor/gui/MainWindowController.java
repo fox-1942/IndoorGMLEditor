@@ -27,10 +27,15 @@ public class MainWindowController {
     private String path;
 
     //Nullary Contructor, needed because of java.lang.InstantiationException
-    public MainWindowController() throws JAXBException {
-        this.facade = facadeSetup("surfaceTitle", "surface2ID", "firstAxis",
-                "secondAxis", "SrsName");
+    public MainWindowController() {
+        try {
+            this.facade = facadeSetup("surfaceTitlemacska", "surface2ID", "firstAxis",
+                    "secondAxis", "SrsName");
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
+
 
     //Constructor
     public MainWindowController(String surfaceTitle, String surface2ID, String firstAxis, String secondAxis, String SrsName) throws JAXBException {
@@ -90,8 +95,8 @@ public class MainWindowController {
         try {
             showSingleFileChooser();  // path is set.
             File inputFile=new File(path);
-            System.out.println(inputFile.exists());
             facade.unmarshal(inputFile);
+            System.out.println(inputFile.exists());
         } catch (CellSpaceException e) {
             e.printStackTrace();
         }

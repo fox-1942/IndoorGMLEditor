@@ -6,6 +6,7 @@ import net.opengis.gml.v_3_2_1.SurfacePropertyType;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceGeometryType;
 import net.opengis.indoorgml.core.v_1_0.CellSpacePropertyType;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
+import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 
 import java.io.File;
 
@@ -42,7 +43,13 @@ public interface CellSpaceManagerService  {
 
     void marshal(File outputFile) throws CellSpaceException;
 
-    CellSpaceType unmarshal(File inputFile) throws CellSpaceException;
+    CellSpaceType unmarshal2(File inputFile) throws CellSpaceException;
+
+    static IndoorFeaturesType unmarshal(File inputFile) throws CellSpaceException {
+        return null;
+    }
 
     CellSpaceType getCellspace();
+
+
 }

@@ -9,11 +9,22 @@ import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
 
 import javax.xml.bind.*;
 import javax.xml.namespace.QName;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
+
+import org.w3c.dom.Document;
+
+import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
+
+import static sun.plugin.navig.motif.Plugin.error;
 
 /**
  * Created by fox on 2017.07.26..
@@ -21,7 +32,7 @@ import java.util.List;
 
 public class CellSpaceManagerServiceImpl implements CellSpaceManagerService {
 
-    private CellSpaceType cellSpace;
+    private CellSpaceType cellSpace=new CellSpaceType() ;
 
     private CellSpaceManagerService service;
 
@@ -33,44 +44,51 @@ public class CellSpaceManagerServiceImpl implements CellSpaceManagerService {
     }
 
 
-    protected CellSpaceManagerServiceImpl(String surfaceTitle, String surface2ID, String firstAxis, String secondAxis, String SrsName) throws JAXBException {
-       SurfacePropertyType surface = new SurfacePropertyType();
+protected CellSpaceManagerServiceImpl(String surfaceTitle, String surface2ID, String firstAxis, String secondAxis, String SrsName) throws JAXBException {
+    SurfacePropertyType surface = new SurfacePropertyType();
 
-       SurfaceType surface2 = new SurfaceType();
+    SurfaceType surface2 = new SurfaceType();
 
-       // surface ------------------------------------------
-       surface.setTitle(surfaceTitle);
+    // surface ------------------------------------------
+    surface.setTitle(surfaceTitle);
 
-       // surface2 and uploading with data -----------------
-       surface2.setId(surface2ID);
+    // surface2 and uploading with data -----------------
+    surface2.setId(surface2ID);
 
-       List<String> list = new ArrayList<String>();
-       list.add(firstAxis);
-       list.add(secondAxis);
-       surface2.setAxisLabels(list);
+    List<String> list = new ArrayList<String>();
+    list.add(firstAxis);
+    list.add(secondAxis);
+    surface2.setAxisLabels(list);
 
-       surface2.setSrsName(SrsName);
+    surface2.setSrsName(SrsName);
 
-       // creating JAXBElement from surface2 ---------------
-       QName qName = new QName("http://www.opengis.net/gml/3.2", "Surface");
-       JAXBElement<SurfaceType> SurfaceTypeJAXBElement = new JAXBElement<SurfaceType>(qName, SurfaceType.class, surface2);
+    // creating JAXBElement from surface2 ---------------
+    QName qName = new QName("http://www.opengis.net/gml/3.2", "Surface");
+    JAXBElement<SurfaceType> SurfaceTypeJAXBElement = new JAXBElement<SurfaceType>(qName, SurfaceType.class, surface2);
 
-       // adding surface2-JAXBElement (as parameter) to surface
-       surface.setAbstractSurface(SurfaceTypeJAXBElement);
+    // adding surface2-JAXBElement (as parameter) to surface
+    surface.setAbstractSurface(SurfaceTypeJAXBElement);
 
-       // creating geometry --------------------------------
-       CellSpaceGeometryType geometry = new CellSpaceGeometryType();
+    // creating geometry --------------------------------
+    CellSpaceGeometryType geometry = new CellSpaceGeometryType();
 
-       // adding surface to geometry -----------------------
-       geometry.setGeometry2D(surface);
+    // adding surface to geometry -----------------------
+    geometry.setGeometry2D(surface);
 
-       // adding geometry to cellSpace ---------------------
-       cellSpace.setCellSpaceGeometry(geometry);
+    // adding geometry to cellSpace ---------------------
 
-       // adding cellSpace to service ----------------------
-       // service = new CellSpaceManagerServiceImpl(cellSpace);
+    cellSpace.setCellSpaceGeometry(geometry);
 
-   }
+    // adding cellSpace to service ----------------------
+    service = new CellSpaceManagerServiceImpl(cellSpace);
+    }
+
+
+
+    public CellSpaceManagerService getService() {
+        return service;
+    }
+
 
     // GETTERS ***************************************************************
     public CellSpaceGeometryType getGeometry() {
@@ -196,7 +214,8 @@ public class CellSpaceManagerServiceImpl implements CellSpaceManagerService {
         }
     }
 
-    public CellSpaceType unmarshal(File inputFile) throws CellSpaceException {
+
+    public CellSpaceType unmarshal2(File inputFile) throws CellSpaceException {
         try {
             Unmarshaller unmarshaller=context.createUnmarshaller();
             JAXBElement<CellSpaceType> cellSpace2 = (JAXBElement) unmarshaller.unmarshal(inputFile);
@@ -204,8 +223,25 @@ public class CellSpaceManagerServiceImpl implements CellSpaceManagerService {
         } catch (JAXBException e) {
             throw new CellSpaceException(e.getMessage());
         }
-
     }
+
+    public static IndoorFeaturesType unmarshal(File inputFile) {
+        try {
+            JAXBContext jc = JAXBContext.newInstance(IndoorFeaturesType.class);
+            Unmarshaller u = jc.createUnmarshaller();
+
+            System.out.println("Ez itt az unmarshall eredménye:");
+            return u.unmarshal((Source) inputFile,IndoorFeaturesType.class).getValue();
+
+
+        } catch (JAXBException | IllegalArgumentException e) {
+            error("Haver, az adatod nem valid!");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 
     public CellSpaceType getCellspace() {
         return this.cellSpace;
