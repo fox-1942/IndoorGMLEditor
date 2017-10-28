@@ -1,7 +1,7 @@
 package hu.iit.uni.miskolc.gml.editor.gui;
 
 import hu.iit.uni.miskolc.gml.editor.model.CellSpaceException;
-import hu.iit.uni.miskolc.gml.editor.model.ServiceFacade;
+import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
 import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceManagerFactory;
 
 import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceManagerServiceImpl;
@@ -73,10 +73,9 @@ public class MainWindowController {
 
         if (selectedFile != null) {
             System.out.println("File selected");
-            path =selectedFile.getPath();
+            path = selectedFile.getPath();
             System.out.println(path);
-        }
-        else {
+        } else {
             System.out.println("Cancelled.");
         }
 
@@ -91,13 +90,13 @@ public class MainWindowController {
         }
     }
 
-    public void unmarshal(ActionEvent event) {
+    public void unmarshal(ActionEvent event) throws Throwable {
         try {
             showSingleFileChooser();  // path is set.
-            File inputFile=new File(path);
-            facade.unmarshal(inputFile);
+            File inputFile = new File(path);
+            facade.unmarshalmax(inputFile);
             System.out.println(inputFile.exists());
-        } catch (CellSpaceException e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
     }
