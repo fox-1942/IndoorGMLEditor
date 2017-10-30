@@ -2,9 +2,7 @@ package hu.iit.uni.miskolc.gml.editor.gui;
 
 import hu.iit.uni.miskolc.gml.editor.model.CellSpaceException;
 import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
-import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceManagerFactory;
 
-import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceManagerServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 
@@ -28,25 +26,21 @@ public class MainWindowController {
 
     //Nullary Contructor, needed because of java.lang.InstantiationException
     public MainWindowController() {
-        try {
-            this.facade = facadeSetup("surfaceTitlemacska", "surface2ID", "firstAxis",
-                    "secondAxis", "SrsName");
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
+        facade = new ServiceFacade();
+
     }
 
 
-    //Constructor
-    public MainWindowController(String surfaceTitle, String surface2ID, String firstAxis, String secondAxis, String SrsName) throws JAXBException {
-        this.facade = facadeSetup(surfaceTitle, surface2ID, firstAxis, secondAxis, SrsName);
-    }
+//    //Constructor
+//    public MainWindowController(String surfaceTitle, String surface2ID, String firstAxis, String secondAxis, String SrsName) throws JAXBException {
+//        this.facade = facadeSetup(surfaceTitle, surface2ID, firstAxis, secondAxis, SrsName);
+//    }
 
-    public ServiceFacade facadeSetup(String surfaceTitle, String surface2ID, String firstAxis, String secondAxis, String SrsName) throws JAXBException {
-        CellSpaceManagerServiceImpl param = CellSpaceManagerFactory.creatorCellSpaceManagerServiceImpl(surfaceTitle,
-                surface2ID, firstAxis, secondAxis, SrsName);
-        return new ServiceFacade(param);
-    }
+//    public ServiceFacade facadeSetup(String surfaceTitle, String surface2ID, String firstAxis, String secondAxis, String SrsName) throws JAXBException {
+//        CellSpaceManagerServiceImpl param = CellSpaceManagerFactory.creatorCellSpaceManagerServiceImpl(surfaceTitle,
+//                surface2ID, firstAxis, secondAxis, SrsName);
+//        return new ServiceFacade(param);
+//    }
 
     // public void setInputFile(File inputFile) {this.inputFile = inputFile;}
 
@@ -81,16 +75,12 @@ public class MainWindowController {
 
     }
 
-    public void marshal(ActionEvent event) {
-        try {
+    public void marshal(ActionEvent event) throws JAXBException {
             showSingleFileChooser();
-            facade.marshal(createOutputFile());
-        } catch (CellSpaceException e) {
-            e.printStackTrace();
-        }
+            facade.marshalMax(createOutputFile());
     }
 
-    public void unmarshal(ActionEvent event) throws Throwable {
+    public void unmarshal(ActionEvent event) {
         try {
             showSingleFileChooser();  // path is set.
             File inputFile = new File(path);

@@ -1,14 +1,17 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
 import hu.iit.uni.miskolc.gml.editor.model.ImportExport;
+import net.opengis.gml.v_3_2_1.FeaturePropertyType;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 
 
 import javax.xml.bind.*;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
+import java.util.List;
 
-import static sun.plugin.navig.motif.Plugin.error;
+import static sun.management.Agent.error;
+
 
 public class ImportExportImpl implements ImportExport {
 
@@ -27,6 +30,14 @@ public class ImportExportImpl implements ImportExport {
 
             StreamSource streamSource = new StreamSource(inputFile);  // Converting inputFile to StreamSource type
             System.out.println(unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue().toString());
+            System.out.println(unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue().getPrimalSpaceFeatures().toString());
+            List<FeaturePropertyType> obj = unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue().getPrimalSpaceFeatures().getPrimalSpaceFeatures().getCellSpaceMember();
+            //for(FeaturePropertyType f : obj){
+            System.out.println(obj.get(0).getAbstractFeature().getValue().getId());
+                System.out.println(obj.get(0).getAbstractFeature().getValue().getBoundedBy());
+            System.out.println(obj.get(0).getAbstractFeature().getValue().getName());
+            //}
+
             return unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue();
 
 
@@ -38,9 +49,10 @@ public class ImportExportImpl implements ImportExport {
     }
 
     @Override
-    public void marshalmax(File outputFile) throws JAXBException {
+    public void marshalMax(File outputFile) throws JAXBException {
 
-        JAXBContext jaxbContext = JAXBContext.newInstance("net.opengis.indoorgml.core.v_1_0");
+        JAXBContext jaxbContext = JAXBContext.newInstance("net.opengis.indoorgml.core.v_1_0"
+                + ":net.opengis.gml.v_3_2_1");
 
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -51,7 +63,7 @@ public class ImportExportImpl implements ImportExport {
             e.printStackTrace();
         }
 
-        JAXBElement<IndoorFeaturesType> je = jaxbConvertor.getJAXBElement();
+     // JAXBElement<IndoorFeaturesType> je = jaxbConvertor.getJAXBElement();
 
 
 

@@ -9,6 +9,6 @@ public interface ImportExport {
 
      IndoorFeaturesType unmarshalmax(File inputFile);
 
-     void marshalmax (File outputFile) throws JAXBException;
+     void marshalMax (File outputFile) throws JAXBException;
 
 }
