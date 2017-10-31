@@ -65,7 +65,5 @@ public class ImportExportImpl implements ImportExport {
 
      // JAXBElement<IndoorFeaturesType> je = jaxbConvertor.getJAXBElement();
 
-
-
     }
 }
