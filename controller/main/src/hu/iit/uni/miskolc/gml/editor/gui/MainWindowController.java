@@ -1,8 +1,6 @@
 package hu.iit.uni.miskolc.gml.editor.gui;
 
-import hu.iit.uni.miskolc.gml.editor.model.CellSpaceException;
 import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
-
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 
@@ -60,7 +58,29 @@ public class MainWindowController {
         return outputFile;
     }
 
-    private void showSingleFileChooser() {
+
+
+    public void showSaveDialog(){
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if (selectedFile != null) {
+            System.out.println("File selected");
+            path = selectedFile.getPath();
+            System.out.println(path);
+        } else {
+            System.out.println("Cancelled.");
+        }
+    }
+
+
+    public void marshal(ActionEvent event) throws JAXBException {
+            showSaveDialog();   //Path is set.
+            facade.marshalMax(createOutputFile());
+    }
+
+    //-------------------------------------------------------------------------------
+
+    public void showSingleFileChooser() {
 
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -72,17 +92,11 @@ public class MainWindowController {
         } else {
             System.out.println("Cancelled.");
         }
-
-    }
-
-    public void marshal(ActionEvent event) throws JAXBException {
-            showSingleFileChooser();
-            facade.marshalMax(createOutputFile());
     }
 
     public void unmarshal(ActionEvent event) {
         try {
-            showSingleFileChooser();  // path is set.
+            showSingleFileChooser();  // Path is set.
             File inputFile = new File(path);
             facade.unmarshalmax(inputFile);
             System.out.println(inputFile.exists());

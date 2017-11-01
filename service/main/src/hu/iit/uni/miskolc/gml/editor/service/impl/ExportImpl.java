@@ -1,16 +1,16 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
 import hu.iit.uni.miskolc.gml.editor.model.Export;
+import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
+import javax.xml.bind.*;
 import java.io.File;
 
 
 public class ExportImpl implements Export {
 
+
+    private IndoorGMLJAXBConvertor jaxbConvertor;
 
     public ExportImpl(){
 
@@ -33,7 +33,9 @@ public class ExportImpl implements Export {
             e.printStackTrace();
         }
 
-     // JAXBElement<IndoorFeaturesType> je = jaxbConvertor.getJAXBElement();
+        JAXBElement<IndoorFeaturesType> je = jaxbConvertor.getJAXBElement();
+
+        marshaller.marshal(je, outputFile); //JAXBElement to XML file
 
     }
 }

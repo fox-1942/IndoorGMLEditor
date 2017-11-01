@@ -12,9 +12,9 @@ import java.io.File;
  */
 public class ServiceFacade {
 
-    private Export export = new ExportImpl();
+    private Export indoorGMLexport = new ExportImpl();
 
-    private Import indoorGMLImport=new ImportImpl();
+    private Import indoorGMLImport = new ImportImpl();
 
     public ServiceFacade() {
     }
@@ -26,6 +26,6 @@ public class ServiceFacade {
     }
 
     public void marshalMax(File outputFile) throws JAXBException {
-        export.marshalMax(outputFile);
+        indoorGMLexport.marshalMax(outputFile);
     }
 }
