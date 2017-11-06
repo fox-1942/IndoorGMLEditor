@@ -2,13 +2,10 @@ package hu.iit.uni.miskolc.gml.editor.model.service.impl;
 
 
 import hu.iit.uni.miskolc.gml.editor.model.CellSpaceException;
-import hu.iit.uni.miskolc.gml.editor.model.CellSpaceManagerService;
 import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceManagerFactory;
 import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceManagerServiceImpl;
-import net.opengis.gml.v_3_2_1.*;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceGeometryType;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

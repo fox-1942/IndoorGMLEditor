@@ -13,6 +13,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
@@ -80,5 +81,24 @@
             <artifactId>xlink-v_1_0</artifactId>
             <version>1.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>jinedit.classes</groupId>
+            <artifactId>JInedit</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>JInedit</artifactId>
+            <groupId>jinedit.classes</groupId>
+            <version>2.6.2-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/libs/jinedit.classes-0.0.1-SNAPSHOT.jar</systemPath>
+        </dependency>
+
+
+
+
+
+
     </dependencies>
 </project>

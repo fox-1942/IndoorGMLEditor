@@ -15,6 +15,7 @@
                   <MenuItem mnemonicParsing="false" text="Open" />
                   <MenuItem mnemonicParsing="false" onAction="#marshal" text="Export /Marshalling/" />
                   <MenuItem mnemonicParsing="false" onAction="#unmarshal" text="Import /Unmarshalling/" />
+                  <MenuItem mnemonicParsing="false" onAction="#drawGmlFile" text="DrawGMLFile" />
               <MenuItem mnemonicParsing="false" text="Exit" />
             </items>
           </Menu>

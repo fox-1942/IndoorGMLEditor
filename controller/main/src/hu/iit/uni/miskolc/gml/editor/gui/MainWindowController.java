@@ -104,4 +104,12 @@ public class MainWindowController {
             e.printStackTrace();
         }
     }
-}
+
+    public void drawGmlFile(ActionEvent event) {
+            showSingleFileChooser();  // Path is set.
+            File inputFile = new File(path);
+            facade.drawGmlFile(inputFile);
+            System.out.println(inputFile.exists());
+        }
+    }
+
