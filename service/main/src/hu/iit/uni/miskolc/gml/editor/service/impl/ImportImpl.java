@@ -1,24 +1,31 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
+import edu.pnu.importexport.ProjectMetaDataImporter;
+import edu.pnu.project.BuildingProperty;
+import edu.pnu.project.ProjectMetaData;
+import edu.pnu.util.JAXBIndoorGMLConvertor;
 import hu.iit.uni.miskolc.gml.editor.model.Import;
-import net.opengis.gml.v_3_2_1.FeaturePropertyType;
-import net.opengis.indoorgml.core.v_1_0.CellSpaceMemberType;
+import net.opengis.indoorgml.core.IndoorFeatures;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
-import net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesPropertyType;
-import net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesType;
+import net.opengis.indoorgml.core.v_1_0.MultiLayeredGraphType;
+import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.SchemaOutputResolver;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 import static sun.management.Agent.error;
 
 public class ImportImpl implements Import {
+
+    private BuildingProperty buildingProperty;
+    private IndoorFeaturesType indoorFeaturesType;
+    private ProjectMetaData projectMetaData;
+
 
     public ImportImpl(){
 
@@ -31,62 +38,46 @@ public class ImportImpl implements Import {
 
             JAXBContext jc = JAXBContext.newInstance(IndoorFeaturesType.class);
             Unmarshaller unmarshaller = jc.createUnmarshaller();
-            System.out.println("Ez itt az unmarshall eredménye:");
+            System.out.println("The results of unmarshalling:");
 
             StreamSource streamSource = new StreamSource(inputFile);  // Converting inputFile to StreamSource type
 
-            IndoorFeaturesType indoorFeaturesType = unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue();
-
-            PrimalSpaceFeaturesPropertyType primalSpaceFeaturesPropertyType = indoorFeaturesType.getPrimalSpaceFeatures();
-
-
-            List <FeaturePropertyType> primalSpaceFeaturesType = primalSpaceFeaturesPropertyType.getPrimalSpaceFeatures().getCellSpaceMember();
-            System.out.println(primalSpaceFeaturesType.get(2).getRole());
-
-
-
-
-
+            indoorFeaturesType = unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue();
 
             return indoorFeaturesType;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //System.out.println(unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue().toString());
-
-            //System.out.println(unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue().getPrimalSpaceFeatures().toString());
-
-            //List<CodeType> obj2 = unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue().getPrimalSpaceFeatures().getPrimalSpaceFeatures().getName();
-
-           // List<FeaturePropertyType> obj = unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue().getPrimalSpaceFeatures().getPrimalSpaceFeatures().getCellSpaceMember();
-            //for(FeaturePropertyType f : obj){
-
-//            PrimalSpaceFeaturesPropertyType primalSpaceFeatures = indoorFeaturesType.getPrimalSpaceFeatures();
-//            List<FeaturePropertyType> featurePropertyTypeList =new ArrayList<FeaturePropertyType>();
-//            featurePropertyTypeList=primalSpaceFeatures.getPrimalSpaceFeatures().getCellSpaceMember();
-//              System.out.println(featurePropertyTypeList.get(3).getTitle().toString());
-//
-//            FeaturePropertyType[] featurePropertyTypeArray=new FeaturePropertyType[10];
-//            for(FeaturePropertyType f : featurePropertyTypeArray){
-//                f=primalSpaceFeatures.getPrimalSpaceFeatures().getCellSpaceMember();;
-//            }
-
         } catch (JAXBException | IllegalArgumentException e) {
-            error("Haver, az adatod nem valid!");
+            error("The data is not valid!");
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public void drawGmlFile(File inputFile){
+        indoorFeaturesType=unmarshalmax(inputFile);
+        indoorFeaturesType.setMultiLayeredGraph(new MultiLayeredGraphType());
+        String path= inputFile.getPath().toString();
+        System.out.println(path);
+
+        ProjectMetaDataImporter projectMetaDataImporter = null;
+        try {
+            projectMetaDataImporter = new ProjectMetaDataImporter(path);
+            //indoorFeaturesType.setMetaDataProperty(projectMetaDataImporter.getProjectMetaData());
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        JAXBIndoorGMLConvertor jaxbIndoorGMLConvertor=new JAXBIndoorGMLConvertor(indoorFeaturesType,buildingProperty);
+
+        IndoorFeatures indoorFeatures = jaxbIndoorGMLConvertor.createIndoorFeatures(null,indoorFeaturesType);
+
+
     }
 }
