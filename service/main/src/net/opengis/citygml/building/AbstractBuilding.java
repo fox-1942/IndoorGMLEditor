@@ -1,9 +1,9 @@
 package net.opengis.citygml.building;
 
+import edu.pnu.project.FloorProperty;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import edu.pnu.project.FloorProperty;
 
 public class AbstractBuilding {
 	private AbstractBuilding parent;

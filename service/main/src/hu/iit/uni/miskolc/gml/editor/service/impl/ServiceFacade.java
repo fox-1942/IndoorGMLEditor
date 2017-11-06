@@ -1,9 +1,7 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
-import hu.iit.uni.miskolc.gml.editor.model.CellSpaceException;
-import hu.iit.uni.miskolc.gml.editor.model.CellSpaceManagerService;
-import hu.iit.uni.miskolc.gml.editor.model.ImportExport;
-import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
+import hu.iit.uni.miskolc.gml.editor.model.Export;
+import hu.iit.uni.miskolc.gml.editor.model.Import;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 
 import javax.xml.bind.JAXBException;
@@ -14,27 +12,20 @@ import java.io.File;
  */
 public class ServiceFacade {
 
-    private ImportExport importExport= new ImportExportImpl();
+    private Export indoorGMLexport = new ExportImpl();
 
+    private Import indoorGMLImport = new ImportImpl();
 
-    public ServiceFacade(CellSpaceManagerService cellSpaceManagerService) {
-
-    }
     public ServiceFacade() {
-
     }
 
-
-//    public CellSpaceType unmarshal2(File inputFile) throws CellSpaceException {
-//        return cellSpaceManagerService.unmarshal2(inputFile);
-//    }
 
     public IndoorFeaturesType unmarshalmax(File inputFile) {
 
-        return importExport.unmarshalmax(inputFile);
+        return indoorGMLImport.unmarshalmax(inputFile);
     }
 
     public void marshalMax(File outputFile) throws JAXBException {
-        importExport.marshalMax(outputFile);
+        indoorGMLexport.marshalMax(outputFile);
     }
 }
