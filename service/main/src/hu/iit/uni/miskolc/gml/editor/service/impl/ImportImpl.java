@@ -76,6 +76,9 @@ public class ImportImpl implements Import {
 
         JAXBIndoorGMLConvertor jaxbIndoorGMLConvertor=new JAXBIndoorGMLConvertor(indoorFeaturesType,buildingProperty);
 
+
+
+        
         IndoorFeatures indoorFeatures = jaxbIndoorGMLConvertor.createIndoorFeatures(null,indoorFeaturesType);
 
 
