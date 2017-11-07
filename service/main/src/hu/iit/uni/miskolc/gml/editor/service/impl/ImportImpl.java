@@ -1,13 +1,16 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
-import edu.pnu.importexport.ProjectMetaDataImporter;
+
 import edu.pnu.project.BuildingProperty;
 import edu.pnu.project.ProjectMetaData;
-import edu.pnu.util.JAXBIndoorGMLConvertor;
+
 import hu.iit.uni.miskolc.gml.editor.model.Import;
-import net.opengis.indoorgml.core.IndoorFeatures;
+
+import net.opengis.indoorgml.core.PrimalSpaceFeatures;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
-import net.opengis.indoorgml.core.v_1_0.MultiLayeredGraphType;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBContext;
@@ -17,6 +20,12 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.IOException;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
+
 
 import static sun.management.Agent.error;
 
@@ -27,7 +36,7 @@ public class ImportImpl implements Import {
     private ProjectMetaData projectMetaData;
 
 
-    public ImportImpl(){
+    public ImportImpl() {
 
     }
 
@@ -55,32 +64,64 @@ public class ImportImpl implements Import {
     }
 
     @Override
-    public void drawGmlFile(File inputFile){
-        indoorFeaturesType=unmarshalmax(inputFile);
-        indoorFeaturesType.setMultiLayeredGraph(new MultiLayeredGraphType());
-        String path= inputFile.getPath().toString();
-        System.out.println(path);
+    public void drawGmlFile(File inputFile) throws ParserConfigurationException, IOException, SAXException {
 
-        ProjectMetaDataImporter projectMetaDataImporter = null;
-        try {
-            projectMetaDataImporter = new ProjectMetaDataImporter(path);
-            //indoorFeaturesType.setMetaDataProperty(projectMetaDataImporter.getProjectMetaData());
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        DocumentBuilderFactory factory 	= DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder 		= factory.newDocumentBuilder();
+
+        Document document = builder.parse(inputFile);
+
+        document.getDocumentElement().normalize();
+
+        //factory.setNamespaceAware(true);
+
+            System.out.println("Root element :" + document.getDocumentElement().getNodeName());
+
+
+        NodeList nList = document.getElementsByTagName("core:PrimalSpaceFeatures");
+
+        System.out.println(nList.item(0).getFirstChild().getNodeName());
+
+
+        System.out.println("----------------------------");
+
+
+        String FloorName;
+int lowerCorner;
+
+        for (int temp = 0; temp < nList.getLength(); temp++) {
+            Node nNode = nList.item(temp);
+            System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+
+                     FloorName= eElement.getAttribute("id");
+
+                        eElement
+                        .getElementsByTagName("")
+                        .item(0)
+                        .getTextContent();
+                System.out.println("Last Name : "
+                        + eElement
+                        .getElementsByTagName("lastname")
+                        .item(0)
+                        .getTextContent());
+                System.out.println("Nick Name : "
+                        + eElement
+                        .getElementsByTagName("nickname")
+                        .item(0)
+                        .getTextContent());
+                System.out.println("Marks : "
+                        + eElement
+                        .getElementsByTagName("marks")
+                        .item(0)
+                        .getTextContent());
+            }
         }
-
-
-        JAXBIndoorGMLConvertor jaxbIndoorGMLConvertor=new JAXBIndoorGMLConvertor(indoorFeaturesType,buildingProperty);
-
-
-
-        
-        IndoorFeatures indoorFeatures = jaxbIndoorGMLConvertor.createIndoorFeatures(null,indoorFeaturesType);
-
-
     }
+
 }
+
+

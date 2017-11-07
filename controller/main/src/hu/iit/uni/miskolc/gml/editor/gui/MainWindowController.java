@@ -3,8 +3,10 @@ package hu.iit.uni.miskolc.gml.editor.gui;
 import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
+import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
@@ -105,7 +107,7 @@ public class MainWindowController {
         }
     }
 
-    public void drawGmlFile(ActionEvent event) {
+    public void drawGmlFile(ActionEvent event) throws ParserConfigurationException, SAXException, IOException {
             showSingleFileChooser();  // Path is set.
             File inputFile = new File(path);
             facade.drawGmlFile(inputFile);

@@ -3,9 +3,12 @@ package hu.iit.uni.miskolc.gml.editor.service.impl;
 import hu.iit.uni.miskolc.gml.editor.model.Export;
 import hu.iit.uni.miskolc.gml.editor.model.Import;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
+import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by fox on 2017.08.16..
@@ -29,7 +32,7 @@ public class ServiceFacade {
         indoorGMLexport.marshalMax(outputFile);
     }
 
-    public void drawGmlFile(File inputFile) {
+    public void drawGmlFile(File inputFile) throws IOException, SAXException, ParserConfigurationException {
     indoorGMLImport.drawGmlFile(inputFile);
 
     }
