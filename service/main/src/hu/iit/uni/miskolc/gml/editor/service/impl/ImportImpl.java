@@ -13,15 +13,19 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.validation.SchemaFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -64,62 +68,30 @@ public class ImportImpl implements Import {
     }
 
     @Override
-    public void drawGmlFile(File inputFile) throws ParserConfigurationException, IOException, SAXException {
+    public void drawGmlFile() throws ParserConfigurationException, IOException, SAXException {
 
+        File inputFile = new File("ISS1stFloor.xml");
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
-        DocumentBuilderFactory factory 	= DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder 		= factory.newDocumentBuilder();
+        factory.setValidating(false);
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
+        File file=new File("indoorgmlcore.xsd");
+        factory.setSchema(schemaFactory.newSchema(file));
+
+        factory.setNamespaceAware(true);
+        factory.setIgnoringElementContentWhitespace(true);
+
+        DocumentBuilder builder	= factory.newDocumentBuilder();
         Document document = builder.parse(inputFile);
-
         document.getDocumentElement().normalize();
 
-        //factory.setNamespaceAware(true);
+        System.out.println("Root element :" + document.getDocumentElement().getNodeName());
 
-            System.out.println("Root element :" + document.getDocumentElement().getNodeName());
-
-
-        NodeList nList = document.getElementsByTagName("core:PrimalSpaceFeatures");
-
-        System.out.println(nList.item(0).getFirstChild().getNodeName());
-
-
-        System.out.println("----------------------------");
-
-
-        String FloorName;
-int lowerCorner;
-
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
-            System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-
-                     FloorName= eElement.getAttribute("id");
-
-                        eElement
-                        .getElementsByTagName("")
-                        .item(0)
-                        .getTextContent();
-                System.out.println("Last Name : "
-                        + eElement
-                        .getElementsByTagName("lastname")
-                        .item(0)
-                        .getTextContent());
-                System.out.println("Nick Name : "
-                        + eElement
-                        .getElementsByTagName("nickname")
-                        .item(0)
-                        .getTextContent());
-                System.out.println("Marks : "
-                        + eElement
-                        .getElementsByTagName("marks")
-                        .item(0)
-                        .getTextContent());
-            }
-        }
+        NodeList nl = document.getDocumentElement().getChildNodes();
+        System.out.println("Gyermekek száma:   " + nl.getLength());
+        if (nl.getLength() > 0)
+            System.out.println(nl.item(2).getTextContent());
     }
 
 }

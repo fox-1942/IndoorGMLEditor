@@ -11,6 +11,6 @@ public interface Import {
 
     IndoorFeaturesType unmarshalmax(File inputFile);
 
-    void drawGmlFile(File inputFile) throws ParserConfigurationException, IOException, SAXException;
+    void drawGmlFile() throws ParserConfigurationException, IOException, SAXException;
 
 }
