@@ -1,6 +1,8 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
-public class CellSpaceCeilingCoordinateImpl {
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCeilingCoordinate;
+
+public class CellSpaceCeilingCoordinateImpl implements CellSpaceCeilingCoordinate {
 
     private double CeilingX;
     private double CeilingY;
@@ -12,26 +14,32 @@ public class CellSpaceCeilingCoordinateImpl {
         CeilingZ = ceilingZ;
     }
 
+    @Override
     public double getCeilingX() {
         return CeilingX;
     }
 
+    @Override
     public void setCeilingX(double ceilingX) {
         CeilingX = ceilingX;
     }
 
+    @Override
     public double getCeilingY() {
         return CeilingY;
     }
 
+    @Override
     public void setCeilingY(double ceilingY) {
         CeilingY = ceilingY;
     }
 
+    @Override
     public double getCeilingZ() {
         return CeilingZ;
     }
 
+    @Override
     public void setCeilingZ(double ceilingZ) {
         CeilingZ = ceilingZ;
     }

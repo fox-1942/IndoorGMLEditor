@@ -1,9 +1,6 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
 
-import edu.pnu.project.BuildingProperty;
-import edu.pnu.project.ProjectMetaData;
-
 import hu.iit.uni.miskolc.gml.editor.model.Import;
 
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
@@ -31,13 +28,9 @@ import static sun.management.Agent.error;
 
 public class ImportImpl implements Import {
 
-    private BuildingProperty buildingProperty;
     private IndoorFeaturesType indoorFeaturesType;
-    private ProjectMetaData projectMetaData;
-
 
     public ImportImpl() {
-
     }
 
     @Override
@@ -63,7 +56,7 @@ public class ImportImpl implements Import {
         }
     }
 
-    public void domImport() throws ParserConfigurationException, IOException, SAXException {
+    public Document domImport() throws ParserConfigurationException, IOException, SAXException {
 
         File inputFile = new File("resources/ISS1stFloor.xml");
         System.out.println("XML helye----->  " + inputFile.getAbsolutePath());
@@ -93,13 +86,8 @@ public class ImportImpl implements Import {
         if (nl.getLength() > 0)
             System.out.println("All of my data: " + nl.item(0).getTextContent());
 
-        System.out.println(document.getElementsByTagNameNS
-                ("http://www.opengis.net/indoorgml/1.0/core","PrimalSpaceFeatures").item(0).
-                getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2","id").getTextContent());
-
+        return document;
     }
-
-
 }
 
 

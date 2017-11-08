@@ -1,7 +1,7 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
-import hu.iit.uni.miskolc.gml.editor.model.Export;
-import hu.iit.uni.miskolc.gml.editor.model.Import;
+import hu.iit.uni.miskolc.gml.editor.model.*;
+
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 import org.xml.sax.SAXException;
 
@@ -19,6 +19,8 @@ public class ServiceFacade {
 
     private Import indoorGMLImport = new ImportImpl();
 
+    private CellSpaceImport cellSpaceImport = new CellSpaceImportImpl();
+
     public ServiceFacade() {
     }
 
@@ -33,8 +35,14 @@ public class ServiceFacade {
     }
 
     public void domImport() throws IOException, SAXException, ParserConfigurationException {
-    indoorGMLImport.domImport();
+        indoorGMLImport.domImport();
+    }
 
+
+    public void cellSpaceCreator() {
+        cellSpaceImport.cellSpaceCreator();
     }
 
 }
+
+
