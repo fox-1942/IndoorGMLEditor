@@ -1,6 +1,7 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
 
+import com.sun.webkit.dom.NodeListImpl;
 import edu.pnu.project.BuildingProperty;
 import edu.pnu.project.ProjectMetaData;
 
@@ -11,19 +12,21 @@ import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.IOException;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
+
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
+
 
 
 
@@ -34,7 +37,6 @@ public class ImportImpl implements Import {
     private BuildingProperty buildingProperty;
     private IndoorFeaturesType indoorFeaturesType;
     private ProjectMetaData projectMetaData;
-
 
     public ImportImpl() {
 
@@ -66,62 +68,36 @@ public class ImportImpl implements Import {
     @Override
     public void drawGmlFile(File inputFile) throws ParserConfigurationException, IOException, SAXException {
 
-
+        try{
         DocumentBuilderFactory factory 	= DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder 		= factory.newDocumentBuilder();
+        factory.setNamespaceAware(true);
+        factory.setExpandEntityReferences(true);
+        factory.setIgnoringComments(true);
+        factory.setXIncludeAware(true);
+        DocumentBuilder builder = factory.newDocumentBuilder();
 
-        Document document = builder.parse(inputFile);
+      Document doc = builder.parse(inputFile);
 
-        document.getDocumentElement().normalize();
-
-        //factory.setNamespaceAware(true);
-
-            System.out.println("Root element :" + document.getDocumentElement().getNodeName());
-
-
-        NodeList nList = document.getElementsByTagName("core:PrimalSpaceFeatures");
-
-        System.out.println(nList.item(0).getFirstChild().getNodeName());
+        doc.getDocumentElement().normalize();
 
 
-        System.out.println("----------------------------");
+        System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+        Element el = doc.getDocumentElement();
+            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            NodeList proba = doc.getChildNodes();
+            NodeList nListPrimalSpaceFeatures = doc.getElementsByTagName("IndoorFeatures");
+            NodeList nListChild = nListPrimalSpaceFeatures.item(0).getChildNodes();
+
+            System.out.println("Alábbiakban a childNode-ok vannak.");
+            for(int i=0; i < nListChild.getLength(); i++){
+                System.out.println(nListChild.getLength());
+
+                System.out.println("----------------------------");
 
 
-        String FloorName;
-int lowerCorner;
-
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
-            System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-
-                     FloorName= eElement.getAttribute("id");
-
-                        eElement
-                        .getElementsByTagName("")
-                        .item(0)
-                        .getTextContent();
-                System.out.println("Last Name : "
-                        + eElement
-                        .getElementsByTagName("lastname")
-                        .item(0)
-                        .getTextContent());
-                System.out.println("Nick Name : "
-                        + eElement
-                        .getElementsByTagName("nickname")
-                        .item(0)
-                        .getTextContent());
-                System.out.println("Marks : "
-                        + eElement
-                        .getElementsByTagName("marks")
-                        .item(0)
-                        .getTextContent());
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-
 }
-
-
