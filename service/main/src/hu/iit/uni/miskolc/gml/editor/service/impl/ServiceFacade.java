@@ -32,8 +32,8 @@ public class ServiceFacade {
         indoorGMLexport.marshalMax(outputFile);
     }
 
-    public void drawGmlFile() throws IOException, SAXException, ParserConfigurationException {
-    indoorGMLImport.drawGmlFile();
+    public void domImport() throws IOException, SAXException, ParserConfigurationException {
+    indoorGMLImport.domImport();
 
     }
 

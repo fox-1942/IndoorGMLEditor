@@ -110,7 +110,7 @@ public class MainWindowController {
     public void drawGmlFile() throws ParserConfigurationException, SAXException, IOException {
             //showSingleFileChooser();  // Path is set.
             //File inputFile = new File(path);
-            facade.drawGmlFile();
+            facade.domImport();
            // System.out.println(inputFile.exists());
         }
     }
