@@ -5,21 +5,43 @@ import java.util.ArrayList;
 public class CellSpaceImpl {
 
     private String ParentFloor;
+    private String CellSpaceName;
 
-    private double CeilingX;
-    private double CeilingY;
-    private double CeilingZ;
+    private ArrayList<CellSpaceCeilingCoordinateImpl> cellSpaceCeilingCoordinatesArrayList;
+    private ArrayList<CellSpaceFloorCoordinateImpl> cellSpaceFloorCoordinateArrayList;
 
-    private double FloorX;
-    private double FloorY;
-    private double FloorZ;
-
-    private ArrayList<Double> ceilingXArrayList;
-    private ArrayList<Double> ceilingYArrayList;
-    private ArrayList<Double> ceilingZArrayList;
-
-    public CellSpaceImpl(){
-
+    public CellSpaceImpl(String parentFloor, String cellSpaceName, ArrayList<CellSpaceCeilingCoordinateImpl> cellSpaceCeilingCoordinatesArrayList,
+                         ArrayList<CellSpaceFloorCoordinateImpl> cellSpaceFloorCoordinateArrayList) {
+        ParentFloor = parentFloor;
+        CellSpaceName = cellSpaceName;
+        this.cellSpaceCeilingCoordinatesArrayList = cellSpaceCeilingCoordinatesArrayList;
+        this.cellSpaceFloorCoordinateArrayList = cellSpaceFloorCoordinateArrayList;
     }
+
+    public String getParentFloor() {
+        return ParentFloor;
+    }
+
+    public void setParentFloor(String parentFloor) {
+        ParentFloor = parentFloor;
+    }
+
+    public ArrayList<CellSpaceCeilingCoordinateImpl> getCellSpaceCeilingCoordinatesArrayList() {
+        return cellSpaceCeilingCoordinatesArrayList;
+    }
+
+    public void setCellSpaceCeilingCoordinatesArrayList(ArrayList<CellSpaceCeilingCoordinateImpl> cellSpaceCeilingCoordinatesArrayList) {
+        this.cellSpaceCeilingCoordinatesArrayList = cellSpaceCeilingCoordinatesArrayList;
+    }
+
+    public ArrayList<CellSpaceFloorCoordinateImpl> getCellSpaceFloorCoordinateArrayList() {
+        return cellSpaceFloorCoordinateArrayList;
+    }
+
+    public void setCellSpaceFloorCoordinateArrayList(ArrayList<CellSpaceFloorCoordinateImpl> cellSpaceFloorCoordinateArrayList) {
+        this.cellSpaceFloorCoordinateArrayList = cellSpaceFloorCoordinateArrayList;
+    }
+
+
 
 }
