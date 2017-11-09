@@ -1,9 +1,6 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
 
-import edu.pnu.project.BuildingProperty;
-import edu.pnu.project.ProjectMetaData;
-
 import hu.iit.uni.miskolc.gml.editor.model.Import;
 
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
@@ -31,13 +28,9 @@ import static sun.management.Agent.error;
 
 public class ImportImpl implements Import {
 
-    private BuildingProperty buildingProperty;
     private IndoorFeaturesType indoorFeaturesType;
-    private ProjectMetaData projectMetaData;
-
 
     public ImportImpl() {
-
     }
 
     @Override
@@ -63,13 +56,11 @@ public class ImportImpl implements Import {
         }
     }
 
-    @Override
-    public void drawGmlFile() throws ParserConfigurationException, IOException, SAXException {
+    public Document domImport() throws ParserConfigurationException, IOException, SAXException {
 
         File inputFile = new File("resources/ISS1stFloor.xml");
         System.out.println("XML helye----->  " + inputFile.getAbsolutePath());
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
 
         /**
          * factory.setIgnoringElementContentWhitespace(true) needed to eliminate whitespaces and to use this method
@@ -91,11 +82,12 @@ public class ImportImpl implements Import {
         System.out.println("Root element------->  " + document.getDocumentElement().getNodeName());
 
         NodeList nl = document.getDocumentElement().getChildNodes();
-        System.out.println("Children of the Root: " + nl.getLength());
+        System.out.println("Children of the Root------> " + nl.getLength());
         if (nl.getLength() > 0)
-            System.out.println(nl.item(0).getTextContent());
-    }
+            System.out.println("All of my data: " + nl.item(0).getTextContent());
 
+        return document;
+    }
 }
 
 

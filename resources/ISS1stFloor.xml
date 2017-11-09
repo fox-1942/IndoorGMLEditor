@@ -9,104 +9,10 @@
     xsi:schemaLocation="http://www.opengis.net/indoorgml/1.0/core http://schemas.opengis.net/indoorgml/1.0/indoorgmlcore.xsd" gml:id="ISS_University_of_Miskolc">
     
 
-
-
         <core:primalSpaceFeatures>
             
                     <core:PrimalSpaceFeatures gml:id="IIS_1st_Floor">
-                        
-                        
-                        <!--
-                        <core:cellSpaceBoundaryMember>
-                            <core:CellSpaceBoundary gml:id="Office107BBoundary">
-                                <core:cellSpaceBoundaryGeometry>
-                                    <core:geometry3D>
-                                        <gml:PolyhedralSurface gml:id="WallsOfOffice107BCorridor">
-                                            <gml:polygonPatches>
-                                                <gml:PolygonPatch>
-                                                    <gml:interior>
-                                                        <gml:LinearRing>
-                                                            <gml:pos>0 6 3.3</gml:pos>
-                                                            <gml:pos>0 7 3.3</gml:pos>
-                                                            <gml:pos>0 7 3.3</gml:pos>
-                                                            <gml:pos>5 6 3.3</gml:pos>
-                                                            <gml:pos>0 6 3.3</gml:pos>
-                                                        </gml:LinearRing>
-                                                    </gml:interior>
-                                                    <gml:interior>
-                                                        <gml:LinearRing>
-                                                            <gml:pos>0 6 5.05</gml:pos>
-                                                            <gml:pos>0 7 5.05</gml:pos>
-                                                            <gml:pos>0 7 5.05</gml:pos>
-                                                            <gml:pos>5 6 5.05</gml:pos>
-                                                            <gml:pos>0 6 5.05</gml:pos>
-                                                        </gml:LinearRing>
-                                                    </gml:interior>
-                                                </gml:PolygonPatch>
-                                                <gml:PolygonPatch>
-                                                    <gml:interior>
-                                                        <gml:LinearRing>
-                                                            <gml:pos>5 6 3.3</gml:pos>
-                                                            <gml:pos>5.18 7 3.3</gml:pos>
-                                                            <gml:pos>5.18 0 3.3</gml:pos>
-                                                            <gml:pos>5 0 3.3</gml:pos>
-                                                            <gml:pos>5 6 3.3</gml:pos>
-                                                        </gml:LinearRing>
-                                                    </gml:interior>
-                                                    <gml:interior>
-                                                        <gml:LinearRing>
-                                                            <gml:pos>5 6 5.05</gml:pos>
-                                                            <gml:pos>5.185 5.05</gml:pos>
-                                                            <gml:pos>5.18 5.05</gml:pos>
-                                                            <gml:pos>5 0 5.05</gml:pos>
-                                                            <gml:pos>5 6 5.05</gml:pos>
-                                                        </gml:LinearRing>
-                                                    </gml:interior>
-                                                    <gml:interior>
-                                                        <gml:LinearRing>
-                                                            <gml:pos>-0.4 -0.4 3.3</gml:pos>
-                                                            <gml:pos>-0.4 0 3.3</gml:pos>
-                                                            <gml:pos>5 0 3.3</gml:pos>
-                                                            <gml:pos>5 -0.4 3.3</gml:pos>
-                                                            <gml:pos>-0.4 -0.4 3.3</gml:pos>
-                                                        </gml:LinearRing>
-                                                    </gml:interior>
-                                                    <gml:interior>
-                                                        <gml:LinearRing>
-                                                            <gml:pos>-0.4 -0.4 5.05</gml:pos>
-                                                            <gml:pos>-0.4 0 5.05</gml:pos>
-                                                            <gml:pos>5 0 5.05</gml:pos>
-                                                            <gml:pos>5 -0.4 5.05</gml:pos>
-                                                            <gml:pos>-0.4 -0.4 5.05</gml:pos>
-                                                        </gml:LinearRing>
-                                                    </gml:interior>
-                                                    <gml:interior>
-                                                        <gml:LinearRing>
-                                                            <gml:pos>-0.4 -0.4 3.3</gml:pos>
-                                                            <gml:pos>0 -0.4 3.3</gml:pos>
-                                                            <gml:pos>0 6 3.3</gml:pos>
-                                                            <gml:pos>-0.4 6 3.3</gml:pos>
-                                                            <gml:pos>-0.4 -0.4 3.3</gml:pos>
-                                                        </gml:LinearRing>
-                                                    </gml:interior>
-                                                    <gml:interior>
-                                                        <gml:LinearRing>
-                                                            <gml:pos>-0.4 -0.4 5.05</gml:pos>
-                                                            <gml:pos>0 -0.4 5.05</gml:pos>
-                                                            <gml:pos>0 6 5.05</gml:pos>
-                                                            <gml:pos>-0.4 6 5.05</gml:pos>
-                                                            <gml:pos>-0.4 -0.4 5.05</gml:pos>
-                                                        </gml:LinearRing>
-                                                    </gml:interior>
-                                                </gml:PolygonPatch>
-                                            </gml:polygonPatches>
-                                        </gml:PolyhedralSurface>
-                                    </core:geometry3D>
-                                </core:cellSpaceBoundaryGeometry>
-                            </core:CellSpaceBoundary>
-                        </core:cellSpaceBoundaryMember> -->
-                        
-                        
+
                        <core:cellSpaceMember>
                         <core:CellSpace gml:id="CS_Office107B">
                             <gml:metaDataProperty>
