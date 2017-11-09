@@ -46,12 +46,15 @@ public class CellSpaceImportImpl implements CellSpaceImport {
                 CellSpacename=cellSpaceMemberNodeList.item(i).getFirstChild().
                         getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2","id").getTextContent();
 
-                NodeList nodeList = cellSpaceMemberNodeList.item(i)
 
 
-                for (int x=0; i<nodeList.getLength() ;x++ )
+
+                for (int x=0; i<cellSpaceMemberNodeList.getLength() ;x++ )
                 {
-                    if(nodeList.getNodeName().equals("PolygonPatch")){
+                    if(cellSpaceMemberNodeList.item(i).getAttributes().getNamedItemNS()
+
+
+                            .getNodeName().equals("PolygonPatch")){
 
                     }
                 }
