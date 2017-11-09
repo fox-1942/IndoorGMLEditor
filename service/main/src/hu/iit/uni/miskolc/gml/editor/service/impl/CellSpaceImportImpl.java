@@ -32,7 +32,7 @@ public class CellSpaceImportImpl implements CellSpaceImport {
                     ("http://www.opengis.net/indoorgml/1.0/core","PrimalSpaceFeatures").item(0).
                     getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2","id").getTextContent();
 
-            NodeList cellSpaceNodeList=doc.getElementsByTagNameNS("http://www.opengis.net/indoorgml/1.0/core", "CellSpace");
+            NodeList cellSpaceMemberNodeList=doc.getElementsByTagNameNS("http://www.opengis.net/indoorgml/1.0/core", "CellSpaceMember");
 
 
 
@@ -42,14 +42,20 @@ public class CellSpaceImportImpl implements CellSpaceImport {
             ArrayList<CellSpaceFloorCoordinateImpl>   cellSpaceFloorCoordinateArrayList;
             ArrayList<CellSpaceImpl> cellSpaceImplArrayList = null;
 
-            for(int i=0; i<cellSpaceNodeList.getLength() ;i++){
-                CellSpacename=cellSpaceNodeList.item(i).
+            for(int i=0; i<cellSpaceMemberNodeList.getLength() ;i++){
+                CellSpacename=cellSpaceMemberNodeList.item(i).getFirstChild().
                         getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2","id").getTextContent();
 
-                NodeList nodeList = cellSpaceNodeList.item(i).
-                        getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2","gml:LinearRing").getChildNodes();
+                NodeList nodeList = cellSpaceMemberNodeList.item(i)
 
-                nodeList.item(0).getChildNodes().
+
+                for (int x=0; i<nodeList.getLength() ;x++ )
+                {
+                    if(nodeList.getNodeName().equals("PolygonPatch")){
+
+                    }
+                }
+
 
 
                 cellSpaceImplArrayList.get(i)=new CellSpaceImpl(ParentFloor,CellSpacename,        //Creating CellSpaceImpl object.
