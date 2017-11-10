@@ -50,11 +50,11 @@ public class CellSpaceCoordinateImpl implements CellSpaceCoordinate {
         return coordinateX +" " +coordinateY + " " + coordinateZ;
     }
 
-
-
-
-
-
+    @Override
+    public void setCoordinateXYZ(double coordinateX, double coordinateY, double coordinateZ) {
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
+        this.coordinateZ = coordinateZ;
+    }
 
 }
-

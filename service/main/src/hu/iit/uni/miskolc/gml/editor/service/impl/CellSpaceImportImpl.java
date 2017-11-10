@@ -1,6 +1,7 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
 import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
 import hu.iit.uni.miskolc.gml.editor.model.CellSpaceImport;
 import org.ejml.alg.block.BlockInnerTriangularSolver;
 import org.w3c.dom.Document;
@@ -16,9 +17,10 @@ import java.util.ArrayList;
 
 public class CellSpaceImportImpl implements CellSpaceImport {
 
-ArrayList<CellSpaceCoordinateImpl> cellSpaceFloorCoordinateArraylist = new ArrayList<CellSpaceCoordinateImpl>();
-ArrayList<CellSpaceCoordinateImpl> cellSpaceCeilingCoordinateArraylist = new ArrayList<CellSpaceCoordinateImpl>();
+ArrayList<CellSpaceCoordinate> cellSpaceFloorCoordinateArraylist = new ArrayList<CellSpaceCoordinate>();
+ArrayList<CellSpaceCoordinate> cellSpaceCeilingCoordinateArraylist = new ArrayList<CellSpaceCoordinate>();
 CellSpaceCoordinateImpl cellSpaceCoordinate;
+
 CellSpaceImpl cellSpace=null;
 double x,y,z;
 
@@ -31,7 +33,7 @@ double x,y,z;
      */
 
     @Override
-    public CellSpace cellSpaceCreator(){
+    public ArrayList<CellSpace> cellSpaceCreator(){
         ImportImpl importImpl=new ImportImpl();
 
             Document doc= null;
@@ -65,10 +67,14 @@ double x,y,z;
                 if (linear == false) {
                     floor = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "Arc").item(0);
                     ceiling = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "Arc").item(1);
+
+
                 } else {
                     floor = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").item(0);
                     ceiling = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").item(1);
                 }
+
+                cellSpaceFloorCoordinateArraylist.clear();
                 NodeList floorPos = floor.getChildNodes();
                 for (int j = 0; j < floorPos.getLength(); j++) {
 
@@ -84,12 +90,36 @@ double x,y,z;
                     Making CellSpacecoordinateImpl objects from x, y, z and after adding to an Arraylist object
                      */
                     cellSpaceCoordinate=new CellSpaceCoordinateImpl(x,y,z);
-                    System.out.println(cellSpaceCoordinate.toStringCoordinateXYZ());
-
-                    cellSpaceFloorCoordinateArraylist.add(cellSpaceCoordinate);
+                    cellSpaceFloorCoordinateArraylist.add(cellSpaceCoordinate);   //Adding coordinates to Arraylist.
                 }
+
+
+                cellSpaceCeilingCoordinateArraylist.clear();
+                NodeList ceilingPos = ceiling.getChildNodes();
+                for (int j = 0; j <ceilingPos.getLength() ; j++) {
+
+                    String str = ceilingPos.item(j).getTextContent();
+                    String[] splited = str.split("\\s+");
+
+                    x = Double.parseDouble(splited[0]);
+                    y = Double.parseDouble(splited[1]);
+                    z = Double.parseDouble(splited[2]);
+                    //System.out.println(x + " " + y + " " + z);
+
+                    /*
+                    Making CellSpacecoordinateImpl objects from x, y, z and after adding to an Arraylist object
+                     */
+                    cellSpaceCoordinate = new CellSpaceCoordinateImpl(x,y,z);
+                    //cellSpaceCoordinate.setCoordinateXYZ(x,y,z);
+                    cellSpaceCeilingCoordinateArraylist.add(cellSpaceCoordinate);   //Adding coordinates to Arraylist.
+                }
+
+                CellSpaceImpl cellSpace = new CellSpaceImpl(ParentFloor, CellSpaceName, cellSpaceCeilingCoordinateArraylist, cellSpaceFloorCoordinateArraylist);
+                cellSpace.CellSpacetoString();
             }
-            return cellSpace;
-        }
+            ArrayList<CellSpace> cellSpaceArrayList=new ArrayList<CellSpace>();
+            cellSpaceArrayList.add(cellSpace);
+        return cellSpaceArrayList;
     }
+}
 //cellSpace=new CellSpaceImpl(ParentFloor,CellSpaceName,);
