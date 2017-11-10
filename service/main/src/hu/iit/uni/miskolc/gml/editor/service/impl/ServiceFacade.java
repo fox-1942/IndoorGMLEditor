@@ -24,11 +24,6 @@ public class ServiceFacade {
     public ServiceFacade() {
     }
 
-
-
-
-
-
     public IndoorFeaturesType unmarshalmax(File inputFile) throws JAXBException {
 
         return indoorGMLImport.unmarshalmax(inputFile);
@@ -45,7 +40,6 @@ public class ServiceFacade {
     public void cellSpaceCreator() {
         cellSpaceImport.cellSpaceCreator();
     }
-
 }
 
 

@@ -70,10 +70,12 @@ public class ImportImpl implements Import {
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         File xsdFile=new File("resources/indoorgmlcore.xsd");
         System.out.println("XSD helye----->  " + xsdFile.getAbsolutePath());
+        System.out.println("\nValidaion started");
         factory.setSchema(schemaFactory.newSchema(xsdFile));
         factory.setValidating(false);
         factory.setNamespaceAware(true);
         factory.setIgnoringElementContentWhitespace(true);
+        System.out.println("\nValidation done");
 
         DocumentBuilder builder	= factory.newDocumentBuilder();
         Document document = builder.parse(inputFile);

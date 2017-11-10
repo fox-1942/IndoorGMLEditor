@@ -113,5 +113,12 @@ public class MainWindowController {
             facade.domImport();
            // System.out.println(inputFile.exists());
         }
+
+    public void readGMLFile() throws ParserConfigurationException, SAXException, IOException {
+        //showSingleFileChooser();  // Path is set.
+        //File inputFile = new File(path);
+        facade.cellSpaceCreator();
+        // System.out.println(inputFile.exists());
+    }
     }
 
