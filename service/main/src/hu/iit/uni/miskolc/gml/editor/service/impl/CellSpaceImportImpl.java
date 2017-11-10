@@ -16,9 +16,11 @@ import java.util.ArrayList;
 
 public class CellSpaceImportImpl implements CellSpaceImport {
 
-ArrayList<CellSpaceCoordinateImpl> cellSpaceFloorCoordinateArraylist;
-ArrayList<CellSpaceCoordinateImpl> cellSpaceCeilingCoordinateArraylist;
-
+ArrayList<CellSpaceCoordinateImpl> cellSpaceFloorCoordinateArraylist = new ArrayList<CellSpaceCoordinateImpl>();
+ArrayList<CellSpaceCoordinateImpl> cellSpaceCeilingCoordinateArraylist = new ArrayList<CellSpaceCoordinateImpl>();
+CellSpaceCoordinateImpl cellSpaceCoordinate;
+CellSpaceImpl cellSpace=null;
+double x,y,z;
 
     public CellSpaceImportImpl() {
     }
@@ -27,80 +29,67 @@ ArrayList<CellSpaceCoordinateImpl> cellSpaceCeilingCoordinateArraylist;
      * The method below creates CellspaceImpl object, by reading the .gml file with DOM parser. After reading the necessary
      * attributes and coordinates in, CellspaceImpl object is created. So we get a cellspace. Oh yeah, baby!
      */
+
     @Override
     public CellSpace cellSpaceCreator(){
         ImportImpl importImpl=new ImportImpl();
-        try {
-            Document doc= importImpl.domImport();
+
+            Document doc= null;
+            try {
+                doc = importImpl.domImport();
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SAXException e) {
+                e.printStackTrace();
+            }
 
             String ParentFloor = doc.getElementsByTagNameNS
                     ("http://www.opengis.net/indoorgml/1.0/core","PrimalSpaceFeatures").item(0).
                     getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2","id").getTextContent();
 
-            String CellSpacename;
+            String CellSpaceName;
             NodeList cellSpaceMemberNodeList=doc.getElementsByTagNameNS("http://www.opengis.net/indoorgml/1.0/core", "cellSpaceMember");
             int i =0;
-            for(i=0; i<cellSpaceMemberNodeList.getLength(); i++){
+            for(i=0; i<cellSpaceMemberNodeList.getLength(); i++) {
                 Node currentNode = cellSpaceMemberNodeList.item(i);
-               // System.out.println(currentNode.getFirstChild());
-                CellSpacename=currentNode.getFirstChild().
-                        getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2","id").getTextContent();
+                // System.out.println(currentNode.getFirstChild());
+                CellSpaceName = currentNode.getFirstChild().
+                        getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2", "id").getTextContent();
 
                 Element currentElement = (Element) currentNode;
-                Node floor,ceiling;
+                Node floor, ceiling;
 
-                    boolean linear = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").getLength()!=0;
-                    if(linear == false){
-                         floor = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "Arc").item(0);
-                         ceiling = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "Arc").item(1);
-                    }
-                    else{
-                        floor = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").item(0);
-                         ceiling = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").item(1);
-                    }
-                    NodeList floorpos = floor.getChildNodes();
-                    for (int j = 0; j < floorpos.getLength(); j++) {
+                boolean linear = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").getLength() != 0;
+                if (linear == false) {
+                    floor = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "Arc").item(0);
+                    ceiling = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "Arc").item(1);
+                } else {
+                    floor = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").item(0);
+                    ceiling = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").item(1);
+                }
+                NodeList floorPos = floor.getChildNodes();
+                for (int j = 0; j < floorPos.getLength(); j++) {
 
-                        String str=floorpos.item(j).getTextContent();
-                        String[] splited = str.split("\\s+");
+                    String str = floorPos.item(j).getTextContent();
+                    String[] splited = str.split("\\s+");
 
+                    x = Double.parseDouble(splited[0]);
+                    y = Double.parseDouble(splited[1]);
+                    z = Double.parseDouble(splited[2]);
+                    //System.out.println(x + " " + y + " " + z);
 
+                    /*
+                    Making CellSpacecoordinateImpl objects from x, y, z and after adding to an Arraylist object
+                     */
+                    cellSpaceCoordinate=new CellSpaceCoordinateImpl(x,y,z);
+                    System.out.println(cellSpaceCoordinate.toStringCoordinateXYZ());
 
-
-
-                        // System.out.println(floorpos.item(j).getTextContent() + "\n");
-
-                    }
-
-
-
-
-
-
-                System.out.println("-------");
-
-
-//                cellSpaceImplArrayList.get(i)=new CellSpaceImpl(ParentFloor,CellSpacename,        //Creating CellSpaceImpl object.
-//                        cellSpaceCeilingCoordinateArrayList,cellSpaceFloorCoordinateArrayList);
+                    cellSpaceFloorCoordinateArraylist.add(cellSpaceCoordinate);
+                }
             }
-
-            System.out.println("Max i index: "+i);
-
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        }catch (Exception e) {
-            e.printStackTrace();
+            return cellSpace;
         }
-
-        CellSpace cellSpace=null;
-
-    return cellSpace;
-}
-
-
-
-}
+    }
+//cellSpace=new CellSpaceImpl(ParentFloor,CellSpaceName,);

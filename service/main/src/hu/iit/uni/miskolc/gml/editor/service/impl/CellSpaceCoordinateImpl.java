@@ -46,7 +46,8 @@ public class CellSpaceCoordinateImpl implements CellSpaceCoordinate {
     }
 
     @Override
-    public void toStringCoordinateXYZ() {
+    public String toStringCoordinateXYZ() {
+        return coordinateX +" " +coordinateY + " " + coordinateZ;
     }
 
 

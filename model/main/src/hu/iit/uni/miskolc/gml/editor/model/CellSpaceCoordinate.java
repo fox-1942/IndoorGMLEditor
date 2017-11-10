@@ -13,5 +13,5 @@ public interface CellSpaceCoordinate {
 
      void setCoordinateZ(double coordinatez);
 
-     void toStringCoordinateXYZ();
+     String toStringCoordinateXYZ();
 }
