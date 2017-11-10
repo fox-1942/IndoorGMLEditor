@@ -6,11 +6,12 @@ public interface CellSpaceCoordinate {
      void setCoordinateX(double coordinateX);
 
      double getCoordinateY();
+
      void setCoordinateY(double coordinateY);
 
-     double getCoordinatez();
+     double getCoordinateZ();
 
-     void setCoordinatez(double coordinatez);
+     void setCoordinateZ(double coordinatez);
 
      void toStringCoordinateXYZ();
 }

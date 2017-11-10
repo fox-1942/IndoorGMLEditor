@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 public class CellSpaceImportImpl implements CellSpaceImport {
 
+Arraylist<C>
+
 
     public CellSpaceImportImpl() {
     }
@@ -58,7 +60,14 @@ public class CellSpaceImportImpl implements CellSpaceImport {
                     NodeList floorpos = floor.getChildNodes();
                     for (int j = 0; j < floorpos.getLength(); j++) {
 
-                        System.out.println(floorpos.item(j).getTextContent() + "\n");
+                        String str=floorpos.item(j).getTextContent();
+                        String[] splited = str.split("\\s+");
+
+
+
+
+
+                        // System.out.println(floorpos.item(j).getTextContent() + "\n");
 
                     }
 

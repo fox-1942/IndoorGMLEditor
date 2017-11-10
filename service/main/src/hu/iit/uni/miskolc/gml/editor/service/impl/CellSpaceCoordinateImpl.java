@@ -1,52 +1,59 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
-import hu.iit.uni.miskolc.gml.editor.model.CellSpaceFloorCoordinate;
 
-public class CellSpaceFloorCoordinateImpl implements CellSpaceFloorCoordinate {
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
 
-    private double FloorX;
-    private double FloorY;
-    private double FloorZ;
+public class CellSpaceCoordinateImpl implements CellSpaceCoordinate {
 
+    private double coordinateY;
+    private double coordinateZ;
+    private double coordinateX;
 
-    public CellSpaceFloorCoordinateImpl(double floorX, double floorY, double floorZ) {
-        FloorX = floorX;
-        FloorY = floorY;
-        FloorZ = floorZ;
-
-    }
-
-
-    @Override
-    public double getFloorX() {
-        return FloorX;
+    public CellSpaceCoordinateImpl(double coordinateX, double coordinateY, double coordinateZ) {
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
+        this.coordinateZ = coordinateZ;
     }
 
     @Override
-    public void setFloorX(double floorX) {
-        FloorX = floorX;
+    public double getCoordinateX() {
+        return coordinateX;
     }
 
     @Override
-    public double getFloorY() {
-        return FloorY;
+    public void setCoordinateX(double coordinateX) {
+        this.coordinateX = coordinateX;
     }
 
     @Override
-    public void setFloorY(double floorY) {
-        FloorY = floorY;
+    public double getCoordinateY() {
+        return coordinateY;
     }
 
     @Override
-    public double getFloorZ() {
-        return FloorZ;
+    public void setCoordinateY(double coordinateY) {
+        this.coordinateY = coordinateY;
     }
 
     @Override
-    public void setFloorZ(double floorZ) {
-        FloorZ = floorZ;
+    public double getCoordinateZ() {
+        return coordinateZ;
     }
+
+    @Override
+    public void setCoordinateZ(double coordinateZ) {
+        this.coordinateZ = coordinateZ;
+    }
+
+    @Override
+    public void toStringCoordinateXYZ() {
+    }
+
+
+
+
 
 
 
 }
+

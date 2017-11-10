@@ -7,11 +7,11 @@ public interface CellSpace {
 
     void setParentFloor(String parentFloor);
 
-    ArrayList<CellSpaceCeilingCoordinate> getCellSpaceCeilingCoordinatesArrayList();
+    ArrayList<CellSpaceCoordinate> getCellSpaceCeilingCoordinatesArrayList();
 
-    void setCellSpaceCeilingCoordinatesArrayList(ArrayList<CellSpaceCeilingCoordinate> cellSpaceCeilingCoordinatesArrayList);
+    void setCellSpaceCeilingCoordinatesArrayList(ArrayList<CellSpaceCoordinate> cellSpaceCeilingCoordinatesArrayList);
 
-    ArrayList<CellSpaceFloorCoordinate> getCellSpaceFloorCoordinateArrayList();
+    ArrayList<CellSpaceCoordinate> getCellSpaceFloorCoordinateArrayList();
 
-    void setCellSpaceFloorCoordinateArrayList(ArrayList<CellSpaceFloorCoordinate> cellSpaceFloorCoordinateArrayList);
+    void setCellSpaceFloorCoordinateArrayList(ArrayList<CellSpaceCoordinate> cellSpaceFloorCoordinateArrayList);
 }
