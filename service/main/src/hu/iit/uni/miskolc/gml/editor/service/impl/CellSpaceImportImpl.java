@@ -16,7 +16,8 @@ import java.util.ArrayList;
 
 public class CellSpaceImportImpl implements CellSpaceImport {
 
-Arraylist<C>
+ArrayList<CellSpaceCoordinateImpl> cellSpaceFloorCoordinateArraylist;
+ArrayList<CellSpaceCoordinateImpl> cellSpaceCeilingCoordinateArraylist;
 
 
     public CellSpaceImportImpl() {
