@@ -1,6 +1,7 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
 import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
 import hu.iit.uni.miskolc.gml.editor.model.CellSpaceImport;
 import org.ejml.alg.block.BlockInnerTriangularSolver;
 import org.w3c.dom.Document;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 
 public class CellSpaceImportImpl implements CellSpaceImport {
 
+
+    ArrayList<CellSpaceImpl> cellSpaceImplArrayList;
 
     public CellSpaceImportImpl() {
     }
@@ -36,8 +39,9 @@ public class CellSpaceImportImpl implements CellSpaceImport {
 
             String CellSpacename;
             NodeList cellSpaceMemberNodeList=doc.getElementsByTagNameNS("http://www.opengis.net/indoorgml/1.0/core", "cellSpaceMember");
-            int i =0;
-            for(i=0; i<cellSpaceMemberNodeList.getLength(); i++){
+
+
+            for(int i=0; i<cellSpaceMemberNodeList.getLength(); i++){
                 Node currentNode = cellSpaceMemberNodeList.item(i);
                // System.out.println(currentNode.getFirstChild());
                 CellSpacename=currentNode.getFirstChild().
@@ -58,8 +62,14 @@ public class CellSpaceImportImpl implements CellSpaceImport {
                     NodeList floorpos = floor.getChildNodes();
                     for (int j = 0; j < floorpos.getLength(); j++) {
 
-                        System.out.println(floorpos.item(j).getTextContent() + "\n");
+                         String str = floorpos.item(j).getTextContent();
+                         String[] splitStr = str.split("\\s+");
 
+                         ArrayList<CellSpaceCoordinate> cellSpaceFloorArrayList=;
+
+                         CellSpaceImpl cellSpace=new CellSpaceImpl();
+
+                        //System.out.println(floorpos.item(j).getTextContent() + "\n");
                     }
 
 
@@ -74,7 +84,6 @@ public class CellSpaceImportImpl implements CellSpaceImport {
 //                        cellSpaceCeilingCoordinateArrayList,cellSpaceFloorCoordinateArrayList);
             }
 
-            System.out.println("Max i index: "+i);
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();

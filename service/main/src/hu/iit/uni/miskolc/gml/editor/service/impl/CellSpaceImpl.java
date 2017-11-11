@@ -1,7 +1,6 @@
 package hu.iit.uni.miskolc.gml.editor.service.impl;
 
-import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCeilingCoordinate;
-import hu.iit.uni.miskolc.gml.editor.model.CellSpaceFloorCoordinate;
+import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
 
 import java.util.ArrayList;
 
@@ -10,11 +9,11 @@ public class CellSpaceImpl implements hu.iit.uni.miskolc.gml.editor.model.CellSp
     private String ParentFloor;
     private String CellSpaceName;
 
-    private ArrayList<CellSpaceCeilingCoordinate> cellSpaceCeilingCoordinatesArrayList;
-    private ArrayList<CellSpaceFloorCoordinate> cellSpaceFloorCoordinateArrayList;
+    private ArrayList<CellSpaceCoordinateImpl> cellSpaceCeilingCoordinatesArrayList;
+    private ArrayList<CellSpaceCoordinateImpl> cellSpaceFloorCoordinateArrayList;
 
-    public CellSpaceImpl(String parentFloor, String cellSpaceName, ArrayList<CellSpaceCeilingCoordinate> cellSpaceCeilingCoordinatesArrayList,
-                         ArrayList<CellSpaceFloorCoordinate> cellSpaceFloorCoordinateArrayList) {
+    public CellSpaceImpl(String parentFloor, String cellSpaceName, ArrayList<CellSpaceCoordinateImpl> cellSpaceCeilingCoordinatesArrayList,
+                         ArrayList<CellSpaceCoordinateImpl> cellSpaceFloorCoordinateArrayList) {
         ParentFloor = parentFloor;
         CellSpaceName = cellSpaceName;
         this.cellSpaceCeilingCoordinatesArrayList = cellSpaceCeilingCoordinatesArrayList;
@@ -28,29 +27,27 @@ public class CellSpaceImpl implements hu.iit.uni.miskolc.gml.editor.model.CellSp
 
     @Override
     public void setParentFloor(String parentFloor) {
-        ParentFloor = parentFloor;
+
     }
 
     @Override
-    public ArrayList<CellSpaceCeilingCoordinate> getCellSpaceCeilingCoordinatesArrayList() {
-        return cellSpaceCeilingCoordinatesArrayList;
+    public ArrayList<CellSpaceCoordinate> getCellSpaceCeilingCoordinatesArrayList() {
+        return null;
     }
 
     @Override
-    public void setCellSpaceCeilingCoordinatesArrayList(ArrayList<CellSpaceCeilingCoordinate> cellSpaceCeilingCoordinatesArrayList) {
-        this.cellSpaceCeilingCoordinatesArrayList = cellSpaceCeilingCoordinatesArrayList;
+    public void setCellSpaceCeilingCoordinatesArrayList(ArrayList<CellSpaceCoordinate> cellSpaceCeilingCoordinatesArrayList) {
+
     }
 
     @Override
-    public ArrayList<CellSpaceFloorCoordinate> getCellSpaceFloorCoordinateArrayList() {
-        return cellSpaceFloorCoordinateArrayList;
+    public ArrayList<CellSpaceCoordinate> getCellSpaceFloorCoordinateArrayList() {
+        return null;
     }
 
     @Override
-    public void setCellSpaceFloorCoordinateArrayList(ArrayList<CellSpaceFloorCoordinate> cellSpaceFloorCoordinateArrayList) {
-        this.cellSpaceFloorCoordinateArrayList = cellSpaceFloorCoordinateArrayList;
+    public void setCellSpaceFloorCoordinateArrayList(ArrayList<CellSpaceCoordinate> cellSpaceFloorCoordinateArrayList) {
+
     }
-
-
 
 }
