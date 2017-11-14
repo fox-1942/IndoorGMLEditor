@@ -5,18 +5,15 @@ import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
 
 public class CellSpaceCoordinateImpl implements CellSpaceCoordinate {
 
-    private double coordinateX;
     private double coordinateY;
-    private double coordinatez;
+    private double coordinateZ;
+    private double coordinateX;
 
-
-    public CellSpaceCoordinateImpl(double coordinateX, double coordinateY, double coordinatez) {
+    public CellSpaceCoordinateImpl(double coordinateX, double coordinateY, double coordinateZ) {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
-        this.coordinatez = coordinatez;
-
+        this.coordinateZ = coordinateZ;
     }
-
 
     @Override
     public double getCoordinateX() {
@@ -39,19 +36,25 @@ public class CellSpaceCoordinateImpl implements CellSpaceCoordinate {
     }
 
     @Override
-    public double getCoordinatez() {
-        return coordinatez;
+    public double getCoordinateZ() {
+        return coordinateZ;
     }
 
     @Override
-    public void setCoordinatez(double coordinatez) {
-        this.coordinatez = coordinatez;
+    public void setCoordinateZ(double coordinateZ) {
+        this.coordinateZ = coordinateZ;
     }
 
     @Override
-    public void toStringCoordinateXYZ() {
-        System.out.println(coordinateX + " " + coordinateY + " " + coordinatez );
+    public String toStringCoordinateXYZ() {
+        return coordinateX +" " +coordinateY + " " + coordinateZ;
     }
 
+    @Override
+    public void setCoordinateXYZ(double coordinateX, double coordinateY, double coordinateZ) {
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
+        this.coordinateZ = coordinateZ;
+    }
 
 }
