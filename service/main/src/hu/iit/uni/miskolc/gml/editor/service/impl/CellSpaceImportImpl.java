@@ -36,6 +36,11 @@ double x,y,z;
     public ArrayList<CellSpace> cellSpaceCreator(){
         ImportImpl importImpl=new ImportImpl();
 
+
+
+
+
+
             Document doc= null;
             try {
                 doc = importImpl.domImport();
