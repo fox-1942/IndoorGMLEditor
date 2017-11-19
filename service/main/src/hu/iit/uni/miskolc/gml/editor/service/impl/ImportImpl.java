@@ -59,7 +59,7 @@ public class ImportImpl implements Import {
 
             PrimalSpaceFeaturesPropertyType primalSpaceFeaturesPropertyType = indoorFeaturesType.getPrimalSpaceFeatures();
 
-            PrimalSpaceFeaturesType primalSpaceFeaturesType = primalSpaceFeaturesPropertyType.getPrimalSpaceFeatures()
+            PrimalSpaceFeaturesType primalSpaceFeaturesType = primalSpaceFeaturesPropertyType.getPrimalSpaceFeatures();
 
             List<FeaturePropertyType> featurePropertyTypeList = primalSpaceFeaturesType.getCellSpaceMember();
             JAXBElement<? extends AbstractFeatureType> jaxbElement = featurePropertyTypeList.get(0).getAbstractFeature();
