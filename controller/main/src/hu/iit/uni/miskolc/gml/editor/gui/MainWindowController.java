@@ -1,42 +1,33 @@
 package hu.iit.uni.miskolc.gml.editor.gui;
 
+import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
+import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceImportImpl;
 import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
-import javafx.animation.Animation;
-import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.scene.transform.Rotate;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
+import org.apache.commons.lang3.ArrayUtils;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by fox on 2017.08.18..
  */
 public class MainWindowController {
 
-    @FXML
-    private SubScene subScene;
-
-    @FXML
-    private MeshView meshView;
-
     private ServiceFacade facade;
     private File outputFile;
     private String path;
-
+    private CellSpaceImportImpl cellSpaceImport=new CellSpaceImportImpl();
 
 
     //Nullary Contructor, needed because of java.lang.InstantiationException
@@ -125,66 +116,69 @@ public class MainWindowController {
     }
 
     //--------------------------------------------------------------------------------
-    public MeshView createMeshView() {
-        float[] points = {50, 0, 0, // v0 (iv0 = 0)
-                45, 10, 0, // v1 (iv1 = 1)
-                55, 10, 0 // v2 (iv2 = 2)
-        };
-        float[] texCoords = { 0.5f, 0.5f, // t0 (it0 = 0)
-                0.0f, 1.0f, // t1 (it1 = 1)
-                1.0f, 1.0f // t2 (it2 = 2)
-        };
-        int[] faces = {
-                0, 0, 2, 2, 1, 1, // iv0, it0, iv2, it2, iv1, it1 (front face)
-                0, 0, 1, 1, 2, 2 // iv0, it0, iv1, it1, iv2, it2 (back face)
-        };
 
-        // Create a TriangleMesh
-        TriangleMesh mesh = new TriangleMesh();
-        mesh.getPoints().addAll(points);
-        mesh.getTexCoords().addAll(texCoords);
-        mesh.getFaces().addAll(faces);
+    public Group createMeshView() {
+        ArrayList<CellSpace> cellSpaceImportList = cellSpaceImport.cellSpaceCreator();
+        Group root = new Group();
 
+        ArrayList doubles=new ArrayList<Double>();
+            for (CellSpace cp: cellSpaceImportList) {
 
-        // Create a MeshView
-        meshView.setMesh(mesh);
-        return meshView;
-    }
+            for(int j=0;j<cp.getCellSpaceFloorCoordinateArrayList().size();j++){
+                //System.out.println("\n" + cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX() + " " + cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY());
+
+                    doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX());
+                    doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY());
+
+                }
+                double[] array = ArrayUtils.toPrimitive((Double[]) doubles.toArray(new Double[doubles.size()]));
+                Polyline rectangle = new Polyline(array);
+                rectangle.setStrokeWidth(0.5);
+                rectangle.setStroke(Color.DARKRED);
+                root.getChildren().add(rectangle);
+            }
+        return root;
+        }
 
 
     public SubScene getSubScene(Point3D rotationAxis) {
-        Box box = new Box(100, 100, 100);
-        box.setCullFace(CullFace.NONE);
-        box.setTranslateX(250);
-        box.setTranslateY(100);
-        box.setTranslateZ(400);
-        PerspectiveCamera camera = new PerspectiveCamera(false);
-        camera.setTranslateX(100);
-        camera.setTranslateY(-50);
-        camera.setTranslateZ(300);
 
-        // Add a Rotation animation to the camera
-        RotateTransition rt = new RotateTransition(Duration.seconds(2), camera);
-        rt.setCycleCount(Animation.INDEFINITE);
-        rt.setFromAngle(-10);
-        rt.setToAngle(10);
-        rt.setAutoReverse(true);
-        rt.setAxis(rotationAxis);
-        rt.play();
-        PointLight redLight = new PointLight(Color.RED);
-        redLight.setTranslateX(250);
-        redLight.setTranslateY(-100);
-        redLight.setTranslateZ(290);
-        // If you remove the redLight from the following group,
-        // a default head light will be provided by the SubScene.
-        Group root = new Group(box, redLight);
-        root.setRotationAxis(Rotate.X_AXIS);
-        root.setRotate(30);
-        SubScene ss = new SubScene(root, 200, 200, true, SceneAntialiasing.BALANCED);
-        ss.setCamera(camera);
+
+//        PerspectiveCamera camera = new PerspectiveCamera(false);
+//        camera.setTranslateX(100);
+//        camera.setTranslateY(-50);
+//        camera.setTranslateZ(300);
+
+
+//        RotateTransition rt = new RotateTransition(Duration.seconds(2), camera);
+//        rt.setCycleCount(Animation.INDEFINITE);
+//        rt.setFromAngle(-10);
+//        rt.setToAngle(10);
+//        rt.setAutoReverse(true);
+//        rt.setAxis(rotationAxis);
+//        rt.play();
+//        PointLight redLight = new PointLight(Color.RED);
+//        redLight.setTranslateX(0);
+//        redLight.setTranslateY(-100);
+//        redLight.setTranslateZ(0);
+
+        Group root=createMeshView();
+//        root.setRotationAxis(Rotate.X_AXIS);
+//        root.setRotate(30);
+
+        root.setTranslateX(500);
+        root.setTranslateY(200);
+        root.setScaleX(10);
+        root.setScaleY(10);
+        root.prefHeight(1000);
+        root.prefWidth(1000);
+        SubScene ss = new SubScene(root, 1000, 1000, true, SceneAntialiasing.DISABLED);
+        // ss.setCamera(camera);
         return ss;
     }
 }
+
+
 
 
 

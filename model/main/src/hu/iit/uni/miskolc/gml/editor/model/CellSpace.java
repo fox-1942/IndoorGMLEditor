@@ -14,4 +14,6 @@ public interface CellSpace {
     ArrayList<CellSpaceCoordinate> getCellSpaceFloorCoordinateArrayList();
 
     void setCellSpaceFloorCoordinateArrayList(ArrayList<CellSpaceCoordinate> cellSpaceFloorCoordinateArrayList);
+
+    void cellSpacetoString();
 }

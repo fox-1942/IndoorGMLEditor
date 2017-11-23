@@ -17,11 +17,6 @@ import java.util.ArrayList;
 
 public class CellSpaceImportImpl implements CellSpaceImport {
 
-ArrayList<CellSpaceCoordinate> cellSpaceFloorCoordinateArraylist = new ArrayList<CellSpaceCoordinate>();
-ArrayList<CellSpaceCoordinate> cellSpaceCeilingCoordinateArraylist = new ArrayList<CellSpaceCoordinate>();
-CellSpaceCoordinateImpl cellSpaceCoordinate;
-
-CellSpaceImpl cellSpace=null;
 double x,y,z;
 
     public CellSpaceImportImpl() {
@@ -35,11 +30,6 @@ double x,y,z;
     @Override
     public ArrayList<CellSpace> cellSpaceCreator(){
         ImportImpl importImpl=new ImportImpl();
-
-
-
-
-
 
             Document doc= null;
             try {
@@ -62,6 +52,11 @@ double x,y,z;
 
             ArrayList<CellSpace> cellSpaceArrayList=new ArrayList<CellSpace>();
             for(i=0; i<cellSpaceMemberNodeList.getLength(); i++) {
+
+                ArrayList<CellSpaceCoordinate> cellSpaceFloorCoordinateArraylist = new ArrayList<CellSpaceCoordinate>();
+                ArrayList<CellSpaceCoordinate> cellSpaceCeilingCoordinateArraylist = new ArrayList<CellSpaceCoordinate>();
+
+
                 Node currentNode = cellSpaceMemberNodeList.item(i);
                 // System.out.println(currentNode.getFirstChild());
                 CellSpaceName = currentNode.getFirstChild().
@@ -96,7 +91,7 @@ double x,y,z;
                     /*
                     Making CellSpacecoordinateImpl objects from x, y, z and after adding to an Arraylist object
                      */
-                    cellSpaceCoordinate=new CellSpaceCoordinateImpl(x,y,z);
+                    CellSpaceCoordinateImpl cellSpaceCoordinate = new CellSpaceCoordinateImpl(x,y,z);
                     cellSpaceFloorCoordinateArraylist.add(cellSpaceCoordinate);   //Adding coordinates to Arraylist.
                 }
 
@@ -116,16 +111,23 @@ double x,y,z;
                     /*
                     Making CellSpacecoordinateImpl objects from x, y, z and after adding to an Arraylist object
                      */
-                    cellSpaceCoordinate = new CellSpaceCoordinateImpl(x,y,z);
-                    //cellSpaceCoordinate.setCoordinateXYZ(x,y,z);
+
+                    CellSpaceCoordinateImpl cellSpaceCoordinate = new CellSpaceCoordinateImpl(x,y,z);
+
+
                     cellSpaceCeilingCoordinateArraylist.add(cellSpaceCoordinate);   //Adding coordinates to Arraylist.
                 }
 
+
                 CellSpaceImpl cellSpace = new CellSpaceImpl(ParentFloor, CellSpaceName, cellSpaceCeilingCoordinateArraylist, cellSpaceFloorCoordinateArraylist);
-                cellSpace.CellSpacetoString();
-                cellSpaceArrayList.add(cellSpace);
+
+                cellSpaceArrayList.add(i,cellSpace);
             }
 
+        for(int x=0;x<cellSpaceArrayList.size();x++) {
+
+            cellSpaceArrayList.get(x).cellSpacetoString();
+        }
 
         return cellSpaceArrayList;
     }
