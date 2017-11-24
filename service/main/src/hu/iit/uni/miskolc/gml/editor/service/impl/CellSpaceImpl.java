@@ -50,7 +50,8 @@ public class CellSpaceImpl implements hu.iit.uni.miskolc.gml.editor.model.CellSp
         this.cellSpaceFloorCoordinateArrayList = cellSpaceFloorCoordinateArrayList;
     }
 
-    public void CellSpacetoString() {
+    @Override
+    public void cellSpacetoString() {
         System.out.println("\nParentFloor: " + ParentFloor + " CellSpaceName: " + CellSpaceName);
         for (int i = 0; i < cellSpaceFloorCoordinateArrayList.size(); i++) {
             System.out.println(cellSpaceFloorCoordinateArrayList.get(i).toStringCoordinateXYZ());
@@ -58,8 +59,6 @@ public class CellSpaceImpl implements hu.iit.uni.miskolc.gml.editor.model.CellSp
         for (int x = 0; x < cellSpaceCeilingCoordinatesArrayList.size(); x++) {
             System.out.println(cellSpaceCeilingCoordinatesArrayList.get(x).toStringCoordinateXYZ());
         }
-
-
             System.out.println("\n---------------------------------");
         }
 
