@@ -59,6 +59,8 @@ double x,y,z;
             String CellSpaceName;
             NodeList cellSpaceMemberNodeList=doc.getElementsByTagNameNS("http://www.opengis.net/indoorgml/1.0/core", "cellSpaceMember");
             int i =0;
+
+            ArrayList<CellSpace> cellSpaceArrayList=new ArrayList<CellSpace>();
             for(i=0; i<cellSpaceMemberNodeList.getLength(); i++) {
                 Node currentNode = cellSpaceMemberNodeList.item(i);
                 // System.out.println(currentNode.getFirstChild());
@@ -121,9 +123,8 @@ double x,y,z;
 
                 CellSpaceImpl cellSpace = new CellSpaceImpl(ParentFloor, CellSpaceName, cellSpaceCeilingCoordinateArraylist, cellSpaceFloorCoordinateArraylist);
                 cellSpace.CellSpacetoString();
+                cellSpaceArrayList.add(cellSpace);
             }
-            ArrayList<CellSpace> cellSpaceArrayList=new ArrayList<CellSpace>();
-            cellSpaceArrayList.add(cellSpace);
         return cellSpaceArrayList;
     }
 }
