@@ -119,7 +119,8 @@ public class MainWindowController {
 
     public Group createMeshView() {
         ArrayList<CellSpace> cellSpaceImportList = cellSpaceImport.cellSpaceCreator();
-        Group root = new Group();
+
+        Group root2 = new Group();
 
         ArrayList doubles=new ArrayList<Double>();
             for (CellSpace cp: cellSpaceImportList) {
@@ -129,15 +130,20 @@ public class MainWindowController {
 
                     doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX());
                     doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY());
-
                 }
+
                 double[] array = ArrayUtils.toPrimitive((Double[]) doubles.toArray(new Double[doubles.size()]));
                 Polyline rectangle = new Polyline(array);
                 rectangle.setStrokeWidth(0.5);
                 rectangle.setStroke(Color.DARKRED);
+
+                rectangle.startFullDrag();
+                Group root = new Group();
                 root.getChildren().add(rectangle);
+                root2.getChildren().add(root);
+
             }
-        return root;
+        return root2;
         }
 
 
