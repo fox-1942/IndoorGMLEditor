@@ -37,8 +37,8 @@
                                                                 <gml:interior>
                                                                   <gml:LinearRing>
                                                                   <gml:pos>0 0 3.3</gml:pos>
-                                                                  <gml:pos>0 6 3.3</gml:pos>
-                                                                  <gml:pos>5 6 3.3</gml:pos>
+                                                                  <gml:pos>0 10 3.3</gml:pos>
+                                                                  <gml:pos>5 10 3.3</gml:pos>
                                                                   <gml:pos>5 0 3.3</gml:pos>
                                                                   <gml:pos>0 0 3.3</gml:pos>
                                                                   </gml:LinearRing>
@@ -711,57 +711,57 @@
 
 
 
-                <core:cellSpaceMember>
-                    <core:CellSpace gml:id="Office107APart2">
-                        <gml:metaDataProperty>
-                            <gml:GenericMetaData gml:id="Office107APart2Name">Office107APart2</gml:GenericMetaData>
-                        </gml:metaDataProperty>
+                <!--<core:cellSpaceMember>-->
+                    <!--<core:CellSpace gml:id="Office107APart2">-->
+                        <!--<gml:metaDataProperty>-->
+                            <!--<gml:GenericMetaData gml:id="Office107APart2Name">Office107APart2</gml:GenericMetaData>-->
+                        <!--</gml:metaDataProperty>-->
 
-                        <gml:boundedBy>
-                            <gml:Envelope>
-                                <gml:lowerCorner>6 6 3.3</gml:lowerCorner>
-                                <gml:upperCorner>9 7 5.05</gml:upperCorner>
-                            </gml:Envelope>
-                        </gml:boundedBy>
+                        <!--<gml:boundedBy>-->
+                            <!--<gml:Envelope>-->
+                                <!--<gml:lowerCorner>6 6 3.3</gml:lowerCorner>-->
+                                <!--<gml:upperCorner>9 7 5.05</gml:upperCorner>-->
+                            <!--</gml:Envelope>-->
+                        <!--</gml:boundedBy>-->
 
-                        <core:cellSpaceGeometry>
-                            <core:Geometry3D>
-                                <gml:Solid gml:id="Office107APart2Sketch">
-                                    <gml:interior>
-                                        <gml:Shell>
-                                            <gml:surfaceMember>
-                                                <gml:PolyhedralSurface gml:id="Office107APart2Formation">
-                                                    <gml:polygonPatches>
-                                                        <gml:PolygonPatch>
-                                                            <gml:interior>
-                                                                <gml:LinearRing>
-                                                                    <gml:pos>6 6 3.3</gml:pos>
-                                                                    <gml:pos>9 6 3.3</gml:pos>
-                                                                    <gml:pos>9 7 3.3</gml:pos>
-                                                                    <gml:pos>6 7 3.3</gml:pos>
-                                                                    <gml:pos>6 6 3.3</gml:pos>
-                                                                </gml:LinearRing>
-                                                            </gml:interior>
-                                                            <gml:interior>
-                                                                <gml:LinearRing>
-                                                                    <gml:pos>6 6 5.05</gml:pos>
-                                                                    <gml:pos>9 6 5.05</gml:pos>
-                                                                    <gml:pos>9 7 5.05</gml:pos>
-                                                                    <gml:pos>6 7 5.05</gml:pos>
-                                                                    <gml:pos>6 6 5.05</gml:pos>
-                                                                </gml:LinearRing>
-                                                            </gml:interior>
-                                                        </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
-                                                </gml:PolyhedralSurface>
-                                            </gml:surfaceMember>
-                                        </gml:Shell>
-                                    </gml:interior>
-                                </gml:Solid>
-                            </core:Geometry3D>
-                        </core:cellSpaceGeometry>
-                    </core:CellSpace>
-                </core:cellSpaceMember>
+                        <!--<core:cellSpaceGeometry>-->
+                            <!--<core:Geometry3D>-->
+                                <!--<gml:Solid gml:id="Office107APart2Sketch">-->
+                                    <!--<gml:interior>-->
+                                        <!--<gml:Shell>-->
+                                            <!--<gml:surfaceMember>-->
+                                                <!--<gml:PolyhedralSurface gml:id="Office107APart2Formation">-->
+                                                    <!--<gml:polygonPatches>-->
+                                                        <!--<gml:PolygonPatch>-->
+                                                            <!--<gml:interior>-->
+                                                                <!--<gml:LinearRing>-->
+                                                                    <!--<gml:pos>6 6 3.3</gml:pos>-->
+                                                                    <!--<gml:pos>9 6 3.3</gml:pos>-->
+                                                                    <!--<gml:pos>9 7 3.3</gml:pos>-->
+                                                                    <!--<gml:pos>6 7 3.3</gml:pos>-->
+                                                                    <!--<gml:pos>6 6 3.3</gml:pos>-->
+                                                                <!--</gml:LinearRing>-->
+                                                            <!--</gml:interior>-->
+                                                            <!--<gml:interior>-->
+                                                                <!--<gml:LinearRing>-->
+                                                                    <!--<gml:pos>6 6 5.05</gml:pos>-->
+                                                                    <!--<gml:pos>9 6 5.05</gml:pos>-->
+                                                                    <!--<gml:pos>9 7 5.05</gml:pos>-->
+                                                                    <!--<gml:pos>6 7 5.05</gml:pos>-->
+                                                                    <!--<gml:pos>6 6 5.05</gml:pos>-->
+                                                                <!--</gml:LinearRing>-->
+                                                            <!--</gml:interior>-->
+                                                        <!--</gml:PolygonPatch>-->
+                                                    <!--</gml:polygonPatches>-->
+                                                <!--</gml:PolyhedralSurface>-->
+                                            <!--</gml:surfaceMember>-->
+                                        <!--</gml:Shell>-->
+                                    <!--</gml:interior>-->
+                                <!--</gml:Solid>-->
+                            <!--</core:Geometry3D>-->
+                        <!--</core:cellSpaceGeometry>-->
+                    <!--</core:CellSpace>-->
+                <!--</core:cellSpaceMember>-->
 
 
                         <core:cellSpaceMember>

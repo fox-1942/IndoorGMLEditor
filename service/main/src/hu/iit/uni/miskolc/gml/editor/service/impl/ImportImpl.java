@@ -79,7 +79,7 @@ public class ImportImpl implements Import {
 
     public Document domImport() throws ParserConfigurationException, IOException, SAXException {
 
-        File inputFile = new File("resources/ISS1stFloor.xml");
+        File inputFile = new File("resources/fgfg.xml");
         System.out.println("XML helye----->  " + inputFile.getAbsolutePath());
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 

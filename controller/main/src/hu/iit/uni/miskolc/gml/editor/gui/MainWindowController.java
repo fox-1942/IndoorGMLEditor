@@ -4,9 +4,19 @@ import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
 import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceImportImpl;
 import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Point3D;
-import javafx.scene.*;
+import javafx.scene.Cursor;
+import javafx.scene.Group;
+import javafx.scene.SceneAntialiasing;
+import javafx.scene.SubScene;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
 import org.apache.commons.lang3.ArrayUtils;
@@ -14,23 +24,27 @@ import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import javafx.scene.input.MouseEvent;
+
 
 /**
  * Created by fox on 2017.08.18..
  */
 public class MainWindowController {
 
+    private double initX;
+    private double initY;
     private ServiceFacade facade;
     private File outputFile;
     private String path;
     private CellSpaceImportImpl cellSpaceImport=new CellSpaceImportImpl();
 
 
-    //Nullary Contructor, needed because of java.lang.InstantiationException
     public MainWindowController() {
         facade = new ServiceFacade();
     }
@@ -118,112 +132,120 @@ public class MainWindowController {
     //--------------------------------------------------------------------------------
 
     public Group createMeshView() {
+//        ArrayList<CellSpace> cellSpaceImportList = cellSpaceImport.cellSpaceCreator();
+//        Group root = new Group();
+//
+//            for (CellSpace cp: cellSpaceImportList) {
+//                Polyline rectangle = new Polyline();
+//                ArrayList doubles=new ArrayList<Double>();
+//
+//            for(int j=0;j<cp.getCellSpaceFloorCoordinateArrayList().size();j++){
+//
+//                    doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX());
+//                    doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY());
+//
+//                }
+//
+//                double[] array = ArrayUtils.toPrimitive((Double[]) doubles.toArray(new Double[doubles.size()]));
+//                rectangle = new Polyline(array);
+//                rectangle.setStrokeWidth(0.3);
+//                rectangle.setStroke(Color.DARKRED);
+//
+//                root.getChildren().add(rectangle);
+//            }
+//        return root;
+//        }
+
         ArrayList<CellSpace> cellSpaceImportList = cellSpaceImport.cellSpaceCreator();
-
-
         Group root = new Group();
-            for (CellSpace cp: cellSpaceImportList) {
-                ArrayList doubles=new ArrayList<Double>();
 
-            for(int j=0;j<cp.getCellSpaceFloorCoordinateArrayList().size();j++){
-                //System.out.println("\n" + cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX() + " " + cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY());
 
-                    doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX());
-                    doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY());
+        for (CellSpace cp : cellSpaceImportList) {
+            ArrayList<Circle> circleArrayList=new ArrayList<Circle>();
 
-                }
-                double[] array = ArrayUtils.toPrimitive((Double[]) doubles.toArray(new Double[doubles.size()]));
-                Polyline rectangle = new Polyline(array);
-                rectangle.setStrokeWidth(0.3);
-                rectangle.setStroke(Color.DARKRED);
-                root.getChildren().add(rectangle);
+            for (int j = 0; j < cp.getCellSpaceFloorCoordinateArrayList().size(); j++) {
+                circleArrayList.add(j, createCircle(Color.CORAL, 1, cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX(),
+                        cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY()));
             }
 
+            for (int i=0;i<circleArrayList.size()-1;i++) {
 
-//        ArrayList<LineTo> lineToArrayList = new ArrayList<LineTo>();
-//        for (CellSpace cp: cellSpaceImportList) {
-//            for(int j=0;j<cp.getCellSpaceFloorCoordinateArrayList().size()-1;j++){
-//                    lineToArrayList.add(new LineTo(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX(),cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY()));
-//                }
-//            }
-//
-//        //Adding all the elements to the path
-//        Path path = new Path();
-//
-//        MoveTo moveTo = new MoveTo(108, 71);
-//        path.getElements().add(moveTo);
-//
-//        for(int i=0;i<lineToArrayList.size();i++){
-//            path.getElements().addAll(lineToArrayList.get(i));
-//        }
-//
-//        Group root = new Group(path);
-//
+                Line line = new Line();
+                line.setStroke(Color.BLUE);
+                line.setStrokeWidth(0.3);
+                line.startXProperty().bind(circleArrayList.get(i).centerXProperty());
+                line.startYProperty().bind(circleArrayList.get(i).centerYProperty());
 
-        return root;
+                line.endXProperty().bind(circleArrayList.get(i+1).centerXProperty());
+                line.endYProperty().bind(circleArrayList.get(i+1).centerYProperty());
 
+                root.getChildren().add(circleArrayList.get(i));
+                root.getChildren().add(line);
+            }
         }
+        return root;
+    }
 
+    private Circle createCircle(final Color color, double radius, double x, double y) {
+        //create a circle with desired name,  color and radius
+        final Circle circle = new Circle(x,y,radius);
+
+        //add a shadow effect
+        //circle.setEffect(new InnerShadow(1, color.darker().darker()));
+        //change a cursor when it is over circle
+        circle.setCursor(Cursor.HAND);
+
+        EventHandler<MouseEvent> eventEventHandler = new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent me) {
+                double dragX = me.getSceneX();
+                double dragY = me.getSceneY();
+
+                //calculate new position of the circle
+//                double newXPosition =  dragX;
+//                double newYPosition =  dragY;
+
+                System.out.println("dfdfdfdfdf");
+
+                    circle.setCenterX(dragX);
+
+                    circle.setCenterY(dragY);
+            }
+        };
+
+        circle.addEventFilter(MouseEvent.MOUSE_DRAGGED,eventEventHandler);
+
+
+
+//        circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+//            public void handle(MouseEvent me) {
+//                //change the z-coordinate of the circle
+//                System.out.println("dfdfdfdfdf");
+//                circle.toFront();
+//            }
+//        });
+//        circle.setOnMousePressed(new EventHandler<MouseEvent>() {
+//            public void handle(MouseEvent me) {
+//                //when mouse is pressed, store initial position
+//                System.out.println("dfdfdfdfdf");
+//                initX = circle.getTranslateX();
+//                initY = circle.getTranslateY();
+//            }
+//        });
+
+        return circle;
+    }
 
     public SubScene getSubScene(Point3D rotationAxis) {
 
-
-//        PerspectiveCamera camera = new PerspectiveCamera(false);
-//        camera.setTranslateX(100);
-//        camera.setTranslateY(-50);
-//        camera.setTranslateZ(300);
-
-
-//        RotateTransition rt = new RotateTransition(Duration.seconds(2), camera);
-//        rt.setCycleCount(Animation.INDEFINITE);
-//        rt.setFromAngle(-10);
-//        rt.setToAngle(10);
-//        rt.setAutoReverse(true);
-//        rt.setAxis(rotationAxis);
-//        rt.play();
-//        PointLight redLight = new PointLight(Color.RED);
-//        redLight.setTranslateX(0);
-//        redLight.setTranslateY(-100);
-//        redLight.setTranslateZ(0);
-
         Group root=createMeshView();
-//        root.setRotationAxis(Rotate.X_AXIS);
-//        root.setRotate(30);
 
         root.setTranslateX(500);
-        root.setTranslateY(200);
-        root.setScaleX(10);
-        root.setScaleY(10);
-        root.prefHeight(1000);
-        root.prefWidth(1000);
-        SubScene ss = new SubScene(root, 1000, 1000, true, SceneAntialiasing.DISABLED);
-        // ss.setCamera(camera);
+        root.setTranslateY(300);
+        root.setScaleX(14);
+        root.setScaleY(14);
+        root.prefHeight(10);
+        root.prefWidth(10);
+        SubScene ss = new SubScene(root, 1000, 1000, false, SceneAntialiasing.BALANCED);
         return ss;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-//private static final String FILE_SEPARATOR = System.getProperty("file.separator");
-//private String path= "C:" + FILE_SEPARATOR + "Users" + FILE_SEPARATOR + "Tamás" + FILE_SEPARATOR + "Desktop" + FILE_SEPARATOR + "output.xml";
-//private String path = FILE_SEPARATOR + "outputFile" + FILE_SEPARATOR + "outputFile.xml";
-//    //Constructor
-//    public MainWindowController(String surfaceTitle, String surface2ID, String firstAxis, String secondAxis, String SrsName) throws JAXBException {
-//        this.facade = facadeSetup(surfaceTitle, surface2ID, firstAxis, secondAxis, SrsName);
-//    }
-//    public ServiceFacade facadeSetup(String surfaceTitle, String surface2ID, String firstAxis, String secondAxis, String SrsName) throws JAXBException {
-//        CellSpaceManagerServiceImpl param = CellSpaceManagerFactory.creatorCellSpaceManagerServiceImpl(surfaceTitle,
-//                surface2ID, firstAxis, secondAxis, SrsName);
-//        return new ServiceFacade(param);
-//    }
-// public void setInputFile(File inputFile) {this.inputFile = inputFile;}
