@@ -120,30 +120,48 @@ public class MainWindowController {
     public Group createMeshView() {
         ArrayList<CellSpace> cellSpaceImportList = cellSpaceImport.cellSpaceCreator();
 
-        Group root2 = new Group();
 
-        ArrayList doubles=new ArrayList<Double>();
+        Group root = new Group();
             for (CellSpace cp: cellSpaceImportList) {
+                ArrayList doubles=new ArrayList<Double>();
 
             for(int j=0;j<cp.getCellSpaceFloorCoordinateArrayList().size();j++){
                 //System.out.println("\n" + cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX() + " " + cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY());
 
                     doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX());
                     doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY());
-                }
 
+                }
                 double[] array = ArrayUtils.toPrimitive((Double[]) doubles.toArray(new Double[doubles.size()]));
                 Polyline rectangle = new Polyline(array);
-                rectangle.setStrokeWidth(0.5);
+                rectangle.setStrokeWidth(0.3);
                 rectangle.setStroke(Color.DARKRED);
-
-                rectangle.startFullDrag();
-                Group root = new Group();
                 root.getChildren().add(rectangle);
-                root2.getChildren().add(root);
-
             }
-        return root2;
+
+
+//        ArrayList<LineTo> lineToArrayList = new ArrayList<LineTo>();
+//        for (CellSpace cp: cellSpaceImportList) {
+//            for(int j=0;j<cp.getCellSpaceFloorCoordinateArrayList().size()-1;j++){
+//                    lineToArrayList.add(new LineTo(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX(),cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY()));
+//                }
+//            }
+//
+//        //Adding all the elements to the path
+//        Path path = new Path();
+//
+//        MoveTo moveTo = new MoveTo(108, 71);
+//        path.getElements().add(moveTo);
+//
+//        for(int i=0;i<lineToArrayList.size();i++){
+//            path.getElements().addAll(lineToArrayList.get(i));
+//        }
+//
+//        Group root = new Group(path);
+//
+
+        return root;
+
         }
 
 

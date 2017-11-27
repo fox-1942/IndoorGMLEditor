@@ -9,12 +9,17 @@
     xsi:schemaLocation="http://www.opengis.net/indoorgml/1.0/core http://schemas.opengis.net/indoorgml/1.0/indoorgmlcore.xsd" gml:id="ISS_University_of_Miskolc">
     
 
+
+
         <core:primalSpaceFeatures>
             
                     <core:PrimalSpaceFeatures gml:id="IIS_1st_Floor">
-
+                        
+                        
+                        
+                        
                        <core:cellSpaceMember>
-                        <core:CellSpace gml:id="CS_Office107B">
+                           <core:CellSpace gml:id="uuid_bef00f27-9e13-4416-a380-c04010c377cb">
                             <gml:metaDataProperty>
                                 <gml:GenericMetaData gml:id="Office107BName">Office 107B</gml:GenericMetaData>
                             </gml:metaDataProperty>
@@ -25,6 +30,8 @@
                                 </gml:Envelope>
                             </gml:boundedBy>
                             
+                            
+                            
                             <core:cellSpaceGeometry>
                                 <core:Geometry3D>
                                     <gml:Solid gml:id="office107BSketch">
@@ -32,7 +39,7 @@
                                             <gml:Shell>
                                                 <gml:surfaceMember>
                                                     <gml:PolyhedralSurface gml:id="office107BFormation">
-                                                        <gml:polygonPatches>
+                                                        <gml:patches>
                                                             <gml:PolygonPatch>
                                                                 <gml:interior>
                                                                   <gml:LinearRing>
@@ -53,7 +60,7 @@
                                                                   </gml:LinearRing>
                                                                 </gml:interior>
                                                             </gml:PolygonPatch>
-                                                        </gml:polygonPatches>
+                                                        </gml:patches>
                                                     </gml:PolyhedralSurface>
                                                 </gml:surfaceMember>
                                             </gml:Shell>
@@ -63,52 +70,49 @@
                             </core:cellSpaceGeometry>
                         </core:CellSpace>
                     </core:cellSpaceMember>
-                        
-                  
-                        
-                        
-                        
-                        
+
                     <core:cellSpaceMember>
-                        <core:CellSpace gml:id="CS_Office106">
+                        <core:CellSpace gml:id="uuid_6b5b4864-bfe9-4dc2-b788-b02c57aed7ab">
                             <gml:metaDataProperty>
-                                <gml:GenericMetaData gml:id="Office106Name">Office 106</gml:GenericMetaData>
+                                <gml:GenericMetaData gml:id="Office110Name">Office110</gml:GenericMetaData>
                             </gml:metaDataProperty>
+                            
                             <gml:boundedBy>
                                 <gml:Envelope>
-                                    <gml:lowerCorner>0 10 3.3</gml:lowerCorner>
-                                    <gml:upperCorner>6 14 5.05</gml:upperCorner>
+                                    <gml:lowerCorner>19.5 0 3.3</gml:lowerCorner>
+                                    <gml:upperCorner>24 6 5.05</gml:upperCorner>
                                 </gml:Envelope>
                             </gml:boundedBy>
+                            
                             <core:cellSpaceGeometry>
                                 <core:Geometry3D>
-                                    <gml:Solid gml:id="office106Sketch">
+                                    <gml:Solid gml:id="Office110Sketch">
                                         <gml:interior>
                                             <gml:Shell>
                                                 <gml:surfaceMember>
-                                                    <gml:PolyhedralSurface gml:id="office106Formation">
-                                                        <gml:polygonPatches>
+                                                    <gml:PolyhedralSurface gml:id="Office110Formation">
+                                                        <gml:patches>
                                                             <gml:PolygonPatch>
                                                                 <gml:interior>
                                                                     <gml:LinearRing>
-                                                                        <gml:pos>0 10 3.3</gml:pos>
-                                                                        <gml:pos>0 14 3.3</gml:pos>
-                                                                        <gml:pos>6 14 3.3</gml:pos>
-                                                                        <gml:pos>6 10 3.3</gml:pos>
-                                                                        <gml:pos>0 10 3.3</gml:pos>
+                                                                        <gml:pos>19.5 0 3.3</gml:pos>
+                                                                        <gml:pos>19.5 6 3.3</gml:pos>
+                                                                        <gml:pos>24 6 3.3</gml:pos>
+                                                                        <gml:pos>24 0 3.3</gml:pos>
+                                                                        <gml:pos>19.5 0 3.3</gml:pos>
                                                                     </gml:LinearRing>
                                                                 </gml:interior>
                                                                 <gml:interior>
                                                                     <gml:LinearRing>
-                                                                        <gml:pos>0 10 5.05</gml:pos>
-                                                                        <gml:pos>0 14 5.05</gml:pos>
-                                                                        <gml:pos>6 14 5.05</gml:pos>
-                                                                        <gml:pos>6 10 5.05</gml:pos>
-                                                                        <gml:pos>0 10 5.05</gml:pos>
+                                                                        <gml:pos>19.5 0 5.05</gml:pos>
+                                                                        <gml:pos>19.5 6 5.05</gml:pos>
+                                                                        <gml:pos>24 6 5.05</gml:pos>
+                                                                        <gml:pos>24 0 5.05</gml:pos>
+                                                                        <gml:pos>19.5 0 5.05</gml:pos>
                                                                     </gml:LinearRing>
                                                                 </gml:interior>
                                                             </gml:PolygonPatch>
-                                                        </gml:polygonPatches>
+                                                        </gml:patches>
                                                     </gml:PolyhedralSurface>
                                                 </gml:surfaceMember>
                                             </gml:Shell>
@@ -116,12 +120,278 @@
                                     </gml:Solid>
                                 </core:Geometry3D>
                             </core:cellSpaceGeometry>
-                    </core:CellSpace>
-                </core:cellSpaceMember>
-                
+                        </core:CellSpace>
+                    </core:cellSpaceMember>
+                    
+                    
+                    
+                    
+                        
+                        <core:cellSpaceMember>
+                            <core:CellSpace gml:id="uuid_731cb1a0-98dd-4bdc-a6a1-9aba23e6201f">
+                                <gml:metaDataProperty>
+                                    <gml:GenericMetaData gml:id="Office109Name">Office109</gml:GenericMetaData>
+                                </gml:metaDataProperty>
+                                
+                                <gml:boundedBy>
+                                    <gml:Envelope>
+                                        <gml:lowerCorner>15.5 0 3.3</gml:lowerCorner>
+                                        <gml:upperCorner>19 7 5.05</gml:upperCorner>
+                                    </gml:Envelope>
+                                </gml:boundedBy>
+                                
+                                <core:cellSpaceGeometry>
+                                    <core:Geometry3D>
+                                        <gml:Solid gml:id="Office109Sketch">
+                                            <gml:interior>
+                                                <gml:Shell>
+                                                    <gml:surfaceMember>
+                                                        <gml:PolyhedralSurface gml:id="Office109Formation">
+                                                            <gml:patches>
+                                                                <gml:PolygonPatch>
+                                                                    <gml:interior>
+                                                                        <gml:LinearRing>
+                                                                            <gml:pos>15.5 0 3.3</gml:pos>
+                                                                            <gml:pos>15.5 7 3.3</gml:pos>
+                                                                            <gml:pos>19 7 3.3</gml:pos>
+                                                                            <gml:pos>19 0 3.3</gml:pos>
+                                                                            <gml:pos>15.5 0 3.3</gml:pos>
+                                                                        </gml:LinearRing>
+                                                                    </gml:interior>
+                                                                    <gml:interior>
+                                                                        <gml:LinearRing>
+                                                                            <gml:pos>15.5 0 5.05</gml:pos>
+                                                                            <gml:pos>15.5 7 5.05</gml:pos>
+                                                                            <gml:pos>19 7 5.05</gml:pos>
+                                                                            <gml:pos>19 0 5.05</gml:pos>
+                                                                            <gml:pos>15.5 0 5.05</gml:pos>
+                                                                        </gml:LinearRing>
+                                                                    </gml:interior>
+                                                                </gml:PolygonPatch>
+                                                            </gml:patches>
+                                                        </gml:PolyhedralSurface>
+                                                    </gml:surfaceMember>
+                                                </gml:Shell>
+                                            </gml:interior>
+                                        </gml:Solid>
+                                    </core:Geometry3D>
+                                </core:cellSpaceGeometry>
+                            </core:CellSpace>
+                        </core:cellSpaceMember> 
+                        
+                        
+                        <core:cellSpaceMember>
+                            <core:CellSpace gml:id="uuid_b83d8fd6-7bb8-482c-910d-51959fbaa317">
+                                <gml:metaDataProperty>
+                                    <gml:GenericMetaData gml:id="Office107AName">Office107APart1</gml:GenericMetaData>
+                                </gml:metaDataProperty>
+                                
+                                <gml:boundedBy>
+                                    <gml:Envelope>
+                                        <gml:lowerCorner>5 0 3.3</gml:lowerCorner>
+                                        <gml:upperCorner>9 6 5.05</gml:upperCorner>
+                                    </gml:Envelope>
+                                </gml:boundedBy>
+                                
+                                <core:cellSpaceGeometry>
+                                    <core:Geometry3D>
+                                        <gml:Solid gml:id="Office107ASketch">
+                                            <gml:interior>
+                                                <gml:Shell>
+                                                    <gml:surfaceMember>
+                                                        <gml:PolyhedralSurface gml:id="Office107AFormation">
+                                                            <gml:patches>
+                                                                <gml:PolygonPatch>
+                                                                    <gml:interior>
+                                                                        <gml:LinearRing>
+                                                                            <gml:pos>5 0 3.3</gml:pos>
+                                                                            <gml:pos>5 6 3.3</gml:pos>
+                                                                            <gml:pos>9 6 3.3</gml:pos>
+                                                                            <gml:pos>9 0 3.3</gml:pos>
+                                                                            <gml:pos>5 0 3.3</gml:pos>
+                                                                        </gml:LinearRing>
+                                                                    </gml:interior>
+                                                                    <gml:interior>
+                                                                        <gml:LinearRing>
+                                                                            <gml:pos>5 0 5.05</gml:pos>
+                                                                            <gml:pos>5 6 5.05</gml:pos>
+                                                                            <gml:pos>9 6 5.05</gml:pos>
+                                                                            <gml:pos>9 0 5.05</gml:pos>
+                                                                            <gml:pos>5 0 5.05</gml:pos>
+                                                                        </gml:LinearRing>
+                                                                    </gml:interior>
+                                                                </gml:PolygonPatch>
+                                                            </gml:patches>
+                                                        </gml:PolyhedralSurface>
+                                                    </gml:surfaceMember>
+                                                </gml:Shell>
+                                            </gml:interior>
+                                        </gml:Solid>
+                                    </core:Geometry3D>
+                                </core:cellSpaceGeometry>
+                            </core:CellSpace>
+                        </core:cellSpaceMember>
 
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_Office108">
+                    <core:CellSpace gml:id="uuid_8cabdc44-9603-4968-a778-a9a86ef00ee6">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="Office114Name">Office114</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>38.5 0 3.3</gml:lowerCorner>
+                                <gml:upperCorner>50.5 7 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="Office114Sketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="Office114Formation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>38.5 0 3.3</gml:pos>
+                                                                    <gml:pos>48 0 3.3</gml:pos>
+                                                                    <gml:pos>50.5 7 3.3</gml:pos>
+                                                                    <gml:pos>38.5 7 3.3</gml:pos>
+                                                                    <gml:pos>38.5 0 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>38.5 0 5.05</gml:pos>
+                                                                    <gml:pos>48 0 5.05</gml:pos>
+                                                                    <gml:pos>50.5 7 5.05</gml:pos>
+                                                                    <gml:pos>38.5 7 5.05</gml:pos>
+                                                                    <gml:pos>38.5 0 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                    </core:CellSpace>
+                </core:cellSpaceMember>
+
+
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_d4a4f4d4-d809-4faa-9e60-be4ca01e1b56">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="Office115Name">Office115</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>20 18 3.3</gml:lowerCorner>
+                                <gml:upperCorner>28.5 14 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="Office115Sketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="Office115Formation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>20 18 3.3</gml:pos>
+                                                                    <gml:pos>28.5 18 3.3</gml:pos>
+                                                                    <gml:pos>28.5 14 3.3</gml:pos>
+                                                                    <gml:pos>20 14 3.3</gml:pos>
+                                                                    <gml:pos>20 18 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>20 18 5.05</gml:pos>
+                                                                    <gml:pos>28.5 18 5.05</gml:pos>
+                                                                    <gml:pos>28.5 14 5.05</gml:pos>
+                                                                    <gml:pos>20 14 5.05</gml:pos>
+                                                                    <gml:pos>20 18 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                    </core:CellSpace>
+                </core:cellSpaceMember>
+
+
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_ce13da72-7b84-4ba9-885d-6df579c27c2e">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="Office105Name">Office105</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>0 14.5 3.3</gml:lowerCorner>
+                                <gml:upperCorner>6 18 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="Office105Sketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="Office105Formation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>0 14.5 3.3</gml:pos>
+                                                                    <gml:pos>0 18 3.3</gml:pos>
+                                                                    <gml:pos>6 18 3.3</gml:pos>
+                                                                    <gml:pos>6 14.5 3.3</gml:pos>
+                                                                    <gml:pos>0 14.5 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>0 14.5 5.05</gml:pos>
+                                                                    <gml:pos>0 18 5.05</gml:pos>
+                                                                    <gml:pos>6 18 5.05</gml:pos>
+                                                                    <gml:pos>6 14.5 5.05</gml:pos>
+                                                                    <gml:pos>0 14.5 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                    </core:CellSpace>
+                </core:cellSpaceMember>
+
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_9a73f732-aee8-4c37-bfea-ee36a46bce7a">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="Office108Name">Office 108</gml:GenericMetaData>
                         </gml:metaDataProperty>
@@ -138,7 +408,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="office108Formation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -159,7 +429,109 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                    </core:CellSpace>
+                </core:cellSpaceMember>
+
+						
+						
+				<core:cellSpaceMember>
+					<core:CellSpace gml:id="uuid_StairsFirstFloor">
+						<gml:metaDataProperty>
+							<gml:GenericMetaData gml:id="StairsFirstName">StairsFirst</gml:GenericMetaData>
+						</gml:metaDataProperty>
+						<gml:boundedBy>
+							<gml:Envelope>
+								<gml:lowerCorner>33.5 14 3.3</gml:lowerCorner>
+								<gml:upperCorner>29 10 5.05</gml:upperCorner>
+							</gml:Envelope>
+						</gml:boundedBy>
+						<core:cellSpaceGeometry>
+							<core:Geometry3D>
+								<gml:Solid gml:id="StairsFirstSketch">
+									<gml:interior>
+										<gml:Shell>
+											<gml:surfaceMember>
+												<gml:PolyhedralSurface gml:id="StairsFirstFormation">
+													<gml:patches>
+														<gml:PolygonPatch>
+															<gml:interior>
+																<gml:LinearRing>
+																	<gml:pos>33.5 14 3.3</gml:pos>
+																	<gml:pos>33.5 10 3.3</gml:pos>
+																	<gml:pos>29 10 3.3</gml:pos>
+																	<gml:pos>29 14 3.3</gml:pos>
+																	<gml:pos>33.5 14 3.3</gml:pos>
+																</gml:LinearRing>
+															</gml:interior>
+															<gml:interior>
+																<gml:LinearRing>
+																	<gml:pos>33.5 14 5.05</gml:pos>
+																	<gml:pos>33.5 10 5.05</gml:pos>
+																	<gml:pos>29 10 5.05</gml:pos>
+																	<gml:pos>29 14 5.05</gml:pos>
+																	<gml:pos>33.5 14 5.05</gml:pos>
+																</gml:LinearRing>
+															</gml:interior>
+														</gml:PolygonPatch>
+													</gml:patches>
+												</gml:PolyhedralSurface>
+											</gml:surfaceMember>
+										</gml:Shell>
+									</gml:interior>
+								</gml:Solid>
+							</core:Geometry3D>
+						</core:cellSpaceGeometry>
+					</core:CellSpace>
+				</core:cellSpaceMember>		
+
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_06c17c70-0a5f-48a1-88d8-3d496512dac0">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="Office111Name">Office 111</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>24.5 7 3.3</gml:lowerCorner>
+                                <gml:upperCorner>29 0 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="office111Sketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="office111Formation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>24.5 7 3.3</gml:pos>
+                                                                    <gml:pos>24.5 0 3.3</gml:pos>
+                                                                    <gml:pos>29 0 3.3</gml:pos>
+                                                                    <gml:pos>29 7 3.3</gml:pos>
+                                                                    <gml:pos>24.5 7 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>24.5 7 5.05</gml:pos>
+                                                                    <gml:pos>24.5 0 5.05</gml:pos>
+                                                                    <gml:pos>29 0 5.05</gml:pos>
+                                                                    <gml:pos>29 7 5.05</gml:pos>
+                                                                    <gml:pos>24.5 7 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -171,10 +543,110 @@
                 </core:cellSpaceMember>
 
 
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_cd7c6612-b814-49f1-9c03-b5847e8c5640">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="Office112Name">Office 112</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>33 7 3.3</gml:lowerCorner>
+                                <gml:upperCorner>29.5 0 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="office112Sketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="office112Formation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>33 7 3.3</gml:pos>
+                                                                    <gml:pos>33 0 3.3</gml:pos>
+                                                                    <gml:pos>29.5 0 3.3</gml:pos>
+                                                                    <gml:pos>29.5 7 3.3</gml:pos>
+                                                                    <gml:pos>33 7 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>33 7 5.05</gml:pos>
+                                                                    <gml:pos>33 0 5.05</gml:pos>
+                                                                    <gml:pos>29.5 0 5.05</gml:pos>
+                                                                    <gml:pos>29.5 7 5.05</gml:pos>
+                                                                    <gml:pos>33 7 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                    </core:CellSpace>
+                </core:cellSpaceMember>
 
 
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorNorthCorridorManToilet">
+                    <core:CellSpace gml:id="uuid_c84b0a53-1f9e-49cd-b83d-7c7b001a4078">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="Office113Name">Office 113</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>33.5 7 3.3</gml:lowerCorner>
+                                <gml:upperCorner>38 0 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="office113Sketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="office113Formation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>33.5 7 3.3</gml:pos>
+                                                                    <gml:pos>33.5 0 3.3</gml:pos>
+                                                                    <gml:pos>38 0 3.3</gml:pos>
+                                                                    <gml:pos>38 7 3.3</gml:pos>
+                                                                    <gml:pos>33.5 7 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>33.5 7 5.05</gml:pos>
+                                                                    <gml:pos>33.5 0 5.05</gml:pos>
+                                                                    <gml:pos>38 0 5.05</gml:pos>
+                                                                    <gml:pos>38 7 5.05</gml:pos>
+                                                                    <gml:pos>33.5 7 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                    </core:CellSpace>
+                </core:cellSpaceMember>
+
+
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_94137eaf-7835-4ea7-b63f-9713abb6bada">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorNorthCorridorManToiletName">1stFloorNorthCorridorManToilet</gml:GenericMetaData>
                         </gml:metaDataProperty>
@@ -191,7 +663,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorNorthCorridorManToiletFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -212,7 +684,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -222,10 +694,10 @@
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
                 </core:cellSpaceMember>
-
-
+                
+                
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorEastCorridorManToilet">
+                    <core:CellSpace gml:id="uuid_2d0694c3-f7c3-414a-9465-c0e8be87e802">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorEastCorridorManToiletName">CS_FirstFloorEastCorridorManToilet</gml:GenericMetaData>
                         </gml:metaDataProperty>
@@ -235,7 +707,7 @@
                                 <gml:upperCorner>14.5 13.5 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorEastCorridorManToiletSketch">
@@ -243,7 +715,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorEastCorridorManToiletFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -264,7 +736,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -274,23 +746,23 @@
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
                 </core:cellSpaceMember>
-
-
-
-
+                
+                
+                
+                
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorEastCorridorWomanToilet">
+                    <core:CellSpace gml:id="uuid_54f1a72e-66c3-496a-93f1-6b52739246a4">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorEastCorridorWomanToiletName">CS_1stFloorEastCorridorWomanToilet</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>15 10 3.3</gml:lowerCorner>
                                 <gml:upperCorner>15.5 13.5 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorEastCorridorWomanToiletSketch">
@@ -298,7 +770,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorEastCorridorWomanToiletFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -319,7 +791,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -329,21 +801,21 @@
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
                 </core:cellSpaceMember>
-
-
+                        
+                        
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorKitchen">
+                    <core:CellSpace gml:id="uuid_2daca55b-4458-497b-9957-5657c8837c02">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorKitchenName">CS_1stFloorKitchen</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>16 10 3.3</gml:lowerCorner>
                                 <gml:upperCorner>19.5 14 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorKitchenSketch">
@@ -351,7 +823,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorKitchenFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -359,7 +831,7 @@
                                                                     <gml:pos>16 13.5 3.3</gml:pos>
                                                                     <gml:pos>19.5 13.5 3.3</gml:pos>
                                                                     <gml:pos>19.5 10 3.3</gml:pos>
-                                                                    <gml:pos>16 10 3.3</gml:pos>
+                                                                    <gml:pos>16 10 3.3</gml:pos>                                                                    
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                             <gml:interior>
@@ -372,7 +844,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -382,21 +854,21 @@
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
                 </core:cellSpaceMember>
-
-
+                 
+                
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorPrintingRoom">
+                    <core:CellSpace gml:id="uuid_c99efd63-a34e-4ac1-b37c-02f384002284">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorPrintingRoomName">CS_1stFloorPrintingRoom</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>25.5 10 3.3</gml:lowerCorner>
                                 <gml:upperCorner>29 13.5 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorPrintingRoomSketch">
@@ -404,7 +876,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorPrintingRoomFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -425,7 +897,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -433,25 +905,25 @@
                                 </gml:Solid>
                             </core:Geometry3D>
                         </core:cellSpaceGeometry>
-
+                        
                     </core:CellSpace>
                 </core:cellSpaceMember>
-
-
-
+                
+                
+                
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorNorthCorridorWomanToilet">
+                    <core:CellSpace gml:id="uuid_735bca7a-b48f-4111-a4c3-f2b5fad16c19">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorNorthCorridorWomanToiletName">CS_1stFloorNorthCorridorWomanToilet</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>10 14 3.3</gml:lowerCorner>
                                 <gml:upperCorner>13.5 18 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorNorthCorridorWomanToiletSketch">
@@ -459,7 +931,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorNorthCorridorWomanToiletFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -480,7 +952,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -490,23 +962,23 @@
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
                 </core:cellSpaceMember>
-
-
-
-
+                        
+                        
+                        
+                
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="Nursery">
+                    <core:CellSpace gml:id="uuid_0b243960-f34a-4e6f-bf82-2cd2f811dab0">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="NurseryName">Nursery</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>16 14 3.3</gml:lowerCorner>
                                 <gml:upperCorner>20 18 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="NurserySketch">
@@ -514,7 +986,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="NurseryFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -535,7 +1007,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -545,185 +1017,23 @@
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
                 </core:cellSpaceMember>
+                    
+                    
 
-
-                <core:cellSpaceMember>
-                    <core:CellSpace gml:id="Office110">
-                        <gml:metaDataProperty>
-                            <gml:GenericMetaData gml:id="Office110Name">Office110</gml:GenericMetaData>
-                        </gml:metaDataProperty>
-
-                        <gml:boundedBy>
-                            <gml:Envelope>
-                                <gml:lowerCorner>19.5 0 3.3</gml:lowerCorner>
-                                <gml:upperCorner>24 6 5.05</gml:upperCorner>
-                            </gml:Envelope>
-                        </gml:boundedBy>
-
-                        <core:cellSpaceGeometry>
-                            <core:Geometry3D>
-                                <gml:Solid gml:id="Office110Sketch">
-                                    <gml:interior>
-                                        <gml:Shell>
-                                            <gml:surfaceMember>
-                                                <gml:PolyhedralSurface gml:id="Office110Formation">
-                                                    <gml:polygonPatches>
-                                                        <gml:PolygonPatch>
-                                                            <gml:interior>
-                                                                <gml:LinearRing>
-                                                                    <gml:pos>19.5 0 3.3</gml:pos>
-                                                                    <gml:pos>19.5 6 3.3</gml:pos>
-                                                                    <gml:pos>24 6 3.3</gml:pos>
-                                                                    <gml:pos>24 0 3.3</gml:pos>
-                                                                    <gml:pos>19.5 0 3.3</gml:pos>
-                                                                </gml:LinearRing>
-                                                            </gml:interior>
-                                                            <gml:interior>
-                                                                <gml:LinearRing>
-                                                                    <gml:pos>19.5 0 5.05</gml:pos>
-                                                                    <gml:pos>19.5 6 5.05</gml:pos>
-                                                                    <gml:pos>24 6 5.05</gml:pos>
-                                                                    <gml:pos>24 0 5.05</gml:pos>
-                                                                    <gml:pos>19.5 0 5.05</gml:pos>
-                                                                </gml:LinearRing>
-                                                            </gml:interior>
-                                                        </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
-                                                </gml:PolyhedralSurface>
-                                            </gml:surfaceMember>
-                                        </gml:Shell>
-                                    </gml:interior>
-                                </gml:Solid>
-                            </core:Geometry3D>
-                        </core:cellSpaceGeometry>
-                    </core:CellSpace>
-                </core:cellSpaceMember>
-
-
-
-
-
-                <core:cellSpaceMember>
-                    <core:CellSpace gml:id="Office109">
-                        <gml:metaDataProperty>
-                            <gml:GenericMetaData gml:id="Office109Name">Office109</gml:GenericMetaData>
-                        </gml:metaDataProperty>
-
-                        <gml:boundedBy>
-                            <gml:Envelope>
-                                <gml:lowerCorner>15.5 0 3.3</gml:lowerCorner>
-                                <gml:upperCorner>19 7 5.05</gml:upperCorner>
-                            </gml:Envelope>
-                        </gml:boundedBy>
-
-                        <core:cellSpaceGeometry>
-                            <core:Geometry3D>
-                                <gml:Solid gml:id="Office109Sketch">
-                                    <gml:interior>
-                                        <gml:Shell>
-                                            <gml:surfaceMember>
-                                                <gml:PolyhedralSurface gml:id="Office109Formation">
-                                                    <gml:polygonPatches>
-                                                        <gml:PolygonPatch>
-                                                            <gml:interior>
-                                                                <gml:LinearRing>
-                                                                    <gml:pos>15.5 0 3.3</gml:pos>
-                                                                    <gml:pos>15.5 7 3.3</gml:pos>
-                                                                    <gml:pos>19 7 3.3</gml:pos>
-                                                                    <gml:pos>19 0 3.3</gml:pos>
-                                                                    <gml:pos>15.5 0 3.3</gml:pos>
-                                                                </gml:LinearRing>
-                                                            </gml:interior>
-                                                            <gml:interior>
-                                                                <gml:LinearRing>
-                                                                    <gml:pos>15.5 0 5.05</gml:pos>
-                                                                    <gml:pos>15.5 7 5.05</gml:pos>
-                                                                    <gml:pos>19 7 5.05</gml:pos>
-                                                                    <gml:pos>19 0 5.05</gml:pos>
-                                                                    <gml:pos>15.5 0 5.05</gml:pos>
-                                                                </gml:LinearRing>
-                                                            </gml:interior>
-                                                        </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
-                                                </gml:PolyhedralSurface>
-                                            </gml:surfaceMember>
-                                        </gml:Shell>
-                                    </gml:interior>
-                                </gml:Solid>
-                            </core:Geometry3D>
-                        </core:cellSpaceGeometry>
-                    </core:CellSpace>
-                </core:cellSpaceMember>
-
-
-                 <core:cellSpaceMember>
-                     <core:CellSpace gml:id="Office107APart1">
-                        <gml:metaDataProperty>
-                            <gml:GenericMetaData gml:id="Office107APart1Name">Office107APart1</gml:GenericMetaData>
-                        </gml:metaDataProperty>
-
-                        <gml:boundedBy>
-                            <gml:Envelope>
-                                <gml:lowerCorner>5 0 3.3</gml:lowerCorner>
-                                <gml:upperCorner>9 6 5.05</gml:upperCorner>
-                            </gml:Envelope>
-                        </gml:boundedBy>
-
-                        <core:cellSpaceGeometry>
-                            <core:Geometry3D>
-                                <gml:Solid gml:id="Office107APart1Sketch">
-                                    <gml:interior>
-                                        <gml:Shell>
-                                            <gml:surfaceMember>
-                                                <gml:PolyhedralSurface gml:id="Office107APart1Formation">
-                                                    <gml:polygonPatches>
-                                                        <gml:PolygonPatch>
-                                                            <gml:interior>
-                                                                <gml:LinearRing>
-                                                                    <gml:pos>5 0 3.3</gml:pos>
-                                                                    <gml:pos>5 6 3.3</gml:pos>
-                                                                    <gml:pos>9 6 3.3</gml:pos>
-                                                                    <gml:pos>9 0 3.3</gml:pos>
-                                                                    <gml:pos>5 0 3.3</gml:pos>
-                                                                </gml:LinearRing>
-                                                            </gml:interior>
-                                                            <gml:interior>
-                                                                <gml:LinearRing>
-                                                                    <gml:pos>5 0 5.05</gml:pos>
-                                                                    <gml:pos>5 6 5.05</gml:pos>
-                                                                    <gml:pos>9 6 5.05</gml:pos>
-                                                                    <gml:pos>9 0 5.05</gml:pos>
-                                                                    <gml:pos>5 0 5.05</gml:pos>
-                                                                </gml:LinearRing>
-                                                            </gml:interior>
-                                                        </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
-                                                </gml:PolyhedralSurface>
-                                            </gml:surfaceMember>
-                                        </gml:Shell>
-                                    </gml:interior>
-                                </gml:Solid>
-                            </core:Geometry3D>
-                        </core:cellSpaceGeometry>
-                    </core:CellSpace>
-                </core:cellSpaceMember>
-
-
-
-
+<!-- 
                 <core:cellSpaceMember>
                     <core:CellSpace gml:id="Office107APart2">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="Office107APart2Name">Office107APart2</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>6 6 3.3</gml:lowerCorner>
                                 <gml:upperCorner>9 7 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="Office107APart2Sketch">
@@ -731,7 +1041,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="Office107APart2Formation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -752,7 +1062,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -763,20 +1073,73 @@
                     </core:CellSpace>
                 </core:cellSpaceMember>
 
-
+-->
+                        
+                        
+                
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_a377b162-49fb-4140-bfe1-2565a2260764">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="Lab106Name">Office 106</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>0 10 3.3</gml:lowerCorner>
+                                <gml:upperCorner>6 14 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="Lab106Sketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="Lab106Formation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>0 10 3.3</gml:pos>
+                                                                    <gml:pos>0 14 3.3</gml:pos>
+                                                                    <gml:pos>6 14 3.3</gml:pos>
+                                                                    <gml:pos>6 10 3.3</gml:pos>
+                                                                    <gml:pos>0 10 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>0 10 5.05</gml:pos>
+                                                                    <gml:pos>0 14 5.05</gml:pos>
+                                                                    <gml:pos>6 14 5.05</gml:pos>
+                                                                    <gml:pos>6 10 5.05</gml:pos>
+                                                                    <gml:pos>0 10 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                    </core:CellSpace>
+                </core:cellSpaceMember>
+                        
                         <core:cellSpaceMember>
-                            <core:CellSpace gml:id="Lab103">
+                            <core:CellSpace gml:id="uuid_8933b3c7-54ac-4fc3-a2e5-8c7fdc7bfae3">
                                 <gml:metaDataProperty>
                                     <gml:GenericMetaData gml:id="Lab103Name">Lab103</gml:GenericMetaData>
                                 </gml:metaDataProperty>
-
+                                
                                 <gml:boundedBy>
                                     <gml:Envelope>
                                         <gml:lowerCorner>10 22 3.3</gml:lowerCorner>
                                         <gml:upperCorner>24 28.5 5.05</gml:upperCorner>
                                     </gml:Envelope>
                                 </gml:boundedBy>
-
+                                
                                 <core:cellSpaceGeometry>
                                     <core:Geometry3D>
                                         <gml:Solid gml:id="Lab103Sketch">
@@ -784,7 +1147,7 @@
                                                 <gml:Shell>
                                                     <gml:surfaceMember>
                                                         <gml:PolyhedralSurface gml:id="Lab103Formation">
-                                                            <gml:polygonPatches>
+                                                            <gml:patches>
                                                                 <gml:PolygonPatch>
                                                                     <gml:interior>
                                                                         <gml:LinearRing>
@@ -805,7 +1168,7 @@
                                                                         </gml:LinearRing>
                                                                     </gml:interior>
                                                                 </gml:PolygonPatch>
-                                                            </gml:polygonPatches>
+                                                            </gml:patches>
                                                         </gml:PolyhedralSurface>
                                                     </gml:surfaceMember>
                                                 </gml:Shell>
@@ -815,21 +1178,21 @@
                                 </core:cellSpaceGeometry>
                             </core:CellSpace>
                         </core:cellSpaceMember>
-
-
+                        
+                        
                         <core:cellSpaceMember>
-                            <core:CellSpace gml:id="Lab101">
+                            <core:CellSpace gml:id="uuid_5e27bae6-076f-4e5d-acb0-11a2cc2b9e0d">
                                 <gml:metaDataProperty>
                                     <gml:GenericMetaData gml:id="Lab101Name">Lab101</gml:GenericMetaData>
                                 </gml:metaDataProperty>
-
+                                
                                 <gml:boundedBy>
                                     <gml:Envelope>
                                         <gml:lowerCorner>29 22 3.3</gml:lowerCorner>
                                         <gml:upperCorner>38.5 28.5 5.05</gml:upperCorner>
                                     </gml:Envelope>
                                 </gml:boundedBy>
-
+                                
                                 <core:cellSpaceGeometry>
                                     <core:Geometry3D>
                                         <gml:Solid gml:id="Lab101Sketch">
@@ -837,7 +1200,7 @@
                                                 <gml:Shell>
                                                     <gml:surfaceMember>
                                                         <gml:PolyhedralSurface gml:id="Lab101Formation">
-                                                            <gml:polygonPatches>
+                                                            <gml:patches>
                                                                 <gml:PolygonPatch>
                                                                     <gml:interior>
                                                                         <gml:LinearRing>
@@ -858,7 +1221,7 @@
                                                                         </gml:LinearRing>
                                                                     </gml:interior>
                                                                 </gml:PolygonPatch>
-                                                            </gml:polygonPatches>
+                                                            </gml:patches>
                                                         </gml:PolyhedralSurface>
                                                     </gml:surfaceMember>
                                                 </gml:Shell>
@@ -867,22 +1230,22 @@
                                     </core:Geometry3D>
                                 </core:cellSpaceGeometry>
                             </core:CellSpace>
-                        </core:cellSpaceMember>
-
-
+                        </core:cellSpaceMember>                
+                        
+                        
                         <core:cellSpaceMember>
-                            <core:CellSpace gml:id="Lab100">
+                            <core:CellSpace gml:id="uuid_fff52967-5b13-4935-afa0-44c375cb84db">
                                 <gml:metaDataProperty>
                                     <gml:GenericMetaData gml:id="Lab100Name">Lab100</gml:GenericMetaData>
                                 </gml:metaDataProperty>
-
+                                
                                 <gml:boundedBy>
                                     <gml:Envelope>
                                         <gml:lowerCorner>21 39 3.3</gml:lowerCorner>
                                         <gml:upperCorner>48 28 5.05</gml:upperCorner>
                                     </gml:Envelope>
                                 </gml:boundedBy>
-
+                                
                                 <core:cellSpaceGeometry>
                                     <core:Geometry3D>
                                         <gml:Solid gml:id="Lab100Sketch">
@@ -890,7 +1253,7 @@
                                                 <gml:Shell>
                                                     <gml:surfaceMember>
                                                         <gml:PolyhedralSurface gml:id="Lab100Formation">
-                                                            <gml:polygonPatches>
+                                                            <gml:patches>
                                                                 <gml:PolygonPatch>
                                                                     <gml:interior>
                                                                         <gml:LinearRing>
@@ -903,15 +1266,15 @@
                                                                     </gml:interior>
                                                                     <gml:interior>
                                                                         <gml:LinearRing>
-                                                                            <gml:pos>21 39 5.05</gml:pos>
+                                                                            <gml:pos>39 21 5.05</gml:pos>
                                                                             <gml:pos>39 28.5 5.05</gml:pos>
                                                                             <gml:pos>48 28 5.05</gml:pos>
                                                                             <gml:pos>50.5 23 5.05</gml:pos>
-                                                                            <gml:pos>21 39 5.05</gml:pos>
+                                                                            <gml:pos>39 21 5.05</gml:pos>
                                                                         </gml:LinearRing>
                                                                     </gml:interior>
                                                                 </gml:PolygonPatch>
-                                                            </gml:polygonPatches>
+                                                            </gml:patches>
                                                         </gml:PolyhedralSurface>
                                                     </gml:surfaceMember>
                                                 </gml:Shell>
@@ -925,18 +1288,18 @@
 
 
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="Lab102">
+                    <core:CellSpace gml:id="uuid_93f32509-0f74-4f2c-a45a-90858ca646d8">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="Lab102Name">Lab102</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>29 21 3.3</gml:lowerCorner>
                                 <gml:upperCorner>24 28.5 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="Lab102Sketch">
@@ -944,7 +1307,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="Lab102Formation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -965,7 +1328,59 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                    </core:CellSpace>
+                </core:cellSpaceMember>
+
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_43f5e995-b6f9-4e6f-b40a-9f6bca793ecd">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="Lab104Name">Lab104</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>0 22 3.3</gml:lowerCorner>
+                                <gml:upperCorner>9.5 28.5 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="Lab104Sketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="Lab104Formation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>0 22 3.3</gml:pos>
+                                                                    <gml:pos>9.5 22 3.3</gml:pos>
+                                                                    <gml:pos>9.5 28.5 3.3</gml:pos>
+                                                                    <gml:pos>0 28.5 3.3</gml:pos>
+                                                                    <gml:pos>0 22 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>0 22 5.05</gml:pos>
+                                                                    <gml:pos>9.5 22 5.05</gml:pos>
+                                                                    <gml:pos>9.5 28.5 5.05</gml:pos>
+                                                                    <gml:pos>0 28.5 5.05</gml:pos>
+                                                                    <gml:pos>0 22 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -978,18 +1393,125 @@
 
 
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorEastCorridor">
+                    <core:CellSpace gml:id="uuid_eea6552f-be78-4db2-9a0c-45d7b775901d">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="CS_1stFloorWheelAccessibleToliletName">1stFloorWheelAccessibleTolilet</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>10 16 3.3</gml:lowerCorner>
+                                <gml:upperCorner>12 18 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="CS_1stFloorWheelAccessibleToliletSketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="CS_1stFloorWheelAccessibleToliletFormation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>10 16 3.3</gml:pos>
+                                                                    <gml:pos>10 18 3.3</gml:pos>
+                                                                    <gml:pos>12 18 3.3</gml:pos>
+                                                                    <gml:pos>12 16 3.3</gml:pos>
+                                                                    <gml:pos>10 16 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>10 16 5.05</gml:pos>
+                                                                    <gml:pos>10 18 5.05</gml:pos>
+                                                                    <gml:pos>12 18 5.05</gml:pos>
+                                                                    <gml:pos>12 16 5.05</gml:pos>
+                                                                    <gml:pos>10 16 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                    </core:CellSpace>
+                </core:cellSpaceMember>
+
+
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_f66dd81b-013c-4866-ae35-2fd1c81099e3">
+                        <gml:metaDataProperty>
+                            <gml:GenericMetaData gml:id="CS_1stFloorCleaningToolSName">1stFloorCleaningToolS.</gml:GenericMetaData>
+                        </gml:metaDataProperty>
+                        
+                        <gml:boundedBy>
+                            <gml:Envelope>
+                                <gml:lowerCorner>12.5 14 3.3</gml:lowerCorner>
+                                <gml:upperCorner>15.5 18 5.05</gml:upperCorner>
+                            </gml:Envelope>
+                        </gml:boundedBy>
+                        
+                        <core:cellSpaceGeometry>
+                            <core:Geometry3D>
+                                <gml:Solid gml:id="CS_1stFloorCleaningToolSSketch">
+                                    <gml:interior>
+                                        <gml:Shell>
+                                            <gml:surfaceMember>
+                                                <gml:PolyhedralSurface gml:id="CS_1stFloorCleaningToolSFormation">
+                                                    <gml:patches>
+                                                        <gml:PolygonPatch>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>15.5 18 3.3</gml:pos>
+                                                                    <gml:pos>15.5 16 3.3</gml:pos>
+                                                                    <gml:pos>12.5 16 3.3</gml:pos>
+                                                                    <gml:pos>12.5 18 3.3</gml:pos>
+                                                                    <gml:pos>15.5 18 3.3</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                            <gml:interior>
+                                                                <gml:LinearRing>
+                                                                    <gml:pos>15.5 18 5.05</gml:pos>
+                                                                    <gml:pos>15.5 16 5.05</gml:pos>
+                                                                    <gml:pos>12.5 16 5.05</gml:pos>
+                                                                    <gml:pos>12.5 18 5.05</gml:pos>
+                                                                    <gml:pos>15.5 18 5.05</gml:pos>
+                                                                </gml:LinearRing>
+                                                            </gml:interior>
+                                                        </gml:PolygonPatch>
+                                                    </gml:patches>
+                                                </gml:PolyhedralSurface>
+                                            </gml:surfaceMember>
+                                        </gml:Shell>
+                                    </gml:interior>
+                                </gml:Solid>
+                            </core:Geometry3D>
+                        </core:cellSpaceGeometry>
+                        
+                    </core:CellSpace>
+                </core:cellSpaceMember>
+
+
+                <core:cellSpaceMember>
+                    <core:CellSpace gml:id="uuid_07a25de0-a013-486d-9463-404a348e05ee">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorEastCorridorName">CS_1stFloorEastCorridor</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>0 7 3.3</gml:lowerCorner>
                                 <gml:upperCorner>33 9.5 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorEastCorridorSketch">
@@ -997,7 +1519,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorEastCorridorFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -1018,7 +1540,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -1026,27 +1548,27 @@
                                 </gml:Solid>
                             </core:Geometry3D>
                         </core:cellSpaceGeometry>
-
+                        
                     </core:CellSpace>
                 </core:cellSpaceMember>
-
-
-
-
-
+                        
+                        
+                        
+                        
+                
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorWestCorridor">
+                    <core:CellSpace gml:id="uuid_544bbbff-2c9c-4d7f-aad5-1742e2f26935">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorWestCorridorName">CS_1stFloorWestCorridor</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>0 18.5 3.3</gml:lowerCorner>
                                 <gml:upperCorner>33 21 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorWestCorridorSketch">
@@ -1054,7 +1576,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorWestCorridorFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -1075,7 +1597,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -1085,22 +1607,22 @@
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
                 </core:cellSpaceMember>
-
-
-
+                        
+                        
+                        
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorNorthCorridor">
+                    <core:CellSpace gml:id="uuid_5eed44d0-c401-46a0-935c-b3161177a00f">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorNorthCorridorName">CS_1stFloorWestCorridor</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>7.5 10 3.3</gml:lowerCorner>
                                 <gml:upperCorner>10 18 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorNorthCorridorSketch">
@@ -1108,7 +1630,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorNorthCorridorFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -1129,7 +1651,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -1138,23 +1660,23 @@
                             </core:Geometry3D>
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
-                </core:cellSpaceMember>
-
-
-
+                </core:cellSpaceMember>        
+                        
+                        
+                
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorLobby">
+                    <core:CellSpace gml:id="uuid_e48c8f34-716c-477f-a448-9c209d635fbf">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorLobbyName">CS_1stFloorLobby</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>34 7 3.3</gml:lowerCorner>
                                 <gml:upperCorner>43 21 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorLobbySketch">
@@ -1162,7 +1684,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorLobbyFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -1183,7 +1705,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -1193,21 +1715,21 @@
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
                 </core:cellSpaceMember>
-
-
+                        
+                        
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="CS_1stFloorElevator">
+                    <core:CellSpace gml:id="uuid_1stFloorElevator">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="CS_1stFloorElevatorName">CS_1stFloorElevator</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>39.5 7 3.3</gml:lowerCorner>
                                 <gml:upperCorner>42 9.5 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="CS_1stFloorElevatorSketch">
@@ -1215,7 +1737,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="CS_1stFloorElevatorFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -1236,7 +1758,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
@@ -1245,12 +1767,12 @@
                             </core:Geometry3D>
                         </core:cellSpaceGeometry>
                     </core:CellSpace>
-                </core:cellSpaceMember>
-
-
-
+                </core:cellSpaceMember>                        
+                        
+                        
+                        
                <core:cellSpaceMember>
-                   <core:CellSpace gml:id="CS_1stFloorLedge">
+                   <core:CellSpace gml:id="uuid_1stFloorLedge">
                        <gml:metaDataProperty>
                            <gml:GenericMetaData gml:id="CS_1stFloorLedgeName">CS_1stFloorLedge</gml:GenericMetaData>
                        </gml:metaDataProperty>
@@ -1293,23 +1815,23 @@
                            </core:Geometry3D>
                        </core:cellSpaceGeometry>
                    </core:CellSpace>
-               </core:cellSpaceMember>
-
-
+               </core:cellSpaceMember>         
+                        
+                        
                         
                 <core:cellSpaceMember>
-                    <core:CellSpace gml:id="OverheadSpaceOffice107BAndOffice107A">
+                    <core:CellSpace gml:id="uuid_OverheadSpaceOffice107BAndOffice107A">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="OverheadSpaceOffice107BAndOffice107AName">OverheadSpaceOffice107BAndOffice107A</gml:GenericMetaData>
                         </gml:metaDataProperty>
-
+                        
                         <gml:boundedBy>
                             <gml:Envelope>
                                 <gml:lowerCorner>5 7 3.3</gml:lowerCorner>
                                 <gml:upperCorner>6 6 5.05</gml:upperCorner>
                             </gml:Envelope>
                         </gml:boundedBy>
-
+                        
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
                                 <gml:Solid gml:id="OverheadSpaceOffice107BAndOffice107ASketch">
@@ -1317,7 +1839,7 @@
                                         <gml:Shell>
                                             <gml:surfaceMember>
                                                 <gml:PolyhedralSurface gml:id="OverheadSpaceOffice107BAndOffice107AFormation">
-                                                    <gml:polygonPatches>
+                                                    <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
                                                                 <gml:LinearRing>
@@ -1338,7 +1860,7 @@
                                                                 </gml:LinearRing>
                                                             </gml:interior>
                                                         </gml:PolygonPatch>
-                                                    </gml:polygonPatches>
+                                                    </gml:patches>
                                                 </gml:PolyhedralSurface>
                                             </gml:surfaceMember>
                                         </gml:Shell>
