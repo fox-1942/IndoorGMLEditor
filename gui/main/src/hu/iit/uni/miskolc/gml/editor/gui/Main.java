@@ -6,12 +6,14 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.MeshView;
 import javafx.scene.shape.TriangleMesh;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -36,9 +38,12 @@ public class Main extends Application {
 
             SubScene ySwing = mainWindowController.getSubScene(Rotate.Y_AXIS);
 
-            VBox vBox = new VBox(20, root, ySwing);
-            Scene scene = new Scene(vBox, 1000, 1000, true);
+            VBox vbox = new VBox( root, ySwing);
+            Scene scene = new Scene(vbox, 1000,  800, false);
             primaryStage.setTitle("IIT-IndoorEditor");
+
+
+
             primaryStage.setScene(scene);
             primaryStage.show();
 

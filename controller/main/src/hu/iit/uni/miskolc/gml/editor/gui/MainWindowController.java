@@ -142,10 +142,10 @@ public class MainWindowController {
         final Circle circle = new Circle(x,y,radius);
 
         //add a shadow effect
-        //circle.setEffect(new InnerShadow(1, color.darker().darker()));
-        //change a cursor when it is over circle
-        circle.setCursor(Cursor.HAND);
+        circle.setEffect(new InnerShadow(1, color.brighter()));
 
+        //change a cursor when it is over circle
+        circle.setCursor(Cursor.CROSSHAIR);
 
         circle.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
@@ -162,6 +162,7 @@ public class MainWindowController {
                 //calculate new position of the circle
                 double newXPosition = initX + dragX;
                 double newYPosition = initY + dragY;
+
                 //if new position do not exceeds borders of the rectangle, translate to this position
 
 
@@ -172,6 +173,21 @@ public class MainWindowController {
                     circle.setCenterY(newYPosition);
                 }
 
+        });
+
+        circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent me) {
+                //change the z-coordinate of the circle
+                circle.toFront();
+            }
+        });
+
+        circle.setOnMousePressed(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent me) {
+                //when mouse is pressed, store initial position
+                initX = circle.getTranslateX();
+                initY = circle.getTranslateY();
+            }
         });
 
 
@@ -210,16 +226,13 @@ public class MainWindowController {
         ArrayList<CellSpace> cellSpaceImportList = cellSpaceImport.cellSpaceCreator();
         Group root = new Group();
 
-
         for (CellSpace cp : cellSpaceImportList) {
             ArrayList<Circle> circleArrayList=new ArrayList<Circle>();
 
             for (int j = 0; j < cp.getCellSpaceFloorCoordinateArrayList().size(); j++) {
-                circleArrayList.add(j, createCircle(Color.CORAL, 0.4, cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX(),
+                circleArrayList.add(j, createCircle(Color.GREENYELLOW, 0.4, cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX(),
                         cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY()));
             }
-
-
 
             for (int i=0;i<circleArrayList.size()-1;i++) {
 
@@ -245,8 +258,6 @@ public class MainWindowController {
                 root.getChildren().add(circleArrayList.get(i));
                 root.getChildren().add(line);
             }
-
-
         }
         return root;
     }
@@ -257,12 +268,14 @@ public class MainWindowController {
         root=createMeshView();
 
         root.setLayoutX(500);
-        root.setLayoutY(300);
-        root.setScaleX(14);
-        root.setScaleY(14);
-        root.prefHeight(10);
-        root.prefWidth(10);
-        SubScene ss = new SubScene(root, 1000, 1000, false, SceneAntialiasing.BALANCED);
+        root.setLayoutY(200);
+        root.setTranslateX(0);
+        root.setTranslateY(0);
+        root.setScaleX(10);
+        root.setScaleY(10);
+        //root.prefHeight(10);
+        //root.prefWidth(10);
+        SubScene ss = new SubScene(root, 800, 500, false, SceneAntialiasing.BALANCED);
         return ss;
     }
 }

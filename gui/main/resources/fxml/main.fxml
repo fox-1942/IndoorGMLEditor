@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.SubScene?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.shape.MeshView?>
 
-<AnchorPane fx:id="apMain" prefHeight="10.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
+<AnchorPane fx:id="apMain" prefHeight="10.0" prefWidth="500" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
    <children>
-      <MenuBar prefHeight="30.0" prefWidth="1000.0">
+      <MenuBar  prefWidth="Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
