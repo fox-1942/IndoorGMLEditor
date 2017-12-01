@@ -20,6 +20,7 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
 import org.apache.commons.lang3.ArrayUtils;
+import org.geotools.math.Statistics;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
@@ -43,7 +44,7 @@ public class MainWindowController {
     private File outputFile;
     private String path;
     private CellSpaceImportImpl cellSpaceImport=new CellSpaceImportImpl();
-
+    private Group root;
 
     public MainWindowController() {
         facade = new ServiceFacade();
@@ -131,6 +132,56 @@ public class MainWindowController {
 
     //--------------------------------------------------------------------------------
 
+
+    // Creating circle -------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
+
+
+    private Circle createCircle(final Color color, double radius, double x, double y) {
+        //create a circle with desired name,  color and radius
+        final Circle circle = new Circle(x,y,radius);
+
+        //add a shadow effect
+        //circle.setEffect(new InnerShadow(1, color.darker().darker()));
+        //change a cursor when it is over circle
+        circle.setCursor(Cursor.HAND);
+
+
+        circle.setOnMousePressed(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent me) {
+                //when mouse is pressed, store initial position
+                initX = circle.getTranslateX();
+                initY = circle.getTranslateY();
+            }
+        });
+
+        circle.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent me) {
+                double dragX = me.getSceneX();
+                double dragY = me.getSceneY();
+                //calculate new position of the circle
+                double newXPosition = initX + dragX;
+                double newYPosition = initY + dragY;
+                //if new position do not exceeds borders of the rectangle, translate to this position
+
+
+                root.setLayoutX(600);
+                root.setLayoutY(300);
+
+                    circle.setCenterX(newXPosition);
+                    circle.setCenterY(newYPosition);
+                }
+
+        });
+
+
+        return circle;
+    }
+
+
+    // ---------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------
+
     public Group createMeshView() {
 //        ArrayList<CellSpace> cellSpaceImportList = cellSpaceImport.cellSpaceCreator();
 //        Group root = new Group();
@@ -164,83 +215,49 @@ public class MainWindowController {
             ArrayList<Circle> circleArrayList=new ArrayList<Circle>();
 
             for (int j = 0; j < cp.getCellSpaceFloorCoordinateArrayList().size(); j++) {
-                circleArrayList.add(j, createCircle(Color.CORAL, 1, cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX(),
+                circleArrayList.add(j, createCircle(Color.CORAL, 0.4, cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX(),
                         cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY()));
             }
+
+
 
             for (int i=0;i<circleArrayList.size()-1;i++) {
 
                 Line line = new Line();
                 line.setStroke(Color.BLUE);
                 line.setStrokeWidth(0.3);
+
+                if(i==circleArrayList.size()-2){
+                    line.startXProperty().bind(circleArrayList.get(i).centerXProperty());
+                    line.startYProperty().bind(circleArrayList.get(i).centerYProperty());
+                    line.endXProperty().bind(circleArrayList.get(0).centerXProperty());
+                    line.endYProperty().bind(circleArrayList.get(0).centerYProperty());
+                    root.getChildren().add(circleArrayList.get(i));
+                    root.getChildren().add(line);
+                    break;
+                }
+
                 line.startXProperty().bind(circleArrayList.get(i).centerXProperty());
                 line.startYProperty().bind(circleArrayList.get(i).centerYProperty());
-
                 line.endXProperty().bind(circleArrayList.get(i+1).centerXProperty());
                 line.endYProperty().bind(circleArrayList.get(i+1).centerYProperty());
 
                 root.getChildren().add(circleArrayList.get(i));
                 root.getChildren().add(line);
             }
+
+
         }
         return root;
     }
 
-    private Circle createCircle(final Color color, double radius, double x, double y) {
-        //create a circle with desired name,  color and radius
-        final Circle circle = new Circle(x,y,radius);
-
-        //add a shadow effect
-        //circle.setEffect(new InnerShadow(1, color.darker().darker()));
-        //change a cursor when it is over circle
-        circle.setCursor(Cursor.HAND);
-
-        EventHandler<MouseEvent> eventEventHandler = new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                double dragX = me.getSceneX();
-                double dragY = me.getSceneY();
-
-                //calculate new position of the circle
-//                double newXPosition =  dragX;
-//                double newYPosition =  dragY;
-
-                System.out.println("dfdfdfdfdf");
-
-                    circle.setCenterX(dragX);
-
-                    circle.setCenterY(dragY);
-            }
-        };
-
-        circle.addEventFilter(MouseEvent.MOUSE_DRAGGED,eventEventHandler);
-
-
-
-//        circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//            public void handle(MouseEvent me) {
-//                //change the z-coordinate of the circle
-//                System.out.println("dfdfdfdfdf");
-//                circle.toFront();
-//            }
-//        });
-//        circle.setOnMousePressed(new EventHandler<MouseEvent>() {
-//            public void handle(MouseEvent me) {
-//                //when mouse is pressed, store initial position
-//                System.out.println("dfdfdfdfdf");
-//                initX = circle.getTranslateX();
-//                initY = circle.getTranslateY();
-//            }
-//        });
-
-        return circle;
-    }
 
     public SubScene getSubScene(Point3D rotationAxis) {
 
-        Group root=createMeshView();
+        root=createMeshView();
 
-        root.setTranslateX(500);
-        root.setTranslateY(300);
+        root.setLayoutX(500);
+        root.setLayoutY(300);
         root.setScaleX(14);
         root.setScaleY(14);
         root.prefHeight(10);

@@ -1794,11 +1794,13 @@
                                                                                    <gml:pos>43 21 3.3</gml:pos>
                                                                                    <gml:pos>42 14 3.3</gml:pos>
                                                                                    <gml:pos>43 7 3.3</gml:pos>
+                                                                                   <gml:pos>43 21 3.3</gml:pos>
                                                                                </gml:Arc>
                                                                                <gml:Arc>
                                                                                    <gml:pos>43 21 5.05</gml:pos>
                                                                                    <gml:pos>42 14 5.05</gml:pos>
                                                                                    <gml:pos>43 7 5.05</gml:pos>
+                                                                                   <gml:pos>43 21 5.05</gml:pos>
                                                                                </gml:Arc>
                                                                            </gml:segments>
                                                                        </gml:Curve>
