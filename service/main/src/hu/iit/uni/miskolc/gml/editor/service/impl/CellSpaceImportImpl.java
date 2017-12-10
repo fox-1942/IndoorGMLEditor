@@ -3,7 +3,6 @@ package hu.iit.uni.miskolc.gml.editor.service.impl;
 import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
 import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
 import hu.iit.uni.miskolc.gml.editor.model.CellSpaceImport;
-import org.ejml.alg.block.BlockInnerTriangularSolver;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -12,7 +11,6 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CellSpaceImportImpl implements CellSpaceImport {
@@ -119,7 +117,7 @@ double x,y,z;
                 }
 
 
-                CellSpaceImpl cellSpace = new CellSpaceImpl(ParentFloor, CellSpaceName, cellSpaceCeilingCoordinateArraylist, cellSpaceFloorCoordinateArraylist);
+                CellSpace cellSpace = new CellSpace(ParentFloor, CellSpaceName, cellSpaceCeilingCoordinateArraylist, cellSpaceFloorCoordinateArraylist);
 
                 cellSpaceArrayList.add(i,cellSpace);
             }
@@ -132,4 +130,4 @@ double x,y,z;
         return cellSpaceArrayList;
     }
 }
-//cellSpace=new CellSpaceImpl(ParentFloor,CellSpaceName,);
+//cellSpace=new CellSpace(ParentFloor,CellSpaceName,);

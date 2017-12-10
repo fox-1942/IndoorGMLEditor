@@ -7,7 +7,7 @@ public class XMLTag {
 	public static String TAG_IDREGISTRY = "IDRegistry";
 	public static String TAG_IDREGISTRY_INDOORFEATURES = "IndoorFeatures";
 	public static String TAG_IDREGISTRY_PRIMALSPACEFEATURES = "PrimalSpaceFeatures";
-	public static String TAG_IDREGISTRY_CELLSPACE = "CellSpaceImpl";
+	public static String TAG_IDREGISTRY_CELLSPACE = "CellSpace";
 	public static String TAG_IDREGISTRY_CELLSPACEBOUNDARY = "CellSpaceBoundary";
 	public static String TAG_IDREGISTRY_MULTILAYEREDGRAPH = "MultiLayeredGraph";
 	public static String TAG_IDREGISTRY_SPACELAYERS = "SpaceLayers";
@@ -39,7 +39,7 @@ public class XMLTag {
 	
 	public static String TAG_MAPPINGS = "Mappings";
 	public static String TAG_MAPPINGS_MAPPING = "Mapping";
-	public static String TAG_MAPPINGS_MAPPING_CELLSPACE = "CellSpaceImpl";
+	public static String TAG_MAPPINGS_MAPPING_CELLSPACE = "CellSpace";
 	public static String TAG_MAPPINGS_MAPPING_CELLSPACEBOUNDARY = "CellSpaceBoundary";
 	public static String TAG_MAPPINGS_MAPPING_STATE = "State";
 	public static String TAG_MAPPINGS_MAPPING_TRANSITION = "Transition";

@@ -36,7 +36,7 @@ public class Main extends Application {
 
             MainWindowController mainWindowController=new MainWindowController();
 
-            SubScene ySwing = mainWindowController.getSubScene(Rotate.Y_AXIS);
+            SubScene ySwing = mainWindowController.getSubScene();
 
             VBox vbox = new VBox( root, ySwing);
             Scene scene = new Scene(vbox, 1000,  800, false);

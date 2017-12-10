@@ -4,23 +4,22 @@ import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
 import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceImportImpl;
 import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
+import javafx.fxml.FXML;
 import javafx.geometry.Point3D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.SubScene;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.effect.InnerShadow;
-import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
-import org.apache.commons.lang3.ArrayUtils;
-import org.geotools.math.Statistics;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
@@ -38,13 +37,19 @@ import javafx.scene.input.MouseEvent;
  */
 public class MainWindowController {
 
-    private double initX;
-    private double initY;
     private ServiceFacade facade;
     private File outputFile;
     private String path;
     private CellSpaceImportImpl cellSpaceImport=new CellSpaceImportImpl();
     private Group root;
+    private SubScene ss;
+
+    private ArrayList<Line> lineArrayList=new ArrayList<>();
+
+    @FXML
+    private MenuItem del;
+
+
 
     public MainWindowController() {
         facade = new ServiceFacade();
@@ -147,30 +152,13 @@ public class MainWindowController {
         //change a cursor when it is over circle
         circle.setCursor(Cursor.CROSSHAIR);
 
-        circle.setOnMousePressed(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                //when mouse is pressed, store initial position
-                initX = circle.getTranslateX();
-                initY = circle.getTranslateY();
-            }
-        });
+
 
         circle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                double dragX = me.getSceneX();
-                double dragY = me.getSceneY();
-                //calculate new position of the circle
-                double newXPosition = initX + dragX;
-                double newYPosition = initY + dragY;
 
-                //if new position do not exceeds borders of the rectangle, translate to this position
-
-
-                root.setLayoutX(600);
-                root.setLayoutY(300);
-
-                    circle.setCenterX(newXPosition);
-                    circle.setCenterY(newYPosition);
+                    circle.setCenterX(me.getX());
+                    circle.setCenterY(me.getY());
                 }
 
         });
@@ -182,13 +170,7 @@ public class MainWindowController {
             }
         });
 
-        circle.setOnMousePressed(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                //when mouse is pressed, store initial position
-                initX = circle.getTranslateX();
-                initY = circle.getTranslateY();
-            }
-        });
+
 
 
         return circle;
@@ -198,30 +180,8 @@ public class MainWindowController {
     // ---------------------------------------------------------------------------------
     // ---------------------------------------------------------------------------------
 
-    public Group createMeshView() {
-//        ArrayList<CellSpace> cellSpaceImportList = cellSpaceImport.cellSpaceCreator();
-//        Group root = new Group();
-//
-//            for (CellSpace cp: cellSpaceImportList) {
-//                Polyline rectangle = new Polyline();
-//                ArrayList doubles=new ArrayList<Double>();
-//
-//            for(int j=0;j<cp.getCellSpaceFloorCoordinateArrayList().size();j++){
-//
-//                    doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX());
-//                    doubles.add(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY());
-//
-//                }
-//
-//                double[] array = ArrayUtils.toPrimitive((Double[]) doubles.toArray(new Double[doubles.size()]));
-//                rectangle = new Polyline(array);
-//                rectangle.setStrokeWidth(0.3);
-//                rectangle.setStroke(Color.DARKRED);
-//
-//                root.getChildren().add(rectangle);
-//            }
-//        return root;
-//        }
+    public Group draw() {
+
 
         ArrayList<CellSpace> cellSpaceImportList = cellSpaceImport.cellSpaceCreator();
         Group root = new Group();
@@ -238,7 +198,18 @@ public class MainWindowController {
 
                 Line line = new Line();
                 line.setStroke(Color.BLUE);
-                line.setStrokeWidth(0.3);
+                line.setStrokeWidth(0.4);
+
+                line.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                            line.setStroke(Color.YELLOWGREEN);
+                        if(event.getClickCount() == 2){
+                            line.setStroke(Color.BLUE);
+                        }
+                    }
+                });
+
 
                 if(i==circleArrayList.size()-2){
                     line.startXProperty().bind(circleArrayList.get(i).centerXProperty());
@@ -247,6 +218,7 @@ public class MainWindowController {
                     line.endYProperty().bind(circleArrayList.get(0).centerYProperty());
                     root.getChildren().add(circleArrayList.get(i));
                     root.getChildren().add(line);
+                    lineArrayList.add(line);
                     break;
                 }
 
@@ -255,27 +227,43 @@ public class MainWindowController {
                 line.endXProperty().bind(circleArrayList.get(i+1).centerXProperty());
                 line.endYProperty().bind(circleArrayList.get(i+1).centerYProperty());
 
+
                 root.getChildren().add(circleArrayList.get(i));
                 root.getChildren().add(line);
+
+
+                
+                lineArrayList.add(line);
+
+                del.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent t) {
+                       if(line.getFill()==Color.YELLOWGREEN)
+                           root.getChildren().
+                    }
+                });
+
             }
         }
         return root;
     }
 
+    public SubScene getSubScene() {
 
-    public SubScene getSubScene(Point3D rotationAxis) {
-
-        root=createMeshView();
-
+        root=draw();
         root.setLayoutX(500);
-        root.setLayoutY(200);
+        root.setLayoutY(300);
         root.setTranslateX(0);
         root.setTranslateY(0);
-        root.setScaleX(10);
-        root.setScaleY(10);
-        //root.prefHeight(10);
-        //root.prefWidth(10);
-        SubScene ss = new SubScene(root, 800, 500, false, SceneAntialiasing.BALANCED);
+        root.setScaleX(14);
+        root.setScaleY(14);
+
+        ss = new SubScene(root, 1000, 900, false, SceneAntialiasing.BALANCED);
+
         return ss;
     }
+
+
+
+
+
 }
