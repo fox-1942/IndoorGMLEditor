@@ -14,8 +14,6 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#drawGmlFile" text="Make Doc" />
-
                   <MenuItem mnemonicParsing="false" onAction="#readGMLFile" text="Read .gml" />
 
 

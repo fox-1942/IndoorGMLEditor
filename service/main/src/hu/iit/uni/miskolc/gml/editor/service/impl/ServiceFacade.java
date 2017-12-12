@@ -25,11 +25,6 @@ public class ServiceFacade {
     public ServiceFacade() {
     }
 
-    public IndoorFeaturesType unmarshalmax(File inputFile) throws JAXBException {
-
-        return indoorGMLImport.unmarshalmax(inputFile);
-    }
-
     public void marshalMax(File outputFile) throws JAXBException {
         indoorGMLexport.marshalMax(outputFile);
     }

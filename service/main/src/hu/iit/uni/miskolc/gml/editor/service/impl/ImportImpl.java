@@ -44,38 +44,36 @@ public class ImportImpl implements Import {
     public ImportImpl() {
     }
 
-    @Override
-    public IndoorFeaturesType unmarshalmax(File inputFile) {
-        //Importing method
-        try {
 
-            JAXBContext jc = JAXBContext.newInstance(IndoorFeaturesType.class);
-            Unmarshaller unmarshaller = jc.createUnmarshaller();
-            System.out.println("The results of unmarshalling:");
-
-            StreamSource streamSource = new StreamSource(inputFile);  // Converting inputFile to StreamSource type
-
-            indoorFeaturesType = unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue();
-
-            PrimalSpaceFeaturesPropertyType primalSpaceFeaturesPropertyType = indoorFeaturesType.getPrimalSpaceFeatures();
-
-            PrimalSpaceFeaturesType primalSpaceFeaturesType = primalSpaceFeaturesPropertyType.getPrimalSpaceFeatures();
-
-            List<FeaturePropertyType> featurePropertyTypeList = primalSpaceFeaturesType.getCellSpaceMember();
-            JAXBElement<? extends AbstractFeatureType> jaxbElement = featurePropertyTypeList.get(0).getAbstractFeature();
-
-
-
-
-            return indoorFeaturesType;
-
-
-        } catch (JAXBException | IllegalArgumentException e) {
-            error("The data is not valid!");
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    public IndoorFeaturesType unmarshalmax(File inputFile) {
+//        //Importing method
+//        try {
+//
+//            JAXBContext jc = JAXBContext.newInstance(IndoorFeaturesType.class);
+//            Unmarshaller unmarshaller = jc.createUnmarshaller();
+//            System.out.println("The results of unmarshalling:");
+//
+//            StreamSource streamSource = new StreamSource(inputFile);  // Converting inputFile to StreamSource type
+//
+//            indoorFeaturesType = unmarshaller.unmarshal(streamSource, IndoorFeaturesType.class).getValue();
+//
+//            PrimalSpaceFeaturesPropertyType primalSpaceFeaturesPropertyType = indoorFeaturesType.getPrimalSpaceFeatures();
+//
+//            PrimalSpaceFeaturesType primalSpaceFeaturesType = primalSpaceFeaturesPropertyType.getPrimalSpaceFeatures();
+//
+//            List<FeaturePropertyType> featurePropertyTypeList = primalSpaceFeaturesType.getCellSpaceMember();
+//            JAXBElement<? extends AbstractFeatureType> jaxbElement = featurePropertyTypeList.get(0).getAbstractFeature();
+//
+//
+//            return indoorFeaturesType;
+//
+//
+//        } catch (JAXBException | IllegalArgumentException e) {
+//            error("The data is not valid!");
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     public Document domImport() throws ParserConfigurationException, IOException, SAXException {
 

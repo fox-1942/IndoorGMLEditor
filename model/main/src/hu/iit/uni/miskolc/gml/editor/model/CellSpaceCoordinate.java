@@ -1,19 +1,57 @@
 package hu.iit.uni.miskolc.gml.editor.model;
 
-public interface CellSpaceCoordinate {
-     double getCoordinateX();
 
-     void setCoordinateX(double coordinateX);
+public class CellSpaceCoordinate {
 
-     double getCoordinateY();
+    private double coordinateY;
+    private double coordinateZ;
+    private double coordinateX;
 
-     void setCoordinateY(double coordinateY);
+    public CellSpaceCoordinate(double coordinateX, double coordinateY, double coordinateZ) {
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
+        this.coordinateZ = coordinateZ;
+    }
 
-     double getCoordinateZ();
+    public double getCoordinateX() {
+        return coordinateX;
+    }
 
-     void setCoordinateZ(double coordinatez);
 
-     String toStringCoordinateXYZ();
+    public void setCoordinateX(double coordinateX) {
+        this.coordinateX = coordinateX;
+    }
 
-     void setCoordinateXYZ(double coordinateX, double coordinateY, double coordinateZ);
+
+    public double getCoordinateY() {
+        return coordinateY;
+    }
+
+
+    public void setCoordinateY(double coordinateY) {
+        this.coordinateY = coordinateY;
+    }
+
+
+    public double getCoordinateZ() {
+        return coordinateZ;
+    }
+
+
+    public void setCoordinateZ(double coordinateZ) {
+        this.coordinateZ = coordinateZ;
+    }
+
+
+    public String toStringCoordinateXYZ() {
+        return coordinateX +" " +coordinateY + " " + coordinateZ;
+    }
+
+
+    public void setCoordinateXYZ(double coordinateX, double coordinateY, double coordinateZ) {
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
+        this.coordinateZ = coordinateZ;
+    }
+
 }

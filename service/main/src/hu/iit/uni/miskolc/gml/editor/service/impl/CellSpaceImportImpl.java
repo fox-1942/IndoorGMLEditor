@@ -89,7 +89,7 @@ double x,y,z;
                     /*
                     Making CellSpacecoordinateImpl objects from x, y, z and after adding to an Arraylist object
                      */
-                    CellSpaceCoordinateImpl cellSpaceCoordinate = new CellSpaceCoordinateImpl(x,y,z);
+                    CellSpaceCoordinate cellSpaceCoordinate = new CellSpaceCoordinate(x,y,z);
                     cellSpaceFloorCoordinateArraylist.add(cellSpaceCoordinate);   //Adding coordinates to Arraylist.
                 }
 
@@ -110,7 +110,7 @@ double x,y,z;
                     Making CellSpacecoordinateImpl objects from x, y, z and after adding to an Arraylist object
                      */
 
-                    CellSpaceCoordinateImpl cellSpaceCoordinate = new CellSpaceCoordinateImpl(x,y,z);
+                    CellSpaceCoordinate cellSpaceCoordinate = new CellSpaceCoordinate(x,y,z);
 
 
                     cellSpaceCeilingCoordinateArraylist.add(cellSpaceCoordinate);   //Adding coordinates to Arraylist.

@@ -1,8 +1,8 @@
 package hu.iit.uni.miskolc.gml.editor.model;
 
-import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
-
 import java.util.ArrayList;
+
+
 
 public class CellSpace {
 
@@ -19,7 +19,6 @@ public class CellSpace {
         this.cellSpaceCeilingCoordinatesArrayList = cellSpaceCeilingCoordinatesArrayList;
         this.cellSpaceFloorCoordinateArrayList = cellSpaceFloorCoordinateArrayList;
     }
-
 
     public String getParentFloor() {
         return ParentFloor;

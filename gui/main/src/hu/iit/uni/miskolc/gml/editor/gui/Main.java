@@ -25,24 +25,20 @@ public class Main extends Application {
         Application.launch(args);
     }
 
+    @FXML
     public void start(Stage primaryStage) {
+        FXMLLoader fxmlLoader;
+        fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         try {
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            Parent root = (Parent)fxmlLoader.load();
 
-            MainWindowController mainWindowController=new MainWindowController();
+            MainWindowController mainWindowController=fxmlLoader.getController();
 
             SubScene ySwing = mainWindowController.getSubScene();
 
             VBox vbox = new VBox( root, ySwing);
             Scene scene = new Scene(vbox, 1000,  800, false);
             primaryStage.setTitle("IIT-IndoorEditor");
-
-
 
             primaryStage.setScene(scene);
             primaryStage.show();
