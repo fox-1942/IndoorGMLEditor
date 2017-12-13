@@ -3,7 +3,6 @@ package hu.iit.uni.miskolc.gml.editor.gui;
 import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
 import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceImportImpl;
 import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -12,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -230,6 +230,8 @@ public class MainWindowController {
         rootCreator();
         drawFloorPlanSubScene();
 
+
+
         floorPlanSubScene = new SubScene(root, 1000, 900, false, SceneAntialiasing.BALANCED);
         return floorPlanSubScene;
     }
@@ -289,23 +291,24 @@ public class MainWindowController {
         floorPlanSubScene.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent createCell) {
-                if(createCell.isControlDown()){
-                    if(createCell.getClickCount()==1) {
+
+
+                        System.out.println("dfdfdfdffd");
+                        Optional<Pair<String, String>> data=readDataOfCellSpace();
                         Circle circle = createCircle(Color.GREENYELLOW, 0.4, createCell.getX(), createCell.getY());
-                        readDataOfCellSpace();
 
 
-                    }
-                }
             }
         });
     }
 
 
+    /**
+     * Reads the data (parenfloor and name of cellspace) of new CellSpace in.
+     * @return
+     */
 
-
-    
-    public void readDataOfCellSpace(){
+    public Optional<Pair<String, String>> readDataOfCellSpace(){
 
     // Create the custom dialog.
     Dialog<Pair<String, String>> dialog = new Dialog<>();
@@ -362,7 +365,6 @@ public class MainWindowController {
     //Adding grid to dialog.
     dialog.getDialogPane().setContent(grid);
 
-    // Convert the result to a username-password-pair when the login button is clicked.
     dialog.setResultConverter(dialogButton -> {
         if (dialogButton == okayButtonType) {
             return new Pair<>(parentFloor.getText(), cellSpaceName.getText());
@@ -373,5 +375,7 @@ public class MainWindowController {
     Optional<Pair<String, String>> result = dialog.showAndWait();
 
     System.out.println(result.get().getKey() + " " + result.get().getValue());
+
+    return result;
     }
 }
