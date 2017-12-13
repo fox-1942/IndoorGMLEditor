@@ -9,13 +9,18 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.*;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 import org.xml.sax.SAXException;
 
@@ -37,8 +42,7 @@ public class MainWindowController {
     private ServiceFacade facade;
     private File outputFile;
     private String path;
-    private Group root;
-    private SubScene floorPlanSubScene;
+    private Pane root;
 
     private CellSpaceImportImpl cellSpaceImport = new CellSpaceImportImpl();
     private ArrayList<Circle> circleArrayList;
@@ -46,7 +50,7 @@ public class MainWindowController {
     private boolean drawnFromFile = false;
 
     @FXML
-    private MenuItem del;
+    private Pane pane;
 
 
     public MainWindowController() {
@@ -113,12 +117,12 @@ public class MainWindowController {
     //--------------------------------------------------------------------------------------------------
 
 
-    public Circle createCircle(final Color color, double radius, double x, double y) {
+    public Circle createCircle( double x, double y) {
         //create a circle with desired name,  color and radius
-        final Circle circle = new Circle(x, y, radius);
+        final Circle circle = new Circle(x, y, 0.4, Color.YELLOWGREEN);
 
         //add a shadow effect
-        circle.setEffect(new InnerShadow(1, color.brighter()));
+        circle.setEffect(new InnerShadow(1, Color.YELLOWGREEN.brighter()));
 
         //change a cursor when it is over circle
         circle.setCursor(Cursor.CROSSHAIR);
@@ -131,26 +135,27 @@ public class MainWindowController {
                         get(indexes[1]).setCoordinateXYZ(me.getX(), me.getY(),3.3);
                 circle.setCenterX(me.getX());
                 circle.setCenterY(me.getY());
-
-            }
-        });
-
-
-        circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                //change the z-coordinate of the circle
                 circle.toFront();
-                ;
-            }
-        });
-
-        circle.setOnMouseExited(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                //change the z-coordinate of the circle
-                circle.toBack();
 
             }
         });
+
+
+//        circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+//            public void handle(MouseEvent me) {
+//                //change the z-coordinate of the circle
+//                circle.toFront();
+//                ;
+//            }
+//        });
+//
+//        circle.setOnMouseExited(new EventHandler<MouseEvent>() {
+//            public void handle(MouseEvent me) {
+//                //change the z-coordinate of the circle
+//                circle.toBack();
+//
+//            }
+//        });
 
         /**
          * When the specified mouse button clicked on the circle, the owner CellSpace object is removed from the floorPlanSubScene.
@@ -167,8 +172,7 @@ public class MainWindowController {
 
                     rootCreator();
                     drawFloorPlanSubScene();
-                    floorPlanSubScene.setRoot(root);
-
+                    openDrawFile();
                 }
             }
         });
@@ -193,7 +197,7 @@ public class MainWindowController {
             circleArrayList = new ArrayList<Circle>();
 
             for (int j = 0; j < cp.getCellSpaceFloorCoordinateArrayList().size(); j++) {
-                circleArrayList.add(j, createCircle(Color.GREENYELLOW, 0.4, cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX(),
+                circleArrayList.add(j, createCircle(cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateX(),
                         cp.getCellSpaceFloorCoordinateArrayList().get(j).getCoordinateY()));
             }
 
@@ -223,32 +227,50 @@ public class MainWindowController {
                 root.getChildren().add(line);
             }
         }
-
     }
 
-    public SubScene getSubScene() {
+    public void openDrawFile() {
         rootCreator();
         drawFloorPlanSubScene();
 
 
+        if(drawnFromFile==true){
+            pane.getChildren().clear();
+        }
 
-        floorPlanSubScene = new SubScene(root, 1000, 900, false, SceneAntialiasing.BALANCED);
-        return floorPlanSubScene;
+
+
+        pane.getChildren().add(root);
+
     }
+
 
 
     /**
      * rootCreator contains the things represented by the floorPlanSubScene.
      */
 
-    public Group rootCreator() {
-        root = new Group();
-        root.setLayoutX(500);
-        root.setLayoutY(300);
+    public Pane rootCreator() {
+        root = new Pane();
+        root.setLayoutX(250);
+        root.setLayoutY(500);
         root.setTranslateX(0);
         root.setTranslateY(0);
         root.setScaleX(14);
         root.setScaleY(14);
+
+
+//        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent createCell) {
+//                System.out.println("ff");
+////                        Optional<Pair<String, String>> data=readDataOfCellSpace();
+////                        Circle circle = createCircle( createCell.getX(), createCell.getY());
+//            }
+//        });
+
+
+
         return root;
     }
 
@@ -288,16 +310,12 @@ public class MainWindowController {
     }
 
     public void cellSpaceDrawer(){
-        floorPlanSubScene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent createCell) {
-
-
-                        System.out.println("dfdfdfdffd");
-                        Optional<Pair<String, String>> data=readDataOfCellSpace();
-                        Circle circle = createCircle(Color.GREENYELLOW, 0.4, createCell.getX(), createCell.getY());
-
-
+                        System.out.println("ff");
+//                        Optional<Pair<String, String>> data=readDataOfCellSpace();
+//                        Circle circle = createCircle( createCell.getX(), createCell.getY());
             }
         });
     }

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.layout.Pane?>
 <AnchorPane fx:id="apMain" prefHeight="10.0" prefWidth="500" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
    <children>
       <MenuBar prefWidth="Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -12,7 +13,7 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#readGMLFile" text="Read .gml" />
-
+                <MenuItem mnemonicParsing="false" text="Open File" onAction="#openDrawFile" />
 
               <MenuItem mnemonicParsing="false" text="Exit" />
             </items>
@@ -34,6 +35,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane layoutY="36.0" prefHeight="341.0" prefWidth="500.0" />
+      <Pane layoutY="36.0" prefHeight="400.0" prefWidth="500.0" fx:id="pane"/>
    </children>
 </AnchorPane>

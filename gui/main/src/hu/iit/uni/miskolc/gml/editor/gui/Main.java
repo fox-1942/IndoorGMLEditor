@@ -19,13 +19,7 @@ public class Main extends Application {
         fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         try {
             Parent root = (Parent)fxmlLoader.load();
-
-            MainWindowController mainWindowController=fxmlLoader.getController();
-
-            SubScene ySwing = mainWindowController.getSubScene();
-
-            VBox vbox = new VBox( root, ySwing);
-            Scene scene = new Scene(vbox, 1000,  800, false);
+            Scene scene = new Scene(root, 1000,  800, false);
             primaryStage.setTitle("IIT-IndoorEditor");
 
             primaryStage.setScene(scene);
