@@ -130,4 +130,3 @@ double x,y,z;
         return cellSpaceArrayList;
     }
 }
-//cellSpace=new CellSpace(ParentFloor,CellSpaceName,);

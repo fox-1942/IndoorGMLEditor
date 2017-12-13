@@ -3,14 +3,20 @@ package hu.iit.uni.miskolc.gml.editor.gui;
 import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
 import hu.iit.uni.miskolc.gml.editor.service.impl.CellSpaceImportImpl;
 import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.*;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
+import javafx.util.Pair;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,6 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.scene.input.MouseEvent;
 
@@ -94,7 +101,9 @@ public class MainWindowController {
         showSingleFileChooser();  // Path is set.
         File inputFile = new File(path);
         facade.cellSpaceCreator();
-        System.out.println(inputFile.exists());
+
+
+
     }
 
     //--------------------------------------------------------------------------------
@@ -243,7 +252,7 @@ public class MainWindowController {
 
 
     /**
-     *fgfgfgfgf
+     *
      * This method search for the owner CellSpace object of the selected Circle. The second data of the array is the
      * owner CellSpace point of the Circle.
      *
@@ -273,11 +282,96 @@ public class MainWindowController {
             System.out.println("Circle does not belongs to CellSpace object.");
         }
 
-
-
     return indexes;
+    }
+
+    public void cellSpaceDrawer(){
+        floorPlanSubScene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent createCell) {
+                if(createCell.isControlDown()){
+                    if(createCell.getClickCount()==1) {
+                        Circle circle = createCircle(Color.GREENYELLOW, 0.4, createCell.getX(), createCell.getY());
+                        readDataOfCellSpace();
+
+
+                    }
+                }
+            }
+        });
+    }
 
 
 
+
+    
+    public void readDataOfCellSpace(){
+
+    // Create the custom dialog.
+    Dialog<Pair<String, String>> dialog = new Dialog<>();
+    dialog.setTitle("Data of new cellspace");
+    dialog.setHeaderText("Please fill out the data of new cellspace!");
+
+    // Set the button types: OK and Cancel.
+    ButtonType okayButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+    dialog.getDialogPane().getButtonTypes().addAll(okayButtonType, ButtonType.CANCEL);
+
+    // Create labels and fields.
+    GridPane grid = new GridPane();
+    grid.setHgap(10);
+    grid.setVgap(10);
+    grid.setPadding(new Insets(20, 140, 10, 10));
+
+
+    TextField parentFloor = new TextField();
+    parentFloor.setPromptText("Name of the parent floor");
+    TextField cellSpaceName = new TextField();
+    cellSpaceName.setPromptText("Name of the cellspace");
+
+    TextField[] textFields={parentFloor, cellSpaceName};
+
+
+    //Adding textfields to the GridPane object, making them visible.
+    grid.add(new Label("Parent Floor:"), 0, 0);
+    grid.add(parentFloor, 1, 0);
+    grid.add(new Label("Cellspace name::"), 0, 1);
+    grid.add(cellSpaceName, 1, 1);
+
+    // Enable/Disable login button depending on whether a username was entered.
+    Node Button = dialog.getDialogPane().lookupButton(okayButtonType);
+    Button.setDisable(true);
+
+
+    //Examine whether any of the textfields is empty.
+        ChangeListener listener = new ChangeListener(){
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    boolean empty = false;
+                    for(TextField field:textFields)
+                        if(field.getText().isEmpty()){
+                            empty=true;
+                            break;
+                        }
+                    Button.setDisable(empty);
+                }
+            };
+
+    cellSpaceName.textProperty().addListener(listener);
+    parentFloor.textProperty().addListener(listener);
+
+    //Adding grid to dialog.
+    dialog.getDialogPane().setContent(grid);
+
+    // Convert the result to a username-password-pair when the login button is clicked.
+    dialog.setResultConverter(dialogButton -> {
+        if (dialogButton == okayButtonType) {
+            return new Pair<>(parentFloor.getText(), cellSpaceName.getText());
+        }
+        return null;
+    });
+
+    Optional<Pair<String, String>> result = dialog.showAndWait();
+
+    System.out.println(result.get().getKey() + " " + result.get().getValue());
     }
 }
