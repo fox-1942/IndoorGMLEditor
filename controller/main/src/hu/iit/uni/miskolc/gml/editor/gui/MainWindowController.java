@@ -301,18 +301,23 @@ public class MainWindowController {
             public void handle(MouseEvent event) {
                 circlesRealTime.get(0).toFront();
 
-                if(event.getEventType()==MouseEvent.) {
+                if(true) {
+
 
                     Line line = new Line();
-                    line.setStroke(Color.LIGHTSEAGREEN);
+                    line.setStroke(Color.TOMATO);
                     line.setStrokeWidth(0.4);
 
                     line.startXProperty().bind(circlesRealTime.get(circlesRealTime.size() - 1).centerXProperty());
                     line.startYProperty().bind(circlesRealTime.get(circlesRealTime.size() - 1).centerYProperty());
                     line.endXProperty().bind(circlesRealTime.get(0).centerXProperty());
                     line.endYProperty().bind(circlesRealTime.get(0).centerYProperty());
+                    circlesRealTime.get(0).setFill(Color.TOMATO);
+                    root.getChildren().add(line);
+                    event.consume();
 
                 }
+
             };
         };
 
@@ -320,9 +325,10 @@ public class MainWindowController {
 
             @Override
             public void handle (MouseEvent createCell){
+                    
 
 
-                System.out.println("Klikk");
+                    System.out.println("Klikk");
                 // Optional<Pair<String, String>> data=readDataOfCellSpace();
 
                 Circle point = createCircle(createCell.getX(), createCell.getY());
@@ -347,8 +353,10 @@ public class MainWindowController {
                 }
 
                 if (circlesRealTime.size() == 3) {
-                    circlesRealTime.get(0).setOnMouseEntered(clickOnFirstCircle);
+                    circlesRealTime.get(0).addEventFilter(MouseEvent.MOUSE_CLICKED,clickOnFirstCircle);
                 }
+
+
             }
         };
 
