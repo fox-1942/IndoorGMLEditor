@@ -41,6 +41,9 @@ public class MainWindowController {
     private File outputFile;
     private String path;
 
+    ArrayList<Circle> circlesRealTime=new ArrayList<Circle>();
+
+
     private CellSpaceImportImpl cellSpaceImport = new CellSpaceImportImpl();
     private ArrayList<Circle> circleArrayList;
     private ArrayList<CellSpace> cellSpaces = null;
@@ -125,7 +128,7 @@ public class MainWindowController {
         circle.setEffect(new InnerShadow(1, Color.YELLOWGREEN.brighter()));
 
         //change a cursor when it is over circle
-        circle.setCursor(Cursor.CROSSHAIR);
+        circle.setCursor(Cursor.DEFAULT);
 
         circle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
@@ -140,15 +143,13 @@ public class MainWindowController {
             }
         });
 
+        circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent me) {
+                //change the z-coordinate of the circle
+                circle.toFront();
+            }
+        });
 
-//        circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//            public void handle(MouseEvent me) {
-//                //change the z-coordinate of the circle
-//                circle.toFront();
-//                ;
-//            }
-//        });
-//
 //        circle.setOnMouseExited(new EventHandler<MouseEvent>() {
 //            public void handle(MouseEvent me) {
 //                //change the z-coordinate of the circle
@@ -207,7 +208,7 @@ public class MainWindowController {
                 line.setStroke(Color.LIGHTSEAGREEN);
                 line.setStrokeWidth(0.4);
 
-                if (i == circleArrayList.size() - 2) {
+                if (i == circleArrayList.size()-2) {
                     line.startXProperty().bind(circleArrayList.get(i).centerXProperty());
                     line.startYProperty().bind(circleArrayList.get(i).centerYProperty());
                     line.endXProperty().bind(circleArrayList.get(0).centerXProperty());
@@ -255,16 +256,6 @@ public class MainWindowController {
         root.toBack();
 
         root.setStyle("-fx-background-color: #5d5b5e");
-
-
-        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent createCell) {
-                System.out.println("ff");
-//                        Optional<Pair<String, String>> data=readDataOfCellSpace();
-//                        Circle circle = createCircle( createCell.getX(), createCell.getY());
-            }
-        });
         return root;
     }
 
@@ -304,14 +295,65 @@ public class MainWindowController {
     }
 
     public void cellSpaceDrawer(){
-        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+        EventHandler<MouseEvent> clickOnFirstCircle = new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent createCell) {
-                        System.out.println("ff");
-//                        Optional<Pair<String, String>> data=readDataOfCellSpace();
-//                        Circle circle = createCircle( createCell.getX(), createCell.getY());
+            public void handle(MouseEvent event) {
+                circlesRealTime.get(0).toFront();
+
+                if(event.getEventType()==MouseEvent.) {
+
+                    Line line = new Line();
+                    line.setStroke(Color.LIGHTSEAGREEN);
+                    line.setStrokeWidth(0.4);
+
+                    line.startXProperty().bind(circlesRealTime.get(circlesRealTime.size() - 1).centerXProperty());
+                    line.startYProperty().bind(circlesRealTime.get(circlesRealTime.size() - 1).centerYProperty());
+                    line.endXProperty().bind(circlesRealTime.get(0).centerXProperty());
+                    line.endYProperty().bind(circlesRealTime.get(0).centerYProperty());
+
+                }
+            };
+        };
+
+        EventHandler<MouseEvent> clickAndCreateCircle = new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle (MouseEvent createCell){
+
+
+                System.out.println("Klikk");
+                // Optional<Pair<String, String>> data=readDataOfCellSpace();
+
+                Circle point = createCircle(createCell.getX(), createCell.getY());
+                circlesRealTime.add(point);
+                root.getChildren().add(point);
+
+                if (circlesRealTime.size() >= 2) {
+                    for (int i = 0; i < circlesRealTime.size() - 1; i++) {
+
+
+                        Line line = new Line();
+                        line.setStroke(Color.LIGHTSEAGREEN);
+                        line.setStrokeWidth(0.4);
+
+                        line.startXProperty().bind(circlesRealTime.get(i).centerXProperty());
+                        line.startYProperty().bind(circlesRealTime.get(i).centerYProperty());
+                        line.endXProperty().bind(circlesRealTime.get(i + 1).centerXProperty());
+                        line.endYProperty().bind(circlesRealTime.get(i + 1).centerYProperty());
+
+                        root.getChildren().add(line);
+                    }
+                }
+
+                if (circlesRealTime.size() == 3) {
+                    circlesRealTime.get(0).setOnMouseEntered(clickOnFirstCircle);
+                }
             }
-        });
+        };
+
+        root.setOnMouseClicked(clickAndCreateCircle);
+
     }
 
 
