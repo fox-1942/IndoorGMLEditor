@@ -6,6 +6,7 @@ import hu.iit.uni.miskolc.gml.editor.service.impl.ServiceFacade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -41,12 +42,12 @@ public class MainWindowController {
     private File outputFile;
     private String path;
 
-    ArrayList<Circle> circlesRealTime=new ArrayList<Circle>();
+    ArrayList<Circle> circlesRealTime;
 
-
-    private CellSpaceImportImpl cellSpaceImport = new CellSpaceImportImpl();
+    boolean cellSpaceReady;
+    private CellSpaceImportImpl cellSpaceImport;
     private ArrayList<Circle> circleArrayList;
-    private ArrayList<CellSpace> cellSpaces = null;
+    private ArrayList<CellSpace> cellSpaces;
     private boolean drawnFromFile = false;
     private Group group;
 
@@ -190,6 +191,7 @@ public class MainWindowController {
         if (drawnFromFile == false) {
 
             //Reading and creating CellSpace objects from file.
+            cellSpaceImport=new CellSpaceImportImpl();
             cellSpaces = cellSpaceImport.cellSpaceCreator();
             drawnFromFile = true;
         }
@@ -294,18 +296,19 @@ public class MainWindowController {
     return indexes;
     }
 
+
+
+
     public void cellSpaceDrawer(){
+        circlesRealTime=new ArrayList<Circle>();
 
         EventHandler<MouseEvent> clickOnFirstCircle = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 circlesRealTime.get(0).toFront();
 
-                if(true) {
-
-
                     Line line = new Line();
-                    line.setStroke(Color.TOMATO);
+                    line.setStroke(Color.LIGHTSEAGREEN);
                     line.setStrokeWidth(0.4);
 
                     line.startXProperty().bind(circlesRealTime.get(circlesRealTime.size() - 1).centerXProperty());
@@ -314,18 +317,21 @@ public class MainWindowController {
                     line.endYProperty().bind(circlesRealTime.get(0).centerYProperty());
                     circlesRealTime.get(0).setFill(Color.TOMATO);
                     root.getChildren().add(line);
+                    cellSpaceReady=true;
                     event.consume();
-
-                }
 
             };
         };
 
         EventHandler<MouseEvent> clickAndCreateCircle = new EventHandler<MouseEvent>() {
 
+
             @Override
             public void handle (MouseEvent createCell){
-                    
+                    if(cellSpaceReady==true) {
+                        root.removeEventHandler(MouseEvent.ANY,this);
+                        return;
+                    }
 
 
                     System.out.println("Klikk");
