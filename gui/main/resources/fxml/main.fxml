@@ -21,7 +21,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#cellSpaceDrawer" text="Create CellSpace" />
+              <MenuItem mnemonicParsing="false" onAction="#createCellSpaceIntoCellSpaces" text="Create CellSpace" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="View">
