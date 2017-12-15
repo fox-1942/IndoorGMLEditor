@@ -10,6 +10,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by fox on 2017.08.16..
@@ -20,7 +21,7 @@ public class ServiceFacade {
 
     private Import indoorGMLImport = new ImportImpl();
 
-    private CellSpaceImport cellSpaceImport = new CellSpaceImportImpl();
+    private CellSpaceImportImpl cellSpaceImport = new CellSpaceImportImpl();
 
     public ServiceFacade() {
     }
@@ -33,8 +34,8 @@ public class ServiceFacade {
         indoorGMLImport.domImport();
     }
 
-    public void cellSpaceCreator() {
-        cellSpaceImport.cellSpaceCreator();
+    public ArrayList<CellSpace> cellSpaceCreator() {
+        return cellSpaceImport.cellSpaceCreator();
     }
 }
 

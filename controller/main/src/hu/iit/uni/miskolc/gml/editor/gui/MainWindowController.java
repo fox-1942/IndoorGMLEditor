@@ -105,19 +105,14 @@ public class MainWindowController {
     //--------------------------------------------------------------------------------
 
 
-    public void readGMLFile() throws ParserConfigurationException, SAXException, IOException {
-        showSingleFileChooser();  // Path is set.
+    public void exportToXml() throws ParserConfigurationException, SAXException, IOException {
+        showSaveDialog();  // Path is set.
         File inputFile = new File(path);
-        facade.cellSpaceCreator();
 
 
     }
 
-    //--------------------------------------------------------------------------------
 
-
-    // Creating circle -------------------------------------------------------------------------------
-    //--------------------------------------------------------------------------------------------------
 
 
     public Circle createCircle(double x, double y) {
@@ -150,13 +145,7 @@ public class MainWindowController {
             }
         });
 
-//        circle.setOnMouseExited(new EventHandler<MouseEvent>() {
-//            public void handle(MouseEvent me) {
-//                //change the z-coordinate of the circle
-//                circle.toBack();
-//
-//            }
-//        });
+
 
         /**
          * When the specified mouse button clicked on the circle, the owner CellSpace object is removed from the floorPlanSubScene.
@@ -191,7 +180,7 @@ public class MainWindowController {
 
             //Reading and creating CellSpace objects from file.
             cellSpaceImport = new CellSpaceImportImpl();
-            cellSpaces = cellSpaceImport.cellSpaceCreator();
+            cellSpaces = facade.cellSpaceCreator();
             drawnFromFile = true;
         }
 
@@ -484,6 +473,7 @@ public class MainWindowController {
         }
 
         CellSpace newCellSpace=new CellSpace(result.get().getKey(),result.get().getValue(),cellSpaceFloorCoordinateArrayList,cellSpaceFloorCoordinateArrayList);
+        cellSpaces.add(newCellSpace);
 
         cellSpaceReady=false;
     }

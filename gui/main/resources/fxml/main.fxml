@@ -13,10 +13,11 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#readGMLFile" text="Read .gml" />
-                <MenuItem mnemonicParsing="false" onAction="#openDrawFile" text="Open File" />
 
-              <MenuItem mnemonicParsing="false" text="Exit" />
+                <MenuItem mnemonicParsing="false" onAction="#openDrawFile" text="Open File" />
+                <MenuItem mnemonicParsing="false"  text="Exit application" />
+
+
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
