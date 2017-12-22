@@ -42,6 +42,7 @@ public class ExportImpl implements Export {
 
             Element bigPrimalSpaceFeatures = doc.createElementNS(CoreNS, "PrimalSpaceFeatures");
             rootElement.appendChild(bigPrimalSpaceFeatures);
+            bigPrimalSpaceFeatures.setTextContent(cellSpaces.get(0).getParentFloor());
 
 
             //putting cellspace coordinates into each cellspace
@@ -90,9 +91,66 @@ public class ExportImpl implements Export {
 
         Element genericMetaData=doc.createElementNS(GmlNS,"GenericMetaData");
         genericMetaData.setTextContent(cellSpaceName);
-
-
         metaDataProperty.appendChild(genericMetaData);
+
+
+
+        Element cellSpaceGeometry=doc.createElementNS(CoreNS,"cellSpaceGeometry");
+        cellSpace.appendChild(cellSpaceGeometry);
+
+        Element geometry3d=doc.createElementNS(CoreNS,"Geometry3d");
+        cellSpaceGeometry.appendChild(geometry3d);
+
+        Element solid=doc.createElementNS(GmlNS,"Solid");
+        geometry3d.appendChild(solid);
+        Element interior=doc.createElementNS(GmlNS,"interior");
+        solid.appendChild(interior);
+
+
+        Element shell=doc.createElementNS(GmlNS,"Shell");
+        interior.appendChild(shell);
+
+        Element surfaceMember=doc.createElementNS(GmlNS,"surfaceMember");
+        shell.appendChild(surfaceMember);
+
+
+        Element polyhedralSurface=doc.createElementNS(GmlNS,"PolyhedralSurface");
+        surfaceMember.appendChild(polyhedralSurface);
+
+        Element patches=doc.createElementNS(GmlNS,"patches");
+        polyhedralSurface.appendChild(patches);
+
+
+        Element polygonPatch=doc.createElementNS(GmlNS,"polygonPatch");
+        patches.appendChild(polygonPatch);
+
+        Element interior2=doc.createElementNS(GmlNS,"interior2");
+        polygonPatch.appendChild(interior);
+
+        Element linearRing=doc.createElementNS(GmlNS,"LinearRing");
+        cellSpace.appendChild(linearRing);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
