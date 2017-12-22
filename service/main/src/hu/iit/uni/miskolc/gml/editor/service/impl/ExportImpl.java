@@ -83,8 +83,10 @@ public class ExportImpl implements Export {
 
     }
 
-    private Node createCellSpaceMember(String parentFloor, String cellSpaceName, ArrayList<CellSpaceCoordinate> cpFloor, ArrayList<CellSpaceCoordinate> cpCeiling) {
-        Element cellSpace=doc.createElementNS(CoreNS, "cellSpaceMember");
+    public Node createCellSpaceMember(String parentFloor, String cellSpaceName, ArrayList<CellSpaceCoordinate> cpFloor, ArrayList<CellSpaceCoordinate> cpCeiling) {
+        Element cellSpaceMember=doc.createElementNS(CoreNS,"cellSpaceMember");
+        Element cellSpace=doc.createElementNS(CoreNS, "cellSpace");
+        cellSpaceMember.appendChild(cellSpace);
 
         Element metaDataProperty=doc.createElementNS(GmlNS,"metaDataProperty");
         cellSpace.appendChild(metaDataProperty);
@@ -125,36 +127,28 @@ public class ExportImpl implements Export {
         patches.appendChild(polygonPatch);
 
         Element interior2=doc.createElementNS(GmlNS,"interior2");
-        polygonPatch.appendChild(interior);
-
-        Element linearRing=doc.createElementNS(GmlNS,"LinearRing");
-        cellSpace.appendChild(linearRing);
 
 
+        if( cpFloor.size()==5){
+            Element linearRing=doc.createElementNS(GmlNS,"LinearRing");
 
+            for(int i=0;i<2;i++){
+                polygonPatch.appendChild(interior2);
+                interior2.appendChild(linearRing);
+            }
+        }
 
+        else {
 
+            Element arc=doc.createElementNS(GmlNS,"Arc");
 
+            for(int i=0;i<2;i++){
+                polygonPatch.appendChild(interior2);
+                interior2.appendChild(arc);
+            }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        return node;
+        return cellSpaceMember;
     }
 
 
