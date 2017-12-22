@@ -30,27 +30,32 @@ public class ExportImpl implements Export {
 
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            docFactory.setNamespaceAware(true);
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             doc = docBuilder.newDocument();
 
             // root elements
-            Element rootElement = doc.createElementNS(CoreNS, "IndoorFeatures");
+            Element rootElement = doc.createElementNS(CoreNS, "core:IndoorFeatures");
+            rootElement.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:gml","http://www.opengis.net/gml/3.2");
+
             doc.appendChild(rootElement);
 
-            Element primalSpaceFeatures = doc.createElementNS(CoreNS, "primalSpaceFeatures");
+
+
+            Element primalSpaceFeatures = doc.createElementNS(CoreNS, "core:primalSpaceFeatures");
             rootElement.appendChild(primalSpaceFeatures);
 
-            Element bigPrimalSpaceFeatures = doc.createElementNS(CoreNS, "PrimalSpaceFeatures");
-            rootElement.appendChild(bigPrimalSpaceFeatures);
-            bigPrimalSpaceFeatures.setTextContent(cellSpaces.get(0).getParentFloor());
+            Element bigPrimalSpaceFeatures = doc.createElementNS(CoreNS, "core:PrimalSpaceFeatures");
 
+
+            bigPrimalSpaceFeatures.setAttributeNS(CoreNS,"gml:id",cellSpaces.get(0).getParentFloor());
+            primalSpaceFeatures.appendChild(bigPrimalSpaceFeatures);
 
             //putting cellspace coordinates into each cellspace
 
-            for (CellSpace cp:cellSpaces) {
-                Element cellSpaceMember=doc.createElementNS(CoreNS, "cellSpaceMember");
-                bigPrimalSpaceFeatures.appendChild(cellSpaceMember);
+            for (int j=0;j<2;j++) {
 
+                CellSpace cp=cellSpaces.get(j);
                 bigPrimalSpaceFeatures.appendChild(createCellSpaceMember(cp.getParentFloor(),cp.getCellSpaceName(),
                         cp.getCellSpaceFloorCoordinateArrayList(),cp.getCellSpaceCeilingCoordinatesArrayList()));
 
@@ -59,7 +64,9 @@ public class ExportImpl implements Export {
 
             //for output to file, console
             TransformerFactory transformFactory = TransformerFactory.newInstance();
+
             Transformer transformer = transformFactory.newTransformer();
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");  // Formatting nicely
             DOMSource source = new DOMSource(doc);
@@ -84,18 +91,18 @@ public class ExportImpl implements Export {
     }
 
     public Node createCellSpaceMember(String parentFloor, String cellSpaceName, ArrayList<CellSpaceCoordinate> cpFloor, ArrayList<CellSpaceCoordinate> cpCeiling) {
-        Element cellSpaceMember=doc.createElementNS(CoreNS,"cellSpaceMember");
-        Element cellSpace=doc.createElementNS(CoreNS, "cellSpace");
+        Element cellSpaceMember = doc.createElementNS(CoreNS, "core:cellSpaceMember");
+        Element cellSpace = doc.createElementNS(CoreNS, "core:cellSpace");
         cellSpaceMember.appendChild(cellSpace);
 
-        Element metaDataProperty=doc.createElementNS(GmlNS,"metaDataProperty");
+        Element metaDataProperty = doc.createElement("gml:metaDataProperty");
         cellSpace.appendChild(metaDataProperty);
 
-        Element genericMetaData=doc.createElementNS(GmlNS,"GenericMetaData");
+        Element genericMetaData = doc.createElement("gml:GenericMetaData");
         genericMetaData.setTextContent(cellSpaceName);
         metaDataProperty.appendChild(genericMetaData);
 
-
+/*
 
         Element cellSpaceGeometry=doc.createElementNS(CoreNS,"cellSpaceGeometry");
         cellSpace.appendChild(cellSpaceGeometry);
@@ -147,7 +154,7 @@ public class ExportImpl implements Export {
                 interior2.appendChild(arc);
             }
         }
-
+*/
         return cellSpaceMember;
     }
 

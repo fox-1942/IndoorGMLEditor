@@ -292,12 +292,14 @@ public class MainWindowController {
                 root.getChildren().add(line);
                 cellSpaceReady = true;
                 flowPane();
-                event.consume();
+                root.setOnMouseClicked(null);
+                return;
 
             }
 
-            ;
+
         };
+
 
         EventHandler<MouseEvent> clickAndCreateCircle = new EventHandler<MouseEvent>() {
 
@@ -443,6 +445,9 @@ public class MainWindowController {
     public void putCellSpaceIntoCellSpaces(){
         Optional<Pair<String, String>> result=readDataOfCellSpace();
         cellSpaceDrawer();
+        root.setOnMouseClicked(null);
+
+
 
         //Creating CellSpace Coordinates
 
@@ -466,8 +471,8 @@ public class MainWindowController {
 
     public void exportToGML(){
         File exportedGml = new File(showSaveDialog());
-        facade.domExport(exportedGml);
-
+        facade.domExport(exportedGml,cellSpaces);
+        System.out.println("Export is ready.");
     }
 
 

@@ -62,7 +62,7 @@ double x,y,z;
 //                CellSpaceName = currentNode.getFirstChild().
 //                        getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2", "id").getTextContent();
 
-                CellSpaceName = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2","GenericMetaData").item(0).getNodeValue();
+                CellSpaceName = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2","GenericMetaData").item(0).getTextContent();
 
                 boolean linear = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").getLength() != 0;
                 if (linear == false) {
