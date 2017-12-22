@@ -24,6 +24,8 @@ public class CellSpace {
         return ParentFloor;
     }
 
+    public String getCellSpaceName() { return CellSpaceName; }
+
 
     public void setParentFloor(String parentFloor) {
         ParentFloor = parentFloor;

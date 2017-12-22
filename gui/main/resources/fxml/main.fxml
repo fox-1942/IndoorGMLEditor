@@ -15,6 +15,7 @@
             <items>
 
                 <MenuItem mnemonicParsing="false" onAction="#openDrawFile" text="Open File" />
+                <MenuItem mnemonicParsing="false" onAction="#exportToGML" text="Export to .gml" />
                 <MenuItem mnemonicParsing="false"  text="Exit application" />
 
 
@@ -22,7 +23,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#createCellSpaceIntoCellSpaces" text="Create CellSpace" />
+              <MenuItem mnemonicParsing="false" onAction="#putCellSpaceIntoCellSpaces" text="Create CellSpace" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="View">

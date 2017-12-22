@@ -56,12 +56,13 @@ double x,y,z;
 
 
                 Node currentNode = cellSpaceMemberNodeList.item(i);
-                // System.out.println(currentNode.getFirstChild());
-                CellSpaceName = currentNode.getFirstChild().
-                        getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2", "id").getTextContent();
-
                 Element currentElement = (Element) currentNode;
                 Node floor, ceiling;
+
+//                CellSpaceName = currentNode.getFirstChild().
+//                        getAttributes().getNamedItemNS("http://www.opengis.net/gml/3.2", "id").getTextContent();
+
+                CellSpaceName = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2","GenericMetaData").item(0).getNodeValue();
 
                 boolean linear = currentElement.getElementsByTagNameNS("http://www.opengis.net/gml/3.2", "LinearRing").getLength() != 0;
                 if (linear == false) {

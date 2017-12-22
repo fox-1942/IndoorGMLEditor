@@ -7,17 +7,11 @@
     xmlns:core="http://www.opengis.net/indoorgml/1.0/core"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.opengis.net/indoorgml/1.0/core http://schemas.opengis.net/indoorgml/1.0/indoorgmlcore.xsd" gml:id="ISS_University_of_Miskolc">
-    
-
 
 
         <core:primalSpaceFeatures>
-            
                     <core:PrimalSpaceFeatures gml:id="IIS_1st_Floor">
-                        
-                        
-                        
-                        
+
                        <core:cellSpaceMember>
                            <core:CellSpace gml:id="uuid_bef00f27-9e13-4416-a380-c04010c377cb">
                             <gml:metaDataProperty>
@@ -69,7 +63,7 @@
                                 </core:Geometry3D>
                             </core:cellSpaceGeometry>
                         </core:CellSpace>
-                    </core:cellSpaceMember>
+                       </core:cellSpaceMember>
 
                     <core:cellSpaceMember>
                         <core:CellSpace gml:id="uuid_6b5b4864-bfe9-4dc2-b788-b02c57aed7ab">
@@ -232,8 +226,9 @@
                             </core:CellSpace>
                         </core:cellSpaceMember>
 
-                <core:cellSpaceMember>
-                    <core:CellSpace gml:id="uuid_8cabdc44-9603-4968-a778-a9a86ef00ee6">
+
+                     <core:cellSpaceMember>
+                     <core:CellSpace gml:id="uuid_8cabdc44-9603-4968-a778-a9a86ef00ee6">
                         <gml:metaDataProperty>
                             <gml:GenericMetaData gml:id="Office114Name">Office114</gml:GenericMetaData>
                         </gml:metaDataProperty>

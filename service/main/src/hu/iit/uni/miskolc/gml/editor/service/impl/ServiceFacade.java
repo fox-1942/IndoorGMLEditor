@@ -26,8 +26,8 @@ public class ServiceFacade {
     public ServiceFacade() {
     }
 
-    public void marshalMax(File outputFile) throws JAXBException {
-        indoorGMLexport.marshalMax(outputFile);
+    public void domExport(File exportedGml, ArrayList<CellSpace> cellSpaces) {
+        indoorGMLexport.export(exportedGml, cellSpaces);
     }
 
     public void domImport() throws IOException, SAXException, ParserConfigurationException {

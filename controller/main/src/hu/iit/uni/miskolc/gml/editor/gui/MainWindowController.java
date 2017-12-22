@@ -34,9 +34,6 @@ import java.util.Optional;
 import javafx.scene.input.MouseEvent;
 
 
-/**
- * Created by fox on 2017.08.18..
- */
 public class MainWindowController {
 
     private ServiceFacade facade;
@@ -73,7 +70,8 @@ public class MainWindowController {
         return outputFile;
     }
 
-    public void showSaveDialog() {
+    public String showSaveDialog() {
+        String path = "";
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showSaveDialog(null);
         if (selectedFile != null) {
@@ -83,36 +81,27 @@ public class MainWindowController {
         } else {
             System.out.println("Cancelled.");
         }
+        return path;
     }
 
 
     //-------------------------------------------------------------------------------
 
-    public void showSingleFileChooser() {
-
-        FileChooser fileChooser = new FileChooser();
-        File selectedFile = fileChooser.showOpenDialog(null);
-
-        if (selectedFile != null) {
-            System.out.println("File selected");
-            path = selectedFile.getPath();
-            System.out.println(path);
-        } else {
-            System.out.println("Cancelled.");
-        }
-    }
+//    public void showSingleFileChooser() {
+//
+//        FileChooser fileChooser = new FileChooser();
+//        File selectedFile = fileChooser.showOpenDialog(null);
+//
+//        if (selectedFile != null) {
+//            System.out.println("File selected");
+//            path = selectedFile.getPath();
+//            System.out.println(path);
+//        } else {
+//            System.out.println("Cancelled.");
+//        }
+//    }
 
     //--------------------------------------------------------------------------------
-
-
-    public void exportToXml() throws ParserConfigurationException, SAXException, IOException {
-        showSaveDialog();  // Path is set.
-        File inputFile = new File(path);
-
-
-    }
-
-
 
 
     public Circle createCircle(double x, double y) {
@@ -451,10 +440,7 @@ public class MainWindowController {
 
     }
 
-
-
-
-    public void createCellSpaceIntoCellSpaces(){
+    public void putCellSpaceIntoCellSpaces(){
         Optional<Pair<String, String>> result=readDataOfCellSpace();
         cellSpaceDrawer();
 
@@ -477,4 +463,14 @@ public class MainWindowController {
 
         cellSpaceReady=false;
     }
+
+    public void exportToGML(){
+        File exportedGml = new File(showSaveDialog());
+        facade.domExport(exportedGml);
+
+    }
+
+
+
+
 }

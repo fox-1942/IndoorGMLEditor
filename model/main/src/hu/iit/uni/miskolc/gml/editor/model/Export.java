@@ -1,12 +1,9 @@
 package hu.iit.uni.miskolc.gml.editor.model;
 
-import javax.xml.bind.JAXBException;
 import java.io.File;
+import java.util.ArrayList;
 
 public interface Export {
 
-     void marshalMax (File outputFile) throws JAXBException;
-
-
-
+     void export(File results, ArrayList<CellSpace> cellSpaces);
 }
