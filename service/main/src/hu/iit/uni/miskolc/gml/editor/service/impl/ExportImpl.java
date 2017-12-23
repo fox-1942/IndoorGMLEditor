@@ -24,12 +24,13 @@ public class ExportImpl implements Export {
 
     private Document doc;
     private String CoreNS = "http://www.opengis.net/indoorgml/1.0/core";
-    private String GmlNS="http://www.opengis.net/gml/3.2";
 
     @Override
     public void export(File exportedGml, ArrayList<CellSpace> cellSpaces) {
 
         try {
+
+
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             docFactory.setNamespaceAware(true);
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -37,18 +38,24 @@ public class ExportImpl implements Export {
 
             // root elements
             Element rootElement = doc.createElementNS(CoreNS, "core:IndoorFeatures");
-            //rootElement.setAttribute( "xmlns:gml","http://www.opengis.net/gml/3.2");
+            rootElement.setAttribute( "xmlns:gml","http://www.opengis.net/gml/3.2");
+            rootElement.setAttribute( "xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance");
+            rootElement.setAttribute( "xsi:schemaLocation","http://www.opengis.net/indoorgml/1.0/core http://schemas.opengis.net/indoorgml/1.0/indoorgmlcore.xsd");
+            rootElement.setAttribute( "xsi:schemaLocation","http://www.opengis.net/indoorgml/1.0/core http://schemas.opengis.net/indoorgml/1.0/indoorgmlcore.xsd");
+
+            rootElement.setAttribute( "gml:id","ISS_University_of_Miskolc");
+
+
             doc.appendChild(rootElement);
 
 
-
-            Element primalSpaceFeatures = doc.createElementNS(CoreNS, "core:primalSpaceFeatures");
+            Element primalSpaceFeatures = doc.createElement( "core:primalSpaceFeatures");
             rootElement.appendChild(primalSpaceFeatures);
 
-            Element bigPrimalSpaceFeatures = doc.createElementNS(CoreNS, "core:PrimalSpaceFeatures");
+            Element bigPrimalSpaceFeatures = doc.createElement( "core:PrimalSpaceFeatures");
 
 
-            bigPrimalSpaceFeatures.setAttributeNS(CoreNS,"gml:id",cellSpaces.get(0).getParentFloor());
+            bigPrimalSpaceFeatures.setAttribute("gml:id",cellSpaces.get(0).getParentFloor());
             primalSpaceFeatures.appendChild(bigPrimalSpaceFeatures);
 
             //putting cellspace coordinates into each cellspace
@@ -60,7 +67,6 @@ public class ExportImpl implements Export {
                         cp.getCellSpaceFloorCoordinateArrayList(),cp.getCellSpaceCeilingCoordinatesArrayList()));
 
             }
-
 
             //for output to file, console
             TransformerFactory transformFactory = TransformerFactory.newInstance();
@@ -78,7 +84,7 @@ public class ExportImpl implements Export {
             //writing data
             transformer.transform(source, console);
             transformer.transform(source, file);
-            System.out.println("DONE");
+            System.out.println("DONE.");
 
         } catch (ParserConfigurationException pce) {
             pce.printStackTrace();
@@ -93,7 +99,7 @@ public class ExportImpl implements Export {
     public Node createCellSpaceMember(String cellSpaceName, ArrayList<CellSpaceCoordinate> cpFloor, ArrayList<CellSpaceCoordinate> cpCeiling) {
 
         Element cellSpaceMember = doc.createElementNS(CoreNS, "core:cellSpaceMember");
-        Element cellSpace = doc.createElementNS(CoreNS, "core:cellSpace");
+        Element cellSpace = doc.createElementNS(CoreNS, "core:CellSpace");
         cellSpaceMember.appendChild(cellSpace);
 
         Element metaDataProperty = doc.createElement("gml:metaDataProperty");
@@ -107,7 +113,7 @@ public class ExportImpl implements Export {
         Element cellSpaceGeometry = doc.createElementNS(CoreNS, "core:cellSpaceGeometry");
         cellSpace.appendChild(cellSpaceGeometry);
 
-        Element geometry3d = doc.createElementNS(CoreNS, "core:Geometry3d");
+        Element geometry3d = doc.createElementNS(CoreNS, "core:Geometry3D");
         cellSpaceGeometry.appendChild(geometry3d);
 
         Element solid = doc.createElement("gml:Solid");
@@ -144,54 +150,24 @@ public class ExportImpl implements Export {
                 Element arc = doc.createElement("gml:Arc");
                 interior2.appendChild(arc);
 
-
-                if (i == 0) {
-                    for (int j = 0; j < cpFloor.size(); j++) {
-                        Element pos = doc.createElement("gml:pos");
-                        arc.appendChild(pos);
-                        pos.setTextContent(cpFloor.get(j).toStringCoordinateXYZ());
-                    }
-                } else {
-                    for (int j = 0; j < cpCeiling.size(); j++) {
-                        Element pos = doc.createElement("gml:pos");
-                        arc.appendChild(pos);
-                        pos.setTextContent(cpCeiling.get(j).toStringCoordinateXYZ());
-                    }
-                }
+                insidePolygonPatch(cpFloor,cpCeiling,arc,i);
             }
-
 
             //LinearRing------------------------------------------------------------
 
             else {
-
                 Element linearRing = doc.createElement("gml:LinearRing");
                 Element interior2 = (Element) interior.cloneNode(false);
                 polygonPatch.appendChild(interior2);
                 interior2.appendChild(linearRing);
 
-                if (i == 0) {
-                    for (int j = 0; j < cpFloor.size(); j++) {
-                        Element pos = doc.createElement("gml:pos");
-                        linearRing.appendChild(pos);
-                        pos.setTextContent(cpFloor.get(j).toStringCoordinateXYZ());
-                    }
-                } else {
-                    for (int j = 0; j < cpCeiling.size(); j++) {
-                        Element pos = doc.createElement("gml:pos");
-                        linearRing.appendChild(pos);
-                        pos.setTextContent(cpCeiling.get(j).toStringCoordinateXYZ());
-                    }
-                }
+                insidePolygonPatch(cpFloor,cpCeiling,linearRing,i);
             }
         }
-
             return cellSpaceMember;
-        }
+    }
 
-
-        public void insidePolygonPatch(ArrayList<CellSpaceCoordinate> cpFloor,ArrayList<CellSpaceCoordinate> cpCeiling, Element e, int i){
-
+        public void insidePolygonPatch(ArrayList<CellSpaceCoordinate> cpFloor, ArrayList<CellSpaceCoordinate> cpCeiling, Element e, int i){
             if (i == 0) {
                 for (int j = 0; j < cpFloor.size(); j++) {
                     Element pos = doc.createElement("gml:pos");
@@ -206,7 +182,6 @@ public class ExportImpl implements Export {
                 }
             }
         }
-
 
 
 //    public void marshalMax(File outputFile) throws JAXBException {

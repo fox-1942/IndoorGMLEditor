@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane fx:id="apMain" prefHeight="10.0" prefWidth="500" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
+<AnchorPane fx:id="apMain" prefHeight="10.0" prefWidth="500" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
    <children>
 
       <MenuBar prefWidth="Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -16,14 +19,14 @@
 
                 <MenuItem mnemonicParsing="false" onAction="#openDrawFile" text="Open File" />
                 <MenuItem mnemonicParsing="false" onAction="#exportToGML" text="Export to .gml" />
-                <MenuItem mnemonicParsing="false"  text="Exit application" />
+                <MenuItem mnemonicParsing="false" text="Exit application" />
 
 
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#putCellSpaceIntoCellSpaces" text="Create CellSpace" />
+              <MenuItem mnemonicParsing="false" onAction="#cellSpaceDrawer" text="Create CellSpace" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="View">
@@ -38,6 +41,6 @@
           </Menu>
         </menus>
       </MenuBar>
-            <BorderPane fx:id="root" layoutX="31.0" layoutY="31.0" prefHeight="205.0" prefWidth="439.0" />
+            <BorderPane fx:id="root" layoutY="29.0" prefHeight="200.0" prefWidth="500.0" />
    </children>
 </AnchorPane>

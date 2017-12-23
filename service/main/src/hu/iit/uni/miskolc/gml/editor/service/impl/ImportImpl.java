@@ -77,7 +77,7 @@ public class ImportImpl implements Import {
 
     public Document domImport() throws ParserConfigurationException, IOException, SAXException {
 
-        File inputFile = new File("resources/fgfg.xml");
+        File inputFile = new File("resources/123.gml");
         System.out.println("XML helye----->  " + inputFile.getAbsolutePath());
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
@@ -104,9 +104,8 @@ public class ImportImpl implements Import {
 
         NodeList nl = document.getDocumentElement().getChildNodes();
         System.out.println("Children of the Root------> " + nl.getLength());
-        if (nl.getLength() > 0)
-            System.out.println("All of my data: " + nl.item(0).getTextContent());
-
+//        if (nl.getLength() > 0)
+//            System.out.println("All of my data: " + nl.item(0).getTextContent());
         return document;
     }
 }

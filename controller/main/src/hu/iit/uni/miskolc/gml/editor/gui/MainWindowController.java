@@ -120,6 +120,7 @@ public class MainWindowController {
                 int[] indexes = ownerCellSpaceOfCircle(circle);
                 cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
                         get(indexes[1]).setCoordinateXYZ(me.getX(), me.getY(), 3.3);
+
                 circle.setCenterX(me.getX());
                 circle.setCenterY(me.getY());
 
@@ -150,12 +151,9 @@ public class MainWindowController {
                     cellSpaces.remove(cellSpaces.get(indexes[0]));
 
                     drawFloorPlanSubScene();
-
-
                 }
             }
         });
-
         return circle;
     }
 
@@ -210,6 +208,7 @@ public class MainWindowController {
         }
         root.getChildren().clear();
         root.setCenter(group);
+
     }
 
     public void openDrawFile() {
@@ -273,11 +272,17 @@ public class MainWindowController {
 
 
     public void cellSpaceDrawer() {
+        root.setCursor(Cursor.CROSSHAIR);
         circlesRealTime = new ArrayList<Circle>();
+        cellSpaceReady = false;
 
         EventHandler<MouseEvent> clickOnFirstCircle = new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(MouseEvent firstCircle) {
+                if (cellSpaceReady == true) {
+                    return;
+                }
+
                 circlesRealTime.get(0).toFront();
 
                 Line line = new Line();
@@ -291,9 +296,7 @@ public class MainWindowController {
 
                 root.getChildren().add(line);
                 cellSpaceReady = true;
-                flowPane();
-                root.setOnMouseClicked(null);
-                return;
+                putCellSpaceIntoCellSpaces();
 
             }
 
@@ -307,7 +310,7 @@ public class MainWindowController {
             @Override
             public void handle(MouseEvent createCell) {
                 if (cellSpaceReady == true) {
-                    root.removeEventHandler(MouseEvent.ANY, this);
+                    root.removeEventHandler(MouseEvent.ANY,this::handle);
                     return;
                 }
 
@@ -336,12 +339,9 @@ public class MainWindowController {
                     circlesRealTime.get(0).addEventFilter(MouseEvent.MOUSE_CLICKED, clickOnFirstCircle);
                 }
 
-
             }
         };
-
         root.setOnMouseClicked(clickAndCreateCircle);
-
     }
 
 
@@ -440,40 +440,37 @@ public class MainWindowController {
     newStage.setTitle("Information");
     newStage.showAndWait();
 
+
     }
 
     public void putCellSpaceIntoCellSpaces(){
         Optional<Pair<String, String>> result=readDataOfCellSpace();
-        cellSpaceDrawer();
-        root.setOnMouseClicked(null);
+        if(cellSpaceReady==true) {
+            //Creating CellSpace Coordinates
+
+            ArrayList<CellSpaceCoordinate> cellSpaceFloorCoordinateArrayList = new ArrayList<CellSpaceCoordinate>();
+            ArrayList<CellSpaceCoordinate> cellSpaceCeilingCoordinateArrayList = new ArrayList<CellSpaceCoordinate>();
+            for (Circle circle : circlesRealTime) {
+                cellSpaceFloorCoordinateArrayList.add(new CellSpaceCoordinate(circle.getCenterX(), circle.getCenterY(), 3.3));
+            }
+            //cellSpaceFloorCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
+            //      circlesRealTime.get(0).getCenterY(),3.3));
 
 
+            for (Circle circle : circlesRealTime) {
+                cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circle.getCenterX(), circle.getCenterY(), 5.5));
+            }
+            //cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
+            //      circlesRealTime.get(0).getCenterY(),5.5));
 
-        //Creating CellSpace Coordinates
 
-        ArrayList<CellSpaceCoordinate> cellSpaceFloorCoordinateArrayList=new ArrayList<CellSpaceCoordinate>();
-        ArrayList<CellSpaceCoordinate> cellSpaceCeilingCoordinateArrayList=new ArrayList<CellSpaceCoordinate>();
-        for (Circle circle: circlesRealTime)
-        {
-            cellSpaceFloorCoordinateArrayList.add(new CellSpaceCoordinate(circle.getCenterX(),circle.getCenterY(),3.3));
+            CellSpace newCellSpace = new CellSpace(result.get().getKey(), result.get().getValue(), cellSpaceFloorCoordinateArrayList, cellSpaceFloorCoordinateArrayList);
+            cellSpaces.add(newCellSpace);
+
+
+            flowPane();
+            root.setCursor(Cursor.DEFAULT);
         }
-        cellSpaceFloorCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
-                circlesRealTime.get(0).getCenterY(),3.3));
-
-
-
-        for (Circle circle: circlesRealTime)
-        {
-            cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circle.getCenterX(),circle.getCenterY(),5.5));
-        }
-        cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
-                circlesRealTime.get(0).getCenterY(),5.5));
-
-
-        CellSpace newCellSpace=new CellSpace(result.get().getKey(),result.get().getValue(),cellSpaceFloorCoordinateArrayList,cellSpaceFloorCoordinateArrayList);
-        cellSpaces.add(newCellSpace);
-
-        cellSpaceReady=false;
     }
 
     public void exportToGML(){
