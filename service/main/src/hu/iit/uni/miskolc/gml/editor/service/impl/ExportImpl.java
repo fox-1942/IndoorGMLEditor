@@ -5,6 +5,7 @@ import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
 import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
 import hu.iit.uni.miskolc.gml.editor.model.Export;
 
+import net.opengis.indoorgml.geometry.LinearRing;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -36,8 +37,7 @@ public class ExportImpl implements Export {
 
             // root elements
             Element rootElement = doc.createElementNS(CoreNS, "core:IndoorFeatures");
-            rootElement.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:gml","http://www.opengis.net/gml/3.2");
-
+            //rootElement.setAttribute( "xmlns:gml","http://www.opengis.net/gml/3.2");
             doc.appendChild(rootElement);
 
 
@@ -53,10 +53,10 @@ public class ExportImpl implements Export {
 
             //putting cellspace coordinates into each cellspace
 
-            for (int j=0;j<2;j++) {
+            for (int j=0;j<cellSpaces.size();j++) {
 
                 CellSpace cp=cellSpaces.get(j);
-                bigPrimalSpaceFeatures.appendChild(createCellSpaceMember(cp.getParentFloor(),cp.getCellSpaceName(),
+                bigPrimalSpaceFeatures.appendChild(createCellSpaceMember(cp.getCellSpaceName(),
                         cp.getCellSpaceFloorCoordinateArrayList(),cp.getCellSpaceCeilingCoordinatesArrayList()));
 
             }
@@ -90,7 +90,8 @@ public class ExportImpl implements Export {
 
     }
 
-    public Node createCellSpaceMember(String parentFloor, String cellSpaceName, ArrayList<CellSpaceCoordinate> cpFloor, ArrayList<CellSpaceCoordinate> cpCeiling) {
+    public Node createCellSpaceMember(String cellSpaceName, ArrayList<CellSpaceCoordinate> cpFloor, ArrayList<CellSpaceCoordinate> cpCeiling) {
+
         Element cellSpaceMember = doc.createElementNS(CoreNS, "core:cellSpaceMember");
         Element cellSpace = doc.createElementNS(CoreNS, "core:cellSpace");
         cellSpaceMember.appendChild(cellSpace);
@@ -102,62 +103,109 @@ public class ExportImpl implements Export {
         genericMetaData.setTextContent(cellSpaceName);
         metaDataProperty.appendChild(genericMetaData);
 
-/*
 
-        Element cellSpaceGeometry=doc.createElementNS(CoreNS,"cellSpaceGeometry");
+        Element cellSpaceGeometry = doc.createElementNS(CoreNS, "core:cellSpaceGeometry");
         cellSpace.appendChild(cellSpaceGeometry);
 
-        Element geometry3d=doc.createElementNS(CoreNS,"Geometry3d");
+        Element geometry3d = doc.createElementNS(CoreNS, "core:Geometry3d");
         cellSpaceGeometry.appendChild(geometry3d);
 
-        Element solid=doc.createElementNS(GmlNS,"Solid");
+        Element solid = doc.createElement("gml:Solid");
         geometry3d.appendChild(solid);
-        Element interior=doc.createElementNS(GmlNS,"interior");
+        Element interior = doc.createElement("gml:interior");
         solid.appendChild(interior);
 
 
-        Element shell=doc.createElementNS(GmlNS,"Shell");
+        Element shell = doc.createElement("gml:Shell");
         interior.appendChild(shell);
 
-        Element surfaceMember=doc.createElementNS(GmlNS,"surfaceMember");
+        Element surfaceMember = doc.createElement("gml:surfaceMember");
         shell.appendChild(surfaceMember);
 
 
-        Element polyhedralSurface=doc.createElementNS(GmlNS,"PolyhedralSurface");
+        Element polyhedralSurface = doc.createElement("gml:PolyhedralSurface");
         surfaceMember.appendChild(polyhedralSurface);
 
-        Element patches=doc.createElementNS(GmlNS,"patches");
+        Element patches = doc.createElement("gml:patches");
         polyhedralSurface.appendChild(patches);
 
 
-        Element polygonPatch=doc.createElementNS(GmlNS,"polygonPatch");
+        Element polygonPatch = doc.createElement("gml:polygonPatch");
         patches.appendChild(polygonPatch);
 
-        Element interior2=doc.createElementNS(GmlNS,"interior2");
+
+        for (int i = 0; i < 2; i++) {
+
+            if (cpFloor.size() == 4) {
+
+                Element interior2 = (Element) interior.cloneNode(false);
+                polygonPatch.appendChild(interior2);
+
+                Element arc = doc.createElement("gml:Arc");
+                interior2.appendChild(arc);
 
 
-        if( cpFloor.size()==5){
-            Element linearRing=doc.createElementNS(GmlNS,"LinearRing");
+                if (i == 0) {
+                    for (int j = 0; j < cpFloor.size(); j++) {
+                        Element pos = doc.createElement("gml:pos");
+                        arc.appendChild(pos);
+                        pos.setTextContent(cpFloor.get(j).toStringCoordinateXYZ());
+                    }
+                } else {
+                    for (int j = 0; j < cpCeiling.size(); j++) {
+                        Element pos = doc.createElement("gml:pos");
+                        arc.appendChild(pos);
+                        pos.setTextContent(cpCeiling.get(j).toStringCoordinateXYZ());
+                    }
+                }
+            }
 
-            for(int i=0;i<2;i++){
+
+            //LinearRing------------------------------------------------------------
+
+            else {
+
+                Element linearRing = doc.createElement("gml:LinearRing");
+                Element interior2 = (Element) interior.cloneNode(false);
                 polygonPatch.appendChild(interior2);
                 interior2.appendChild(linearRing);
+
+                if (i == 0) {
+                    for (int j = 0; j < cpFloor.size(); j++) {
+                        Element pos = doc.createElement("gml:pos");
+                        linearRing.appendChild(pos);
+                        pos.setTextContent(cpFloor.get(j).toStringCoordinateXYZ());
+                    }
+                } else {
+                    for (int j = 0; j < cpCeiling.size(); j++) {
+                        Element pos = doc.createElement("gml:pos");
+                        linearRing.appendChild(pos);
+                        pos.setTextContent(cpCeiling.get(j).toStringCoordinateXYZ());
+                    }
+                }
             }
         }
 
-        else {
+            return cellSpaceMember;
+        }
 
-            Element arc=doc.createElementNS(GmlNS,"Arc");
 
-            for(int i=0;i<2;i++){
-                polygonPatch.appendChild(interior2);
-                interior2.appendChild(arc);
+        public void insidePolygonPatch(ArrayList<CellSpaceCoordinate> cpFloor,ArrayList<CellSpaceCoordinate> cpCeiling, Element e, int i){
+
+            if (i == 0) {
+                for (int j = 0; j < cpFloor.size(); j++) {
+                    Element pos = doc.createElement("gml:pos");
+                    e.appendChild(pos);
+                    pos.setTextContent(cpFloor.get(j).toStringCoordinateXYZ());
+                }
+            } else {
+                for (int j = 0; j < cpCeiling.size(); j++) {
+                    Element pos = doc.createElement("gml:pos");
+                    e.appendChild(pos);
+                    pos.setTextContent(cpCeiling.get(j).toStringCoordinateXYZ());
+                }
             }
         }
-*/
-        return cellSpaceMember;
-    }
-
 
 
 
@@ -182,4 +230,5 @@ public class ExportImpl implements Export {
 //
 //    }
 
-}
+    }
+

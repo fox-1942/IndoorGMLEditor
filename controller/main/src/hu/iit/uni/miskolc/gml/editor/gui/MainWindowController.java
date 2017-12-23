@@ -457,11 +457,18 @@ public class MainWindowController {
         {
             cellSpaceFloorCoordinateArrayList.add(new CellSpaceCoordinate(circle.getCenterX(),circle.getCenterY(),3.3));
         }
+        cellSpaceFloorCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
+                circlesRealTime.get(0).getCenterY(),3.3));
+
+
 
         for (Circle circle: circlesRealTime)
         {
             cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circle.getCenterX(),circle.getCenterY(),5.5));
         }
+        cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
+                circlesRealTime.get(0).getCenterY(),5.5));
+
 
         CellSpace newCellSpace=new CellSpace(result.get().getKey(),result.get().getValue(),cellSpaceFloorCoordinateArrayList,cellSpaceFloorCoordinateArrayList);
         cellSpaces.add(newCellSpace);
