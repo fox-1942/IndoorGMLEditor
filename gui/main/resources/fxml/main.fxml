@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="apMain" prefHeight="10.0" prefWidth="500" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
-   <children>
-
+<BorderPane  prefHeight="10.0" prefWidth="500" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
+    <top>
       <MenuBar prefWidth="Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -20,8 +21,6 @@
                 <MenuItem mnemonicParsing="false" onAction="#openDrawFile" text="Open File" />
                 <MenuItem mnemonicParsing="false" onAction="#exportToGML" text="Export to .gml" />
                 <MenuItem mnemonicParsing="false" text="Exit application" />
-
-
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -41,6 +40,14 @@
           </Menu>
         </menus>
       </MenuBar>
-            <BorderPane fx:id="root" layoutY="29.0" prefHeight="200.0" prefWidth="500.0" />
-   </children>
-</AnchorPane>
+    </top>
+    <center>
+            <ScrollPane fx:id="root" layoutY="31.0"   style="-fx-background-color: #5d5b5e">
+               <content>
+                   <Pane>
+            </Pane>
+               </content>
+         </ScrollPane>
+    </center>
+</BorderPane>
+<!--<Pane minHeight="1601.0" minWidth="2997.0" maxHeight="1601.0" maxWidth="2997.0" prefHeight="1601.0" prefWidth="2997.0" scaleY="10" scaleX="10">-->

@@ -33,6 +33,8 @@ import java.util.Optional;
 
 import javafx.scene.input.MouseEvent;
 
+import static java.awt.Color.black;
+
 
 public class MainWindowController {
 
@@ -47,11 +49,13 @@ public class MainWindowController {
     private ArrayList<Circle> circleArrayList;
     private ArrayList<CellSpace> cellSpaces;
     private boolean drawnFromFile = false;
-    private Group group;
-
 
     @FXML
-    private BorderPane root;
+    private ScrollPane root;
+
+    @FXML
+    private Pane pane;
+
 
 
     public MainWindowController() {
@@ -128,6 +132,7 @@ public class MainWindowController {
             }
         });
 
+
         circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
@@ -162,7 +167,9 @@ public class MainWindowController {
     // ---------------------------------------------------------------------------------
 
     public void drawFloorPlanSubScene() {
-        group = new Group();
+
+
+
         if (drawnFromFile == false) {
 
             //Reading and creating CellSpace objects from file.
@@ -181,17 +188,15 @@ public class MainWindowController {
 
             for (int i = 0; i < circleArrayList.size() - 1; i++) {
 
-                Line line = new Line();
-                line.setStroke(Color.LIGHTSEAGREEN);
-                line.setStrokeWidth(0.4);
+                Line line=createLine();
 
                 if (i == circleArrayList.size() - 2) {
                     line.startXProperty().bind(circleArrayList.get(i).centerXProperty());
                     line.startYProperty().bind(circleArrayList.get(i).centerYProperty());
                     line.endXProperty().bind(circleArrayList.get(0).centerXProperty());
                     line.endYProperty().bind(circleArrayList.get(0).centerYProperty());
-                    group.getChildren().add(circleArrayList.get(i));
-                    group.getChildren().add(line);
+                    pane.getChildren().add(circleArrayList.get(i));
+                    pane.getChildren().add(line);
                     break;
                 }
 
@@ -201,14 +206,11 @@ public class MainWindowController {
                 line.endYProperty().bind(circleArrayList.get(i + 1).centerYProperty());
 
 
-                group.getChildren().add(circleArrayList.get(i));
-                group.getChildren().add(line);
+                pane.getChildren().add(circleArrayList.get(i));
+                pane.getChildren().add(line);
 
             }
         }
-        root.getChildren().clear();
-        root.setCenter(group);
-
     }
 
     public void openDrawFile() {
@@ -221,19 +223,38 @@ public class MainWindowController {
      * rootCreator contains the things represented by the floorPlanSubScene.
      */
 
-    public BorderPane rootCreator() {
+    public ScrollPane rootCreator() {
 
-//       root.setPrefSize(500, 500);
-        root.setLayoutX(700);
-        root.setLayoutY(350);
+        pane=new Pane();
+        pane.setTranslateX(200);
+        pane.setTranslateY(400);
+        pane.setScaleY(14.0);
+        pane.setScaleX(14.0);
+        pane.setPrefSize(400,400);
+        pane.setStyle("-fx-background-color: #5d5b5e");
+
+        Group group=new Group();
+        group.getChildren().add(pane);
+//        root.setLayoutX(10);
+//        root.setLayoutY(100);
 //        root.setTranslateX(0);
 //        root.setTranslateY(0);
-        root.setScaleX(14);
-        root.setScaleY(14);
-        root.toBack();
 
-        root.setStyle("-fx-background-color: #5d5b5e");
+        root.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        root.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        root.setContent(group);
+
+        root.setStyle("-fx-background-color: #4db124");
         return root;
+    }
+
+    public Line createLine(){
+        Line line = new Line();
+        line.setStroke(Color.LIGHTSEAGREEN);
+        line.setStrokeWidth(0.4);
+
+
+        return line;
     }
 
 
@@ -285,16 +306,14 @@ public class MainWindowController {
 
                 circlesRealTime.get(0).toFront();
 
-                Line line = new Line();
-                line.setStroke(Color.LIGHTSEAGREEN);
-                line.setStrokeWidth(0.4);
+                Line line = createLine();
 
                 line.startXProperty().bind(circlesRealTime.get(circlesRealTime.size() - 1).centerXProperty());
                 line.startYProperty().bind(circlesRealTime.get(circlesRealTime.size() - 1).centerYProperty());
                 line.endXProperty().bind(circlesRealTime.get(0).centerXProperty());
                 line.endYProperty().bind(circlesRealTime.get(0).centerYProperty());
 
-                root.getChildren().add(line);
+                pane.getChildren().add(line);
                 cellSpaceReady = true;
                 putCellSpaceIntoCellSpaces();
 
@@ -316,22 +335,20 @@ public class MainWindowController {
 
                 Circle point = createCircle(createCell.getX(), createCell.getY());
                 circlesRealTime.add(point);
-                root.getChildren().add(point);
+                pane.getChildren().add(point);
 
                 if (circlesRealTime.size() >= 2) {
                     for (int i = 0; i < circlesRealTime.size() - 1; i++) {
 
 
-                        Line line = new Line();
-                        line.setStroke(Color.LIGHTSEAGREEN);
-                        line.setStrokeWidth(0.4);
+                        Line line = createLine();
 
                         line.startXProperty().bind(circlesRealTime.get(i).centerXProperty());
                         line.startYProperty().bind(circlesRealTime.get(i).centerYProperty());
                         line.endXProperty().bind(circlesRealTime.get(i + 1).centerXProperty());
                         line.endYProperty().bind(circlesRealTime.get(i + 1).centerYProperty());
 
-                        root.getChildren().add(line);
+                        pane.getChildren().add(line);
                     }
                 }
 
