@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane  prefHeight="10.0" prefWidth="500" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"   fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
     <top>
       <MenuBar prefWidth="Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-
+                <MenuItem mnemonicParsing="false" onAction="#rootCreator" text="New File" />
                 <MenuItem mnemonicParsing="false" onAction="#openDrawFile" text="Open File" />
                 <MenuItem mnemonicParsing="false" onAction="#exportToGML" text="Export to .gml" />
                 <MenuItem mnemonicParsing="false" text="Exit application" />
@@ -42,12 +42,7 @@
       </MenuBar>
     </top>
     <center>
-            <ScrollPane fx:id="root" layoutY="31.0"   style="-fx-background-color: #5d5b5e">
-               <content>
-                   <Pane>
-            </Pane>
-               </content>
+            <ScrollPane fx:id="root" layoutY="29.0"  fitToHeight="true" fitToWidth="true" style="-fx-background-color: #5d5b5e">
          </ScrollPane>
     </center>
 </BorderPane>
-<!--<Pane minHeight="1601.0" minWidth="2997.0" maxHeight="1601.0" maxWidth="2997.0" prefHeight="1601.0" prefWidth="2997.0" scaleY="10" scaleX="10">-->

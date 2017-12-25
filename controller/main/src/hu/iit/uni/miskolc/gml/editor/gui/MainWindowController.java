@@ -116,22 +116,37 @@ public class MainWindowController {
         circle.setEffect(new InnerShadow(1, Color.YELLOWGREEN.brighter()));
 
         //change a cursor when it is over circle
-        circle.setCursor(Cursor.DEFAULT);
+        circle.setCursor(Cursor.CLOSED_HAND);
 
         circle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
 
-                int[] indexes = ownerCellSpaceOfCircle(circle);
-                cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
-                        get(indexes[1]).setCoordinateXYZ(me.getX(), me.getY(), 3.3);
+                if(me.getX()<=pane.getWidth() && me.getX()>=pane.getMinWidth() &&
+                        me.getY()<=pane.getHeight() && me.getY()>=pane.getMinHeight()) {
 
-                circle.setCenterX(me.getX());
-                circle.setCenterY(me.getY());
+                    int[] indexes = ownerCellSpaceOfCircle(circle);
 
+                    CellSpaceCoordinate currentCellLast = cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
+                            get(cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().size()-1);
 
+                    //If the last coordinate of the specific cellspace is moved, moved the first coordinate as well to that point,
+                    //because in GML first and last coordinate is the same.
+                    if(currentCellLast.getCoordinateX() == circle.getCenterX() &&
+                            currentCellLast.getCoordinateY() == circle.getCenterY() ){
+
+                        cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
+                                get(0).setCoordinateXYZ(me.getX(), me.getY(), 3.3);
+                    }
+
+                    //Modify the coordinate of the cellSpace to the dragged point.
+                        cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
+                                get(indexes[1]).setCoordinateXYZ(me.getX(), me.getY(), 3.3);
+
+                    circle.setCenterX(me.getX());
+                    circle.setCenterY(me.getY());
+                }
             }
         });
-
 
         circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
@@ -140,21 +155,15 @@ public class MainWindowController {
             }
         });
 
-
-
         /**
          * When the specified mouse button clicked on the circle, the owner CellSpace object is removed from the floorPlanSubScene.
          */
-
         circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent deleteCell) {
 
                 if (deleteCell.isShiftDown()) {
-
                     int[] indexes = ownerCellSpaceOfCircle(circle);
-
                     cellSpaces.remove(cellSpaces.get(indexes[0]));
-
                     drawFloorPlanSubScene();
                 }
             }
@@ -168,14 +177,14 @@ public class MainWindowController {
 
     public void drawFloorPlanSubScene() {
 
-
-
         if (drawnFromFile == false) {
-
             //Reading and creating CellSpace objects from file.
             cellSpaceImport = new CellSpaceImportImpl();
             cellSpaces = facade.cellSpaceCreator();
             drawnFromFile = true;
+        }
+        else{
+            pane.getChildren().clear();
         }
 
         for (CellSpace cp : cellSpaces) {
@@ -208,40 +217,32 @@ public class MainWindowController {
 
                 pane.getChildren().add(circleArrayList.get(i));
                 pane.getChildren().add(line);
-
             }
         }
     }
+
+
 
     public void openDrawFile() {
         rootCreator();
         drawFloorPlanSubScene();
     }
 
-
-    /**
-     * rootCreator contains the things represented by the floorPlanSubScene.
-     */
-
     public ScrollPane rootCreator() {
-
+        cellSpaces=new ArrayList<CellSpace>();
         pane=new Pane();
-        pane.setTranslateX(200);
-        pane.setTranslateY(400);
         pane.setScaleY(14.0);
         pane.setScaleX(14.0);
         pane.setPrefSize(400,400);
         pane.setStyle("-fx-background-color: #5d5b5e");
 
+
         Group group=new Group();
         group.getChildren().add(pane);
-//        root.setLayoutX(10);
-//        root.setLayoutY(100);
-//        root.setTranslateX(0);
-//        root.setTranslateY(0);
 
         root.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         root.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
         root.setContent(group);
 
         root.setStyle("-fx-background-color: #4db124");
@@ -287,13 +288,12 @@ public class MainWindowController {
             e.printStackTrace();
             System.out.println("Circle does not belongs to CellSpace object.");
         }
-
         return indexes;
     }
 
 
     public void cellSpaceDrawer() {
-        root.setCursor(Cursor.CROSSHAIR);
+        pane.setCursor(Cursor.CROSSHAIR);
         circlesRealTime = new ArrayList<Circle>();
         cellSpaceReady = false;
 
@@ -324,8 +324,6 @@ public class MainWindowController {
 
 
         EventHandler<MouseEvent> clickAndCreateCircle = new EventHandler<MouseEvent>() {
-
-
             @Override
             public void handle(MouseEvent createCell) {
                 if (cellSpaceReady == true) {
@@ -355,10 +353,9 @@ public class MainWindowController {
                 if (circlesRealTime.size() == 3) {
                     circlesRealTime.get(0).addEventFilter(MouseEvent.MOUSE_CLICKED, clickOnFirstCircle);
                 }
-
             }
         };
-        root.setOnMouseClicked(clickAndCreateCircle);
+        pane.setOnMouseClicked(clickAndCreateCircle);
     }
 
 
@@ -385,14 +382,12 @@ public class MainWindowController {
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 140, 10, 10));
 
-
         TextField parentFloor = new TextField();
         parentFloor.setPromptText("Name of the parent floor");
         TextField cellSpaceName = new TextField();
         cellSpaceName.setPromptText("Name of the cellspace");
 
         TextField[] textFields = {parentFloor, cellSpaceName};
-
 
         //Adding textfields to the GridPane object, making them visible.
         grid.add(new Label("Parent Floor:"), 0, 0);
@@ -403,7 +398,6 @@ public class MainWindowController {
         // Enable/Disable login button depending on whether a username was entered.
         Node Button = dialog.getDialogPane().lookupButton(okayButtonType);
         Button.setDisable(true);
-
 
         //Examine whether any of the textfields is empty.
         ChangeListener listener = new ChangeListener() {
@@ -435,8 +429,6 @@ public class MainWindowController {
         Optional<Pair<String, String>> result = dialog.showAndWait();
 
         System.out.println(result.get().getKey() + " " + result.get().getValue());
-
-
         return result;
     }
 
@@ -456,8 +448,6 @@ public class MainWindowController {
     newStage.initModality(Modality.APPLICATION_MODAL);
     newStage.setTitle("Information");
     newStage.showAndWait();
-
-
     }
 
     public void putCellSpaceIntoCellSpaces(){
@@ -480,10 +470,8 @@ public class MainWindowController {
             //cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
             //      circlesRealTime.get(0).getCenterY(),5.5));
 
-
             CellSpace newCellSpace = new CellSpace(result.get().getKey(), result.get().getValue(), cellSpaceFloorCoordinateArrayList, cellSpaceFloorCoordinateArrayList);
             cellSpaces.add(newCellSpace);
-
 
             flowPane();
             root.setCursor(Cursor.DEFAULT);
@@ -495,8 +483,4 @@ public class MainWindowController {
         facade.domExport(exportedGml,cellSpaces);
         System.out.println("Export is ready.");
     }
-
-
-
-
 }
