@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns3:CellSpace xmlns:ns1="http://www.opengis.net/gml/3.2" xmlns:ns2="http://www.w3.org/1999/xlink" xmlns:ns3="http://www.opengis.net/indoorgml/1.0/core" xmlns:ns4="http://www.opengis.net/indoorgml/1.0/navigation">
-    <ns1:boundedBy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
-    <ns3:cellSpaceGeometry>
-        <ns3:Geometry2D ns2:title="surface 1">
-            <ns1:Surface srsName="SRS_NAME_OF_EZAZ" axisLabels="firstAXIS secondAXIS thirdAXIS" ns1:id="ID_OF_SURFACE2"/>
-        </ns3:Geometry2D>
-    </ns3:cellSpaceGeometry>
-</ns3:CellSpace>
