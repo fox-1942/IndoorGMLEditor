@@ -3,29 +3,16 @@ package hu.iit.uni.miskolc.gml.editor.service.impl;
 
 import hu.iit.uni.miskolc.gml.editor.model.Import;
 
-import net.opengis.gml.v_3_2_1.AbstractFeatureType;
-import net.opengis.gml.v_3_2_1.FeaturePropertyType;
 
-//import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
-//import net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesPropertyType;
-
-
-import net.opengis.indoorgml.core.IndoorFeatures;
-import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
-import net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesPropertyType;
-import net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesType;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.stream.StreamSource;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.validation.SchemaFactory;
@@ -35,11 +22,7 @@ import org.w3c.dom.NodeList;
 
 
 
-import static sun.management.Agent.error;
-
 public class ImportImpl implements Import {
-
-    private IndoorFeaturesType indoorFeaturesType;
 
     public ImportImpl() {
     }

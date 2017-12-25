@@ -488,7 +488,7 @@ public class MainWindowController {
             cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
                   circlesRealTime.get(0).getCenterY(),5.05));
 
-            CellSpace newCellSpace = new CellSpace(result.get().getKey(), result.get().getValue(), cellSpaceFloorCoordinateArrayList, cellSpaceFloorCoordinateArrayList);
+            CellSpace newCellSpace = new CellSpace(result.get().getKey(), result.get().getValue(), cellSpaceCeilingCoordinateArrayList, cellSpaceFloorCoordinateArrayList);
             cellSpaces.add(newCellSpace);
 
             flowPane();

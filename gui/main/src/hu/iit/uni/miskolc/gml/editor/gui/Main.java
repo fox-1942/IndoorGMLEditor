@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.layout.VBox;
+
 import javafx.stage.Stage;
 
 public class Main extends Application {

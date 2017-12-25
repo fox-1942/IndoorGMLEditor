@@ -5,7 +5,6 @@ import hu.iit.uni.miskolc.gml.editor.model.CellSpace;
 import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
 import hu.iit.uni.miskolc.gml.editor.model.Export;
 
-import net.opengis.indoorgml.geometry.LinearRing;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
