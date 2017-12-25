@@ -16,8 +16,6 @@ public class ServiceFacade {
 
     private Export indoorGMLexport = new ExportImpl();
 
-    private Import indoorGMLImport = new ImportImpl();
-
     private CellSpaceImportImpl cellSpaceImport = new CellSpaceImportImpl();
 
     public ServiceFacade() {
@@ -27,12 +25,9 @@ public class ServiceFacade {
         indoorGMLexport.export(exportedGml, cellSpaces);
     }
 
-    public void domImport() throws IOException, SAXException, ParserConfigurationException {
-        indoorGMLImport.domImport();
-    }
 
-    public ArrayList<CellSpace> cellSpaceCreator() {
-        return cellSpaceImport.cellSpaceCreator();
+    public ArrayList<CellSpace> cellSpaceCreator(File inputFile) {
+        return cellSpaceImport.cellSpaceCreator(inputFile);
     }
 }
 

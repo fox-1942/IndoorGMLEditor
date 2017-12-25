@@ -10,6 +10,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,12 +27,12 @@ double x,y,z;
      */
 
     @Override
-    public ArrayList<CellSpace> cellSpaceCreator(){
+    public ArrayList<CellSpace> cellSpaceCreator(File inputFile){
         ImportImpl importImpl=new ImportImpl();
 
             Document doc= null;
             try {
-                doc = importImpl.domImport();
+                doc = importImpl.domImport(inputFile);
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();
             } catch (IOException e) {

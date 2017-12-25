@@ -9,6 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 
 import javafx.scene.*;
@@ -87,6 +88,7 @@ public class MainWindowController {
     }
 
 
+
     public Circle createCircle(double x, double y) {
         //create a circle with desired name,  color and radius
         final Circle circle = new Circle(x, y, 0.4, Color.YELLOWGREEN);
@@ -100,18 +102,19 @@ public class MainWindowController {
         circle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
 
+
                 if(me.getX()<=pane.getWidth() && me.getX()>=pane.getMinWidth() &&
                         me.getY()<=pane.getHeight() && me.getY()>=pane.getMinHeight()) {
 
                     int[] indexes = ownerCellSpaceOfCircle(circle);
 
                     CellSpaceCoordinate currentCellLast = cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
-                            get(cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().size()-1);
+                            get(cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().size() - 1);
 
                     //If the last coordinate of the specific cellspace is moved, moved the first coordinate as well to that point,
                     //because in GML first and last coordinate is the same.
-                    if(currentCellLast.getCoordinateX() == circle.getCenterX() &&
-                            currentCellLast.getCoordinateY() == circle.getCenterY() ){
+                    if (currentCellLast.getCoordinateX() == circle.getCenterX() &&
+                            currentCellLast.getCoordinateY() == circle.getCenterY()) {
 
                         cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
                                 get(0).setCoordinateXYZ(me.getX(), me.getY(), 3.3);
@@ -120,8 +123,8 @@ public class MainWindowController {
                     }
 
                     //Modify the coordinate of the cellSpace to the dragged point.
-                        cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
-                                get(indexes[1]).setCoordinateXYZ(me.getX(), me.getY(), 3.3);
+                    cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
+                            get(indexes[1]).setCoordinateXYZ(me.getX(), me.getY(), 3.3);
                     cellSpaces.get(indexes[0]).getCellSpaceCeilingCoordinatesArrayList().
                             get(indexes[1]).setCoordinateXYZ(me.getX(), me.getY(), 5.05);
 
@@ -130,6 +133,31 @@ public class MainWindowController {
                 }
             }
         });
+
+        circle.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent me) {
+                if(me.isControlDown()) {
+                    for (CellSpace cp : cellSpaces) {
+                        for (int i = 0; i < cp.getCellSpaceFloorCoordinateArrayList().size(); i++) {
+                            double cpFloorCoordX = cp.getCellSpaceFloorCoordinateArrayList().get(i).getCoordinateX();
+                            double cpFloorCoordY = cp.getCellSpaceFloorCoordinateArrayList().get(i).getCoordinateY();
+                            double cpCeilingCoordX = cp.getCellSpaceCeilingCoordinatesArrayList().get(i).getCoordinateX();
+                            double cpCeilingCoordY = cp.getCellSpaceCeilingCoordinatesArrayList().get(i).getCoordinateY();
+
+                            cp.getCellSpaceFloorCoordinateArrayList().get(i).setCoordinateXYZ(cpFloorCoordX + (me.getX() - circle.getCenterX()),
+                                    cpFloorCoordY + (me.getY() - circle.getCenterY()), 3.3);
+                            cp.getCellSpaceCeilingCoordinatesArrayList().get(i).setCoordinateXYZ(cpFloorCoordX + (me.getX() - circle.getCenterX()),
+                                    cpFloorCoordY + (me.getY() - circle.getCenterY()), 5.05);
+                        }
+                    }
+                    me.consume();
+                    drawFloorPlanSubScene();
+                }
+
+            }
+        });
+
 
         circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
@@ -151,19 +179,22 @@ public class MainWindowController {
                 }
             }
         });
+
+
         return circle;
     }
 
-
-    // ---------------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------------
 
     public void drawFloorPlanSubScene() {
 
         if (drawnFromFile == false) {
             //Reading and creating CellSpace objects from file.
+
+            FileChooser fileChooser = new FileChooser();
+            File selectedFile = fileChooser.showOpenDialog(null);
+
             cellSpaceImport = new CellSpaceImportImpl();
-            cellSpaces = facade.cellSpaceCreator();
+            cellSpaces = facade.cellSpaceCreator(selectedFile);
             drawnFromFile = true;
         }
         else{
@@ -212,7 +243,7 @@ public class MainWindowController {
 
     public void newFile(){
         rootCreator();
-        drawnFromFile=false;
+        drawnFromFile=true;
     }
 
     public void exit(){
@@ -310,8 +341,6 @@ public class MainWindowController {
                 putCellSpaceIntoCellSpaces();
 
             }
-
-
         };
 
 
@@ -425,8 +454,6 @@ public class MainWindowController {
     }
 
 
-
-
     public void flowPane() {
 
     FlowPane pane1=new FlowPane();
@@ -473,5 +500,22 @@ public class MainWindowController {
         File exportedGml = new File(showSaveDialog());
         facade.domExport(exportedGml,cellSpaces);
         System.out.println("Export is ready.");
+    }
+
+    public void about(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/about.fxml"));
+        try {
+            Parent rootAbout = (Parent) loader.load();
+
+            Scene scene = new Scene(rootAbout, 1130, 665);
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.initModality(Modality.APPLICATION_MODAL);
+            newStage.setTitle("Information");
+            newStage.showAndWait();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="509.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.iit.uni.miskolc.gml.editor.gui.MainWindowController">
+   <children>
+      <TextArea editable="false" prefHeight="665.0" prefWidth="1130.0" text="IIT-IndoorEditor, Floorplan editor based on IndoorGML&#10;&#10;Controls:&#10;&#10;If you would like to create a new cellspace, you have to choose the &quot;Create new cellspace&quot; menuitem in &#10;Edit menu. After that, you can click on the pane to create new coordianates. Coordinates will be&#10;automatically connected by lines. If you would like to finish creating cellspace, just click on the first &#10;coordinate to close the cell. Then, a popup window is displayed, saying that you have created a cellspace.&#10;&#10;Green circles, representing the coordinates can be draggable to the desired location.&#10;&#10;If you would like to delete a cellspace, just click on one of the coordinates of the desired cellspace while pressing&#10;SHIFT button.&#10;&#10;All of the cellspace can be moved simultaneously. You have to move your mouse over one of the coordinates,&#10;then moving the mouse to the desired location, while pressing CTRL button. Your mouse have to be over one of &#10;the green circles during the process.&#10;&#10;You can export your work to gml, with the &quot;Export to .gml&quot; menuitem in File menu.&#10;&#10;Acknowledgements:&#10;&#10;Sincere thanks go to my consultants (Judit Tamás and Zsolt Tóth) and to the undismayed colleauges of Lab 106&#10;and naturally to the beautiful ladies of the world.&#10;&#10;Copyright: Tamás Boros /Fox1942/, 2017.&#10;">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextArea>
+   </children>
+</AnchorPane>
