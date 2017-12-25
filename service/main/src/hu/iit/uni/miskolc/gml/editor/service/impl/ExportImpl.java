@@ -6,6 +6,7 @@ import hu.iit.uni.miskolc.gml.editor.model.CellSpaceCoordinate;
 import hu.iit.uni.miskolc.gml.editor.model.Export;
 
 import net.opengis.indoorgml.geometry.LinearRing;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 
 
 public class ExportImpl implements Export {
-
     private Document doc;
     private String CoreNS = "http://www.opengis.net/indoorgml/1.0/core";
 
@@ -29,8 +29,6 @@ public class ExportImpl implements Export {
     public void export(File exportedGml, ArrayList<CellSpace> cellSpaces) {
 
         try {
-
-
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             docFactory.setNamespaceAware(true);
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -54,8 +52,9 @@ public class ExportImpl implements Export {
 
             Element bigPrimalSpaceFeatures = doc.createElement( "core:PrimalSpaceFeatures");
 
+            String ParentFloor=cellSpaces.get(0).getParentFloor();
 
-            bigPrimalSpaceFeatures.setAttribute("gml:id",cellSpaces.get(0).getParentFloor());
+            bigPrimalSpaceFeatures.setAttribute("gml:id",ParentFloor);
             primalSpaceFeatures.appendChild(bigPrimalSpaceFeatures);
 
             //putting cellspace coordinates into each cellspace
@@ -97,9 +96,14 @@ public class ExportImpl implements Export {
     }
 
     public Node createCellSpaceMember(String cellSpaceName, ArrayList<CellSpaceCoordinate> cpFloor, ArrayList<CellSpaceCoordinate> cpCeiling) {
+        cellSpaceName=cellSpaceName.replaceAll("\\s", "");
+
+        String CellId="uuid_"+ RandomStringUtils.randomAlphabetic(5);;
 
         Element cellSpaceMember = doc.createElementNS(CoreNS, "core:cellSpaceMember");
         Element cellSpace = doc.createElementNS(CoreNS, "core:CellSpace");
+        cellSpace.setAttribute("gml:id",CellId);
+
         cellSpaceMember.appendChild(cellSpace);
 
         Element metaDataProperty = doc.createElement("gml:metaDataProperty");
@@ -117,6 +121,9 @@ public class ExportImpl implements Export {
         cellSpaceGeometry.appendChild(geometry3d);
 
         Element solid = doc.createElement("gml:Solid");
+        solid.setAttribute("gml:id","CP_"+cellSpaceName+"Sketch");
+
+
         geometry3d.appendChild(solid);
         Element interior = doc.createElement("gml:interior");
         solid.appendChild(interior);
@@ -130,18 +137,17 @@ public class ExportImpl implements Export {
 
 
         Element polyhedralSurface = doc.createElement("gml:PolyhedralSurface");
+        polyhedralSurface.setAttribute("gml:id","CP_"+cellSpaceName+"Formation");
         surfaceMember.appendChild(polyhedralSurface);
 
         Element patches = doc.createElement("gml:patches");
         polyhedralSurface.appendChild(patches);
 
 
-        Element polygonPatch = doc.createElement("gml:polygonPatch");
+        Element polygonPatch = doc.createElement("gml:PolygonPatch");
         patches.appendChild(polygonPatch);
 
-
         for (int i = 0; i < 2; i++) {
-
             if (cpFloor.size() == 4) {
 
                 Element interior2 = (Element) interior.cloneNode(false);

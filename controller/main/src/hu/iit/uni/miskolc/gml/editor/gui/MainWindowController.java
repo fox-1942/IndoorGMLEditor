@@ -56,8 +56,6 @@ public class MainWindowController {
     @FXML
     private Pane pane;
 
-
-
     public MainWindowController() {
         facade = new ServiceFacade();
     }
@@ -89,25 +87,6 @@ public class MainWindowController {
     }
 
 
-    //-------------------------------------------------------------------------------
-
-//    public void showSingleFileChooser() {
-//
-//        FileChooser fileChooser = new FileChooser();
-//        File selectedFile = fileChooser.showOpenDialog(null);
-//
-//        if (selectedFile != null) {
-//            System.out.println("File selected");
-//            path = selectedFile.getPath();
-//            System.out.println(path);
-//        } else {
-//            System.out.println("Cancelled.");
-//        }
-//    }
-
-    //--------------------------------------------------------------------------------
-
-
     public Circle createCircle(double x, double y) {
         //create a circle with desired name,  color and radius
         final Circle circle = new Circle(x, y, 0.4, Color.YELLOWGREEN);
@@ -136,11 +115,15 @@ public class MainWindowController {
 
                         cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
                                 get(0).setCoordinateXYZ(me.getX(), me.getY(), 3.3);
+                        cellSpaces.get(indexes[0]).getCellSpaceCeilingCoordinatesArrayList().
+                                get(0).setCoordinateXYZ(me.getX(), me.getY(), 5.05);
                     }
 
                     //Modify the coordinate of the cellSpace to the dragged point.
                         cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
                                 get(indexes[1]).setCoordinateXYZ(me.getX(), me.getY(), 3.3);
+                    cellSpaces.get(indexes[0]).getCellSpaceCeilingCoordinatesArrayList().
+                            get(indexes[1]).setCoordinateXYZ(me.getX(), me.getY(), 5.05);
 
                     circle.setCenterX(me.getX());
                     circle.setCenterY(me.getY());
@@ -221,12 +204,23 @@ public class MainWindowController {
         }
     }
 
-
-
-    public void openDrawFile() {
+    public void openDrawFile(){
+        drawnFromFile=false;
         rootCreator();
         drawFloorPlanSubScene();
     }
+
+    public void newFile(){
+        rootCreator();
+        drawnFromFile=false;
+    }
+
+    public void exit(){
+        Stage stage = (Stage) root.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
 
     public ScrollPane rootCreator() {
         cellSpaces=new ArrayList<CellSpace>();
@@ -253,8 +247,6 @@ public class MainWindowController {
         Line line = new Line();
         line.setStroke(Color.LIGHTSEAGREEN);
         line.setStrokeWidth(0.4);
-
-
         return line;
     }
 
@@ -460,15 +452,14 @@ public class MainWindowController {
             for (Circle circle : circlesRealTime) {
                 cellSpaceFloorCoordinateArrayList.add(new CellSpaceCoordinate(circle.getCenterX(), circle.getCenterY(), 3.3));
             }
-            //cellSpaceFloorCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
-            //      circlesRealTime.get(0).getCenterY(),3.3));
-
+            cellSpaceFloorCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
+                  circlesRealTime.get(0).getCenterY(),3.3));
 
             for (Circle circle : circlesRealTime) {
-                cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circle.getCenterX(), circle.getCenterY(), 5.5));
+                cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circle.getCenterX(), circle.getCenterY(), 5.05));
             }
-            //cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
-            //      circlesRealTime.get(0).getCenterY(),5.5));
+            cellSpaceCeilingCoordinateArrayList.add(new CellSpaceCoordinate(circlesRealTime.get(0).getCenterX(),
+                  circlesRealTime.get(0).getCenterY(),5.05));
 
             CellSpace newCellSpace = new CellSpace(result.get().getKey(), result.get().getValue(), cellSpaceFloorCoordinateArrayList, cellSpaceFloorCoordinateArrayList);
             cellSpaces.add(newCellSpace);

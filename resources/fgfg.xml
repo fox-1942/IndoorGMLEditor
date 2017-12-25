@@ -1390,7 +1390,7 @@
                 <core:cellSpaceMember>
                     <core:CellSpace gml:id="uuid_eea6552f-be78-4db2-9a0c-45d7b775901d">
                         <gml:metaDataProperty>
-                            <gml:GenericMetaData gml:id="CS_1stFloorWheelAccessibleToliletName">1stFloorWheelAccessibleTolilet</gml:GenericMetaData>
+                            <gml:GenericMetaData gml:id="CS_1stFloorWheelAccessibleToiletName">1stFloorWheelAccessibleToilet</gml:GenericMetaData>
                         </gml:metaDataProperty>
                         
                         <gml:boundedBy>
@@ -1402,11 +1402,11 @@
                         
                         <core:cellSpaceGeometry>
                             <core:Geometry3D>
-                                <gml:Solid gml:id="CS_1stFloorWheelAccessibleToliletSketch">
+                                <gml:Solid gml:id="CS_1stFloorWheelAccessibleToiletSketch">
                                     <gml:interior>
                                         <gml:Shell>
                                             <gml:surfaceMember>
-                                                <gml:PolyhedralSurface gml:id="CS_1stFloorWheelAccessibleToliletFormation">
+                                                <gml:PolyhedralSurface gml:id="CS_1stFloorWheelAccessibleToiletFormation">
                                                     <gml:patches>
                                                         <gml:PolygonPatch>
                                                             <gml:interior>
@@ -1608,7 +1608,7 @@
                 <core:cellSpaceMember>
                     <core:CellSpace gml:id="uuid_5eed44d0-c401-46a0-935c-b3161177a00f">
                         <gml:metaDataProperty>
-                            <gml:GenericMetaData gml:id="CS_1stFloorNorthCorridorName">CS_1stFloorWestCorridor</gml:GenericMetaData>
+                            <gml:GenericMetaData gml:id="CS_1stFloorNorthCorridorName">CS_1stFloorNorthCorridor</gml:GenericMetaData>
                         </gml:metaDataProperty>
                         
                         <gml:boundedBy>
