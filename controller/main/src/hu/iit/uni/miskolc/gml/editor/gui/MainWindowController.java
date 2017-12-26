@@ -91,7 +91,7 @@ public class MainWindowController {
 
     public Circle createCircle(double x, double y) {
         //create a circle with desired name,  color and radius
-        final Circle circle = new Circle(x, y, 0.4, Color.YELLOWGREEN);
+        final Circle circle = new Circle(x, y, 0.5, Color.YELLOWGREEN);
 
         //add a shadow effect
         circle.setEffect(new InnerShadow(1, Color.YELLOWGREEN.brighter()));
@@ -374,6 +374,8 @@ public class MainWindowController {
                 if (circlesRealTime.size() == 3) {
                     circlesRealTime.get(0).addEventFilter(MouseEvent.MOUSE_CLICKED, clickOnFirstCircle);
                 }
+
+
             }
         };
         pane.setOnMouseClicked(clickAndCreateCircle);
