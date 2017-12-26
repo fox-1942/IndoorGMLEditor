@@ -19,13 +19,9 @@ import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.scene.text.Text;
 import javafx.stage.*;
 
 import javafx.util.Pair;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,8 +29,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import javafx.scene.input.MouseEvent;
-
-import static java.awt.Color.black;
 
 
 public class MainWindowController {
@@ -94,20 +88,16 @@ public class MainWindowController {
         final Circle circle = new Circle(x, y, 0.5, Color.YELLOWGREEN);
 
         //add a shadow effect
-        circle.setEffect(new InnerShadow(1, Color.YELLOWGREEN.brighter()));
+        circle.setEffect(new InnerShadow(1, Color.GREEN.brighter()));
 
         //change a cursor when it is over circle
         circle.setCursor(Cursor.CLOSED_HAND);
 
         circle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-
-
                 if(me.getX()<=pane.getWidth() && me.getX()>=pane.getMinWidth() &&
                         me.getY()<=pane.getHeight() && me.getY()>=pane.getMinHeight()) {
-
                     int[] indexes = ownerCellSpaceOfCircle(circle);
-
                     CellSpaceCoordinate currentCellLast = cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().
                             get(cellSpaces.get(indexes[0]).getCellSpaceFloorCoordinateArrayList().size() - 1);
 
@@ -152,7 +142,7 @@ public class MainWindowController {
                         }
                     }
                     me.consume();
-                    drawFloorPlanSubScene();
+                    drawFloorPlan();
                 }
 
             }
@@ -171,11 +161,10 @@ public class MainWindowController {
          */
         circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent deleteCell) {
-
                 if (deleteCell.isShiftDown()) {
                     int[] indexes = ownerCellSpaceOfCircle(circle);
                     cellSpaces.remove(cellSpaces.get(indexes[0]));
-                    drawFloorPlanSubScene();
+                    drawFloorPlan();
                 }
             }
         });
@@ -185,7 +174,7 @@ public class MainWindowController {
     }
 
 
-    public void drawFloorPlanSubScene() {
+    public void drawFloorPlan() {
 
         if (drawnFromFile == false) {
             //Reading and creating CellSpace objects from file.
@@ -238,7 +227,7 @@ public class MainWindowController {
     public void openDrawFile(){
         drawnFromFile=false;
         rootCreator();
-        drawFloorPlanSubScene();
+        drawFloorPlan();
     }
 
     public void newFile(){
@@ -259,7 +248,7 @@ public class MainWindowController {
         pane.setScaleY(14.0);
         pane.setScaleX(14.0);
         pane.setPrefSize(400,400);
-        pane.setStyle("-fx-background-color: #5d5b5e");
+        pane.setStyle("-fx-background-color: #a4a2a5");
 
 
         Group group=new Group();
@@ -270,13 +259,13 @@ public class MainWindowController {
 
         root.setContent(group);
 
-        root.setStyle("-fx-background-color: #4db124");
+        root.setStyle("-fx-background-color: #000000");
         return root;
     }
 
     public Line createLine(){
         Line line = new Line();
-        line.setStroke(Color.LIGHTSEAGREEN);
+        line.setStroke(Color.DARKGREEN);
         line.setStrokeWidth(0.4);
         return line;
     }
@@ -394,10 +383,11 @@ public class MainWindowController {
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Data of new cellspace");
         dialog.setHeaderText("Please fill out the data of new cellspace!");
+        dialog.initStyle(StageStyle.UNDECORATED);
 
         // Set the button types: OK and Cancel.
         ButtonType okayButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(okayButtonType, ButtonType.CANCEL);
+        dialog.getDialogPane().getButtonTypes().addAll(okayButtonType);
 
         // Create labels and fields.
         GridPane grid = new GridPane();
@@ -448,6 +438,7 @@ public class MainWindowController {
             }
             return null;
         });
+
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
 
