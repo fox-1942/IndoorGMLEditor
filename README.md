@@ -7,7 +7,9 @@ Unfortunately the application doesn't cover every part of the indoorGML schema. 
 
 Requirements:
 -Java 8
+
 -Java IDE (IntelliJ, Eclipse or other)
+
 -Maven
 
 1. Download the source code form GitHub 
