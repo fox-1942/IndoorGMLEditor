@@ -6,6 +6,7 @@ Unfortunately the application doesn't cover every part of the indoorGML schema. 
 "ISS1stFloor.xml". It works with similar structured files as "ISS1stFloor.xml".
 
 Requirements:
+
 -Java 8
 
 -Java IDE (IntelliJ, Eclipse or other)
