@@ -10,7 +10,7 @@ IndoorGML-Editor is a desktop Java application to edit and modify gml files base
 
 #### Technologies:
 * XML
-* JavaFX
+* JavaFX 11
 * MVC model
 * Java DOM
 
@@ -33,14 +33,16 @@ IndoorGML-Editor is a desktop Java application to edit and modify gml files base
 <p align="center">
   <img src="resources/unnamed.png" width=500 >
   <br>
-    <br>
+  <br>
    <img src="resources/loading.png" width=500 >
   <br>
   <br>
-    <br>
    <img src="resources/dialog.png" width=250 >
   <br>
-    <br>
+  <br>
   <img src="resources/sharp.png" width=500 >
+  <br>
+  <br>
+  <img src="resources/unnamed2.png" width=500 >
 </p>
 
