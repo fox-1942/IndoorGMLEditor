@@ -1,4 +1,4 @@
-# IndoorGMLEditor
+## IndoorGML-Editor
 
 IndoorGML-Editor is a desktop Java application to edit and modify gml files based on the IndoorGML schema. IndoorGML is an OGC standard for an open data model and XML schema for indoor spatial information. With GML files you can represent floor plans of buildings and indoor environments. More information about the the IndoorGML standard:
 
