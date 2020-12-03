@@ -2,15 +2,11 @@
 
 IndoorGML-Editor is a desktop Java application to edit and modify gml files based on the IndoorGMl schema. With this app you can import
 a gml file and represent it in 2D. You can create, modify or delete a cellspace and after then, you can export it to gml again.
-Unfortunately the application doesn't cover every part of the indoorGML schema. The example file is in the resource folder called
-"ISS1stFloor.xml". The application works only with similar structured files as "ISS1stFloor.xml".
 
 Requirements:
 
 -Java 8
-
 -Java IDE (IntelliJ, Eclipse or other)
-
 -Maven
 
 1. Download the source code form GitHub 
