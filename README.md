@@ -5,9 +5,9 @@ a gml file and represent it in 2D. You can create, modify or delete a cellspace 
 
 Requirements:
 
--Java 8
--Java IDE (IntelliJ, Eclipse or other)
--Maven
+*Java 8
+*Java IDE (IntelliJ, Eclipse or other)
+*Maven
 
 1. Download the source code form GitHub 
 2. Import it to a Maven project using IntelliJ, Eclipse or other IDE
