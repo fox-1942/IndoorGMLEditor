@@ -27,7 +27,7 @@ IndoorGML-Editor is a desktop Java application to edit and modify gml files base
 3. The application works with Java 7 and above, so modify the default JDK, if it is required.
 4. Run Main.java in "gui" module.
 
-#### Some screenshots from the programme:
+#### Some screenshots from the program:
 
 <p align="center">
   <img src="resources/unnamed.png" width=500 >
